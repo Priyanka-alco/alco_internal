@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_range: 1
+  to_range: 1
+  discount: 1.5
+  status: false
+
+two:
+  from_range: 1
+  to_range: 1
+  discount: 1.5
+  status: false

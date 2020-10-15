@@ -1,0 +1,223 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div class="container-fluid mt-4">
+  <% if params['view_detail'].present? && params['view_detail'] == "true" %>
+    <div class="row title-msg">
+      <span>Please Verify the details to make the final edits</span>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="card w-100 rounded border-0">
+      <div class="card-body bg-light p-4 h5"><span>PO Number&nbsp;</span><span>#PO<%= @result.present? ? @result[0]["order_detail"].order_id.to_i : ''%></span></div>
+    </div>
+  </div>
+
+  <div class="row mt-4 detailConfirmBox">
+    <div class="col-md-4 box-1">
+      <div class="card bg-light w-100 pt-2 pb-2 pl-3 pr-3">
+        <div class="card-body">
+          <div class="text-center">Customer Details</div>
+          <div class="row">
+            <table class="table table-borderless mt-3">
+              <tbody>
+               <tr>
+                  <td class="custdetails-info">First Name:</td>
+                 <td ><span><%= @customer_detail[0].first_name%></span></td>
+                </tr>
+                <tr>
+                  <td class="custdetails-info">Last Name:</td>
+                  <td ><span><%= @customer_detail[0].last_name %></span></td>
+                </tr>
+                <tr>
+                  <td class="custdetails-info">Address:</td>
+                  <td><span><%= @customer_detail[0].address%></span></td>
+                </tr>
+                <tr>
+                  <td class="custdetails-info">Phone No:</td>
+                  <td ><span><%= @customer_detail[0].phone %></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="card bg-light w-100">
+        <div class="card-body">
+          <div class="table-responsive single-product-order-table">
+            <table class="table table-borderless text-center">
+                <thead class="table-header thead-light">
+                <tr>
+                  <th class="table-header" scope="col">S.No</th>
+                  <th class="table-header" scope="col">Name</th>
+                  <th class="table-header" scope="col">Weight</th>
+                  <th class="table-header" scope="col">Qty</th>
+                  <th class="table-header" scope="col">Price Per Unit</th>
+                  <th class="table-header" scope="col">Price</th>
+                </tr>
+                </thead>
+              <tbody>
+                <% @result.each_with_index do |val,index| %>
+
+                  <tr>
+                    <td><%= index+1 %></td>
+                    <td><%= val['product_name'] %></td>
+                    <td><%= val['product_detail'][0].sku %>gms</td>
+                    <td><%= val["order_detail"].quantity %></td>
+                    <td>&#x20B9; <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+                    <td>&#x20B9; <%= val["order_detail"].selling_price.to_i%></td>
+                  </tr>
+                <%end %>
+              </tbody>
+            </table>
+            <input type="hidden" class="get_order_id" value="<%= @result[0]["order_detail"].order_id.to_i%>">
+            <input type="hidden" class="payment_type" value="<%= @payment_type.present? ? @payment_type : ''%>">
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+<!--            <div class="col-md-7">-->
+<!--              <div class="row float-left">-->
+<!--                <span>Ordered Date:&nbsp;&nbsp;</span>-->
+<!--                <span><%#= @order.created_at.strftime("%d-%m-%Y") %></span>-->
+<!--              </div><br>-->
+<!--              <div class="row float-left">-->
+<!--                <span>Completed Date:&nbsp;&nbsp;</span>-->
+<!--                <span><%#= @order.created_at.strftime("%d-%m-%Y") %></span>-->
+<!--              </div>-->
+<!--            </div>-->
+            <div class="col-md-4"><div class="row float-right mr-2">
+              <span>Total MRP:&nbsp;&nbsp;</span>
+              <span>&#x20B9;</span><span><%= @total_price.to_i %></span>
+            </div><br>
+              <div class="row float-right mr-2">
+                <span>Discount on MRP:&nbsp;&nbsp;</span>
+                <span><%= @discount.present? ? " #{@discount}%" : '' %> </span>
+              </div><br>
+              <div class="row float-right mr-2">
+                <span>Total Amount:&nbsp;&nbsp;</span>
+                <span>&#x20B9;</span><span class="discounted_price"> <%= "#{@discounted_price}" %></span>
+                <input type="hidden" class="discount_id" value="<%= @discount_id %>">
+              </div></div>
+
+
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if params['view_detail'].present? && params['view_detail'] == "true" %>
+  <div class="row mt-5 finalCheck-btn ml-auto mr-auto mb-4">
+    <div class="col-md-6">
+        <%= link_to("Back", :back, :class=>"btn btn-danger p-4 w-100 back_button")  %>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-primary p-4 w-100 confirm_order">
+        Confirm
+      </button>
+    </div>
+  </div>
+<% end %>
+
+<!--spinner-->
+<!--<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span> </div>-->
+<div class="cod_popup" id="cod_popup">
+
+ <div class="card border-0 card-popup">
+                    <div class="card-body codpopup-cardbody">
+                     <div class="row justify-content-end">
+                      <span class="mr-2"><a href="/search_customer" class="text-white h5" id="close-cod">&#10006;</a></span>
+                      </div>
+                        <div class="row">
+                        <%= image_tag("quality-check.png",:class => "quality-check") %>
+                        
+                        </div>
+                        <div class="row mt-2 text-success h3 justify-content-center">
+                            <span>Order Confirmed</span>
+                        </div>
+                        <div class="row mt-3 text-white h3 justify-content-center">
+                            <span>Thank you</span><br><span>for shopping with us</span> 
+                        </div>
+                        <div class="row mt-3 text-white h6 justify-content-center">
+                            <span>Your order will be delivered within 24 hrs.</span>
+                        </div>
+                    </div>
+                </div>
+
+</div>
+
+<div class="online_pay_popup" id="online_pay_popup">
+
+ <div class="card border-0 card-popup">
+                    <div class="card border-0">
+                    <div class="card-body codpopup-cardbody">
+                        <div class="row justify-content-end">
+                      <span class="mr-2"><a href="#" class="text-white h5 cross_online" id="close-online">&#10006;</a></span>
+                      </div>
+                        <div class="row">
+                        <%= image_tag("quality-check.png",:class => "quality-check") %>
+                        
+                        </div>
+                        <div class="row mt-2 text-success h3 justify-content-center">
+                            <span>Order Confirmed</span>
+                        </div>
+                        <div class="row mt-5 text-white h6 justify-content-center">
+                            <span>Share this link with the customer</span>
+                        </div>
+                            <div class="card-block mt-4 text-white text-center">
+                                <h5 class="card-text"><a href="#">www.alcowats.com/onlinepayment/jhgjhgfsgdfdfgdgjh</a></h5>
+                            </div>
+                        </div>
+                </div>
+                </div>
+
+</div>
+<script>
+    // ======close modal=======
+    $('#close-cod').click(function(){
+        $('#cod_popup').hide();
+    });
+    $('#close-online').click(function(){
+        $('#online_pay_popup').hide();
+        
+    });
+    
+    // ======close modal=======
+  $('.cod_popup').hide();
+  $('.online_pay_popup').hide();
+
+  // $('.spinner-border').hide();
+    $('.confirm_order').click(function(){
+        var order_id = $('.get_order_id').val();
+        var payment_type = $('.payment_type').val();
+        var discounted_price = $('.discounted_price').html();
+        var discount_id = $('.discount_id').val();
+        var data = {order_id:order_id,payment_type:payment_type,discounted_price:discounted_price,discount_id:discount_id};
+        $.ajax({
+            url:"/update_order_status",
+            method: "POST",
+            data: data,
+            success: function(data){
+                if (payment_type == "1"){ //cod
+                    $('.cod_popup').show();
+                    $('.online_pay_popup').hide();                    
+                }else{ //online
+                $('.online_pay_popup').show();
+                 $(".cross_online").attr("href", '/customer_payment_page?order_id='+order_id);
+                    $('.cod_popup').hide();
+                }
+                // $('.spinner-border').show();
+
+                console.log(data);
+            },
+            error: function(data){
+
+            }
+        });
+    });
+</script>

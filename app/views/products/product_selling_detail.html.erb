@@ -1,0 +1,47 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div class="table-responsive mt-4" style="width: fit-content;margin-left: 10%;">
+  <table class="table table-bordered table-hover text-">
+    <tbody>
+    <tr>
+      <td>Name:</td>
+      <td><%= "#{@customer_detail[0].first_name} #{@customer_detail[0].last_name}" %></td>
+    </tr>
+    <tr>
+      <td>Phone No.:</td>
+      <td><%= @customer_detail[0].phone %></td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td><%= @customer_detail[0].address%></td>
+    </tr>
+    </tbody>
+  </table>
+  <input type="hidden" class="get_order_id" name="get_order_id" value="<%= @result[0]["order_detail"].order_id if @result.present? %>">
+</div>
+<div class="table-responsive mt-4" style="width: 80%; margin: 0 auto">
+  <table class="table table-bordered table-hover text-center">
+    <thead>
+    <th>S no.</th>
+    <th>Product</th>
+    <th>Sku</th>
+    <th>Quantity</th>
+    <th>Price Per Unit</th>
+    <th>Price</th>
+    </thead>
+    <tbody>
+    <% @result.each_with_index do |val,index| %>
+      <tr>
+        <td><%= index %></td>
+        <td><%= val['product_name'] %></td>
+        <td><%= val["order_detail"].sku_id %></td>
+        <td><%= val["order_detail"].quantity %></td>
+        <td>&#x20B9;<%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+        <td>&#x20B9;<%= val["order_detail"].selling_price.to_i%></td>
+      </tr>
+    <%end %>
+    </tbody>
+  </table>
+  <span>Sub Total</span>
+  <span>&#x20B9;<%= @total_price %> 	</span>
+</div>

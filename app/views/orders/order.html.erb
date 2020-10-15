@@ -1,0 +1,29 @@
+
+
+
+  <div class="table-responsive mt-4">
+    <table class="table table-bordered table-hover text-center">
+      <thead>
+      <th>Order_id</th>
+      <th>Name</th>
+      <th>Phone no</th>
+      <th>Selling Date</th>
+      <th>Total Bill</th>
+      <th colspan="2">Action</th>
+      </thead>
+      <tbody>
+      <% @res.each do |val| %>
+<%  %>
+        <tr>
+          <td><%= val['order_detail'].id if val['order_detail'].id %></td>
+          <td><%= "#{val['customer_detail'][0].first_name if val['customer_detail'][0].first_name.present?} #{val['customer_detail'][0].last_name if val['customer_detail'][0].last_name.present?}" %></td>
+
+          <td><%= val['customer_detail'][0].phone if val['customer_detail'][0].phone.present?%></td>
+          <td><%= val['order_detail'].created_at.to_date if val['order_detail'].created_at.present? %></td>
+          <td><%= val['order_detail'].total if val['order_detail'].total.present? %></td>
+          <td><a target="_blank" href="/single_product_detail?order_id=<%= val['order_detail'].id %>">View Details</a></td>
+        </tr>
+      <%end %>
+      </tbody>
+    </table>
+  </div>

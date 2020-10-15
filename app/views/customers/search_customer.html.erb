@@ -1,0 +1,330 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<div class="container-fluid mt-4 mb-3">
+  <div class="row ml-1">
+    <div class="col-md-4 mr-3">
+      <div class="row">
+        <div class="card bg-light w-100 card-1 p-2 pb-4">
+          <div class="card-body phoneInput">
+            <div>Search By Customer Phone Number</div>
+
+            <div>
+              <input type="tel" minlength="10" pattern="[0-9]{10}" maxlength="10"  value = "<%= params['phone_number'].present? ? params['phone_number'] : '' %>" class="form-control text-center customer_number">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="card bg-light w-100 pl-3 pr-3">
+          <div class="card-body custdetails">
+            <div>
+              <span class="float-right"><a class="save_cust_detail text-warning">Save</a></span>
+              <span class="float-right"><a class="edit_cust_detail text-warning mr-2">Edit</a><span>
+            </div><br>
+            <div class="text-center">Customer Details</div>
+
+            <div class="row">
+              <table class="table table-borderless mt-3">
+                <tbody>
+                <tr>
+                  <td class="custdetails-info">First Name:</td>
+                  <td ><input type="text" pattern="^[A-Za-z -]+$" value="<%= @result['customer_detail'][0].first_name if params['phone_number'].present? %>" readonly="true" class="form-control cust_first_name"></td>
+                </tr>
+                <tr>
+                  <td class="custdetails-info">Last Name:</td>
+                  <td ><input type="text" pattern="^[A-Za-z -]+$" value="<%= @result['customer_detail'][0].last_name if params['phone_number'].present? %>" readonly="true" class="form-control  cust_last_name"></td>
+                </tr>
+                <tr>
+                  <td class="custdetails-info">Address:</td>
+                  <td><textarea readonly="true" value="<%= @result['customer_detail'][0].address if params['phone_number'].present? %>" class="form-control  cust_address"><%= @result['customer_detail'][0].address if params['phone_number'].present? %></textarea></td>                    
+                </tr>
+                <tr>
+                  <td class="custdetails-info">Phone No:</td>
+                  <td ><input type="tel" maxlength="10" required minlength="10"  pattern="^[6-9][0-9]{9}$" value="<%= @result['customer_detail'][0].phone if params['phone_number'].present? %>" readonly="true" class="form-control  cust_phoneno"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <a href="/product_selling" class="create_purchase_order text-white btn btn-primary p-4 w-100 d-block">Create Purchase Order</a>
+
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="card bg-light w-100 card-1 p-2">
+          <div class="card-body phoneInput">
+            <div>Search By Customer Address</div>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text"  id="search-box" class="form-control">
+
+              </div>
+              <div id="suggesstion-box" class="col-md-6"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="card bg-light w-100">
+          <div class="card-body">
+            <div class="table-responsive order-table-1">
+              <table class="table table-borderless text-center">
+                <thead class="table-header thead-light">
+                <tr>
+                  <th class="table-header" scope="col">Order</th>
+                  <th class="table-header" scope="col">Order Date</th>
+                  <th class="table-header" scope="col">Order Price</th>
+                  <th class="table-header" scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody class="order_detail">
+                <% if params['phone_number'].present? %>
+                  <% @result['order_detail'].each do |val| %>
+                    <tr>
+                      <td>#PO<%= val.id %></td>
+                      <td><%= val.created_at.to_date.strftime('%d-%m-%Y') %></td>
+                      <td>&#x20B9; <%= val.total %></td>
+                      <td><a target="_blank" href="single_product_detail?order_id=<%= val.id %>">View Details</a></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup" id="common_comdal">
+  <div class="card border-0 popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <span>Are you Sure you want to save the details ?</span>
+        </div>
+        <div class="row mt-3 justify-content-center">
+        <button class="btn save_yes btn-light text-dark mr-3">Yes</button>
+        <button class="btn btn-light text-dark" id="closeBtn">NO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+    $('.edit_cust_detail ').click(function(){
+      $('.save_cust_detail ').show();
+      $('.edit_cust_detail ').hide();
+  })
+    $("#search-box").keyup(function(){
+        var address = $(this).val();
+        var data = {address:address}
+        var arr = [];
+        $.ajax({
+            type: "get",
+            url: "/get_address",
+            data:data,
+            beforeSend: function(){
+                $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+            },
+            success: function(data){
+                $.each(data['address'], function( index, value ) {
+                    arr.push("<option value='"+value.phone+"'>"+value.address+"</option>")
+                });
+                $("#suggesstion-box").show();
+                $("#suggesstion-box").html("<select class='form-control select_address' id='new_address' onchange='get_customer()'><option>Select Customer Address</option>"+arr.join(" ")+"</select>");
+
+                $("#search-box").css("background","#FFF");
+            }
+        });
+    });
+    function get_customer(){
+        var phone_number = document.getElementById("new_address").value;
+        var data = {
+            phone_number: phone_number,
+        }
+        $.ajax({
+            url:"/search_by_phone",
+            method: "POST",
+            data: data,
+            success: function(data){
+                $('.custdetails').show();
+
+                if (data['status'] == 200){
+
+                    $('.cust_first_name').val(data['customer_detail'][0]['first_name']);
+                    $('.cust_last_name').val(data['customer_detail'][0]['last_name']);
+                    $('.cust_address').val(data['customer_detail'][0]['address']);
+                    $('.cust_phoneno').val(data['customer_detail'][0]['phone']);
+                    $('.order_list').remove();
+                    $.each(data['order_detail'], function( index, val ) {
+
+                        var new_url = "/single_product_detail?order_id="+val.id;
+                        var order_date =  val.created_at ? val.created_at.split('T') : [''];
+                        $('.order_detail').append(" <tr class='order_list'>" +
+                            "<td> #PO"+val.id+"</td>" +
+                            "<td>"+order_date[0]+"</td>" +
+                            "<td>"+val.total+"</td>" +
+                            "<td><a href="+new_url+" target='_blank'>View Details</a></td>" +
+                            "</tr>");
+                    });
+                    $('.customer_number').val(phone_number);
+
+                    console.log(data);
+                }else{
+                    window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+                }
+            },
+            error: function(data){
+                window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+            }
+        });
+    }
+  // ======close modal=======
+  $('#close').click(function(){
+    $('#common_comdal').hide();
+  });
+  $('#closeBtn').click(function(){
+    $('#common_comdal').hide();
+  });
+  // ======close modal=======
+  // ======create purchase order=======
+  $('.create_purchase_order').click(function(){
+    var phone_number = $('.customer_number').val();
+      $(".create_purchase_order").attr("href", "/product_selling?phone_number="+phone_number);
+
+  });
+
+    <% if params['phone_number'].present? %>
+    $('.custdetails').show();
+    <% else %>
+    $('.custdetails').hide();
+    <% end %>
+    $('.customer_number').change(function(){
+        var phone_number = $(this).val();
+        var numbers = /^[0-9]+$/;
+        if(phone_number.match(numbers) && phone_number != '' && phone_number.length == 10 )
+        {
+            var data = {
+                phone_number: phone_number,
+            }
+            $.ajax({
+                url:"/search_by_phone",
+                method: "POST",
+                data: data,
+                success: function(data){
+                    $('.custdetails').show();
+
+                    if (data['status'] == 200){
+
+                        $('.cust_first_name').val(data['customer_detail'][0]['first_name']);
+                        $('.cust_last_name').val(data['customer_detail'][0]['last_name']);
+                        $('.cust_address').val(data['customer_detail'][0]['address']);
+                        $('.cust_phoneno').val(data['customer_detail'][0]['phone']);
+                        $('.order_list').remove();
+                        $.each(data['order_detail'], function( index, val ) {
+                            var new_url = "/single_product_detail?order_id="+val.id;
+                            var order_date =  val.created_at ? val.created_at.split('T') : [''];
+
+                            $('.order_detail').append(" <tr class='order_list'>" +
+                                "<td> #PO"+val.id+"</td>" +
+                                "<td>"+order_date[0]+"</td>" +
+                                "<td>"+val.total+"</td>" +
+                                "<td><a href="+new_url+" target='_blank'>View Details</a></td>" +
+                                "</tr>");
+                        });
+                        console.log(data);
+                    }else{
+                        if (phone_number != ''){
+                            window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+                        }
+
+                    }
+                },
+                error: function(data){
+                    window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+                }
+            });
+        }
+        else
+        {
+            alert('Please Enter Correct Phone Number');
+            $(this).val("");
+            return false;
+        }
+
+
+
+
+    })
+    $('.save_cust_detail').hide();
+    // readonly false for customer detail
+    $('.edit_cust_detail').click(function(){
+
+        $('.cust_first_name').prop('readonly', false);
+        $('.cust_last_name').prop('readonly', false);
+        $('.cust_address').prop('readonly', false);
+        $('.save_cust_detail').show();
+    });
+
+    //edit customer detail on click of submit
+    $('.save_cust_detail').click(function(){
+        var cust_first_name = $('.cust_first_name').val();
+        var cust_last_name = $('.cust_last_name').val();
+        var cust_address = $('.cust_address').val();
+        var cust_phone = $('.cust_phoneno').val();
+        var numbers = "/^[0-9]+$/";
+        var alphabets  = "^[A-Za-z -]+$";
+        if( cust_first_name.match(alphabets) && cust_last_name.match(alphabets)  ){
+            $('#common_comdal').show();
+        }else{
+            alert("Please enter valid credentials");
+        }
+    })
+
+
+    $('.save_yes').click(function(){
+
+        var cust_first_name = $('.cust_first_name').val();
+        var cust_last_name = $('.cust_last_name').val();
+        var cust_address = $('.cust_address').val();
+        var cust_phone = $('.cust_phoneno').val();
+
+        var data = {
+            cust_first_name : cust_first_name,
+            cust_last_name : cust_last_name,
+            cust_address : cust_address,
+            cust_phone:cust_phone
+        }
+        $.ajax({
+            url:"/edit_customer_detail",
+            method: "POST",
+            data: data,
+            success: function(data){
+                $('.custdetails').show();
+                if (data == true){
+                    window.location.replace('/search_customer?phone_number='+cust_phone);
+                }else{
+                    alert("Please contact to technical team");
+                }
+            },
+            error: function(data){
+                alert("Please contact to technical team");
+            }
+        });
+    });
+</script>

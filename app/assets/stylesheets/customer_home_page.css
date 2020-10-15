@@ -1,0 +1,75 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+}
+
+.heading {
+  background-color: #003460;
+}
+
+.heading span:first-of-type {
+  font-size: 23px;
+  color: white;
+}
+.heading span:last-of-type {
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.available-discount-tag {
+  color: #ff6633;
+}
+
+.table tr td {
+  padding: 20px 0;
+}
+
+tbody .btn {
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.shopping-cart-cardbody {
+  font-size: 23px;
+  color: white;
+  background-color: #003460;
+  min-height: 300px;
+}
+
+.shopping-cart-card {
+  min-height: 300px;
+}
+
+.product-detail {
+  height: 75px;
+  font-size: 15px;
+}
+
+.product-detail-price {
+  font-size: 16px;
+  margin-top: 8%;
+}
+
+.product-detail .col-md-9 {
+  border-right: 2px solid;
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.discount-checkout {
+  margin-top: 40%;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.shopping-cart-cardbody button {
+  width: 95%;
+  background-color: #ff6633;
+}
+
+.prod_cart_close {
+    /*display: none;*/
+}

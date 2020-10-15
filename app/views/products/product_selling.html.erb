@@ -1,0 +1,185 @@
+
+<form action="buy_product" method="post">
+  <div class="container-fluid mt-4">
+    <div class="row ml-1">
+      <div class="col-md-4 mr-3">
+        <div class="row">
+          <div class="card bg-light w-100 pt-2 pb-2 pr-3 pl-3">
+            <div class="card-body custdetails">
+              <div class="text-center">Customer Details</div>
+              <hr>
+              <div class="row">
+                <table class="table table-borderless mt-3">
+
+                  <tbody>
+                  <tr>
+                    <td class="custdetails-info">First Name:</td>
+                    <td><input type="text" name="first_name" pattern="^[A-Za-z -]+$" required value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].first_name : '' %>" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td class="custdetails-info">Last Name:</td>
+                    <td><input type="text" name="last_name"  pattern="^[A-Za-z -]+$" required value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].last_name : '' %>" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td class="custdetails-info">Address:</td>
+                    <td><textarea class="form-control" name="address" required value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %>" style="height: 150px;"><%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %></textarea></td>
+                  </tr>
+                  <tr>
+                    <td class="custdetails-info">Phone No:</td>
+                    <td><input type="tel" maxlength="10" name="phone_no" pattern="^[6-9][0-9]{9}$" required minlength="10" value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].phone : params['phone_number'].present? ? params['phone_number'] : '' %>" class="form-control customer_number"></td>
+                  </tr>
+                  </tbody>
+
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="card bg-light w-100">
+            <div class="card-header">
+              Buy Products
+            </div>
+            <div class="card-body">              
+              <div class="table-responsive product-selling-order-table">
+                <table class="table table-borderless text-center">
+                  <thead class="table-header thead-light">
+                    <tr>
+                        <th class="table-header" scope="col">Name</th>
+                        <th class="table-header" scope="col">Weight</th>
+                        <th class="table-header" scope="col">Quantity</th>
+                        <th class="table-header" scope="col">Price</th>
+                        </tr>
+                    </thead>
+                  <tbody>
+                  <% if  @result['product'].present? %>
+                    <% @result['product'].each_with_index  do |product,index| %>
+                      <tr>
+                        <td>
+                          <input type="text" name="product_name[<%= index %>]" value="<%= product['product'].product_name %> " class="form_product_name form-control">
+                        </td>
+                        <td>
+                          <select required class="ml-2 form-control form_sku sku_<%= index %> sku_detail" name="sku[<%= index %>]">
+                            <option disabled selected>SKU</option>
+                            <% product['product_detail'].each do |product_detail_val| %>
+                              <option value="<%=product_detail_val.id %>"><%=product_detail_val.sku %>gms</option>
+                            <% end %>
+                          </select>
+                          <input type="hidden" value="<%= index %>">
+                        </td>
+                        <td >
+                          <select required class="ml-3 form-control qty form_qty qty_<%= index %>" name="qty[<%= index %>]" id="<%= index %>">
+                            <option disabled selected>QTY</option>
+                            <% (1..10).each do |val| %>
+                              <option value="<%=val %>"><%=val %></option>
+                            <% end %>
+                          </select>
+                        </td>
+                        <td>
+                          <input type="text" read_only="true" class="w-50 ml-auto mr-auto form-control form_price price_<%= index %>" name="price[<%= index %>]">
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row ml-1 mt-2 mb-3">
+      <div class="col-md-6 mr-3">
+        <div class="row">
+          <div class="card bg-light w-100 pb-5">
+            <div class="card-body payment-tag-title">
+              <div class="text-center">Select Payment Method</div>
+              <div class="row justify-content-center mt-4">
+                <div class="col-md-5 mr-3 payment-tag p-3 h6">
+                  <input type="radio" name="payment_type" value="2">
+                  <span class="ml-3">
+                                        Online Payment
+                                    </span>
+                </div>
+                <div class="col-md-5 payment-tag p-3 h6">
+                  <input type="radio" name="payment_type" checked value="1">
+                  <span class="ml-3">
+                                        Cash On Delivery
+                                    </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <button class="btn btn-primary w-100 mb-2 p-5 checkout"  onclick="checker(event);">
+            Checkout
+          </button>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-danger w-100 p-4 reset_form">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</form>
+<script>
+
+    function checker(event){
+        if ($('.form_price').hasClass("add_price")) {
+        } else {
+            alert('Please add atleast 1 product');
+            event.preventDefault();
+        }
+    }
+
+    // =========for reset============
+    $(".reset_form").on("click", function() {
+
+        $(".form_sku").val("SKU");
+        $(".form_qty").val("QTY");
+        $(".form_price").val("0");
+        $('input').removeClass('add_price');
+    });
+    $(".qty").change(function () {
+        var id = $(this).attr("id");
+        var sku = parseInt(parseInt($(".sku_" + id + " option:selected").text().replace("gms",""))
+            ,
+            10
+        );
+        // console.log("*****"+id);
+        // console.log("*****"+sku);
+        var qty = parseInt($(this).val(), 10);
+        var price = sku * qty;
+        $(".price_" + id).val(price);
+        (parseInt(price)||0) ? $(".price_" + id).val(price) : $(".price_" + id).val("0");
+        $(".price_" + id).addClass("add_price");
+
+    });
+    $(".sku_detail").change(function () {
+        var id = $(this).next().val();
+        var sku = parseInt(
+            $(".sku_" + id + " option:selected").text(),
+            10
+        );
+        var qty = parseInt($('.qty_'+id).val(), 10);
+        var price = sku * qty;
+        // console.log("*****"+id);
+        // console.log("*****"+sku);
+        // console.log("*****"+qty);
+        // $(".price_" + id).val(price);
+        (parseInt(price)||0) ? $(".price_" + id).val(price) : $(".price_" + id).val("0");
+        $(".price_" + id).addClass("add_price");
+
+    });
+</script>

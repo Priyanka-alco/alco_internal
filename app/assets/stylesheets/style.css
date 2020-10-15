@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    position: sticky;
+    top:0;
+    z-index:3;
+    padding: 25px;
+    padding-left: 30px;
+    padding-right: 5px;
+    border: 1px solid white;
+    border-color: rgba(255,255,255,0.3);
+    background-color: #003460;
+}
+
+.logo {
+    display: inline-block;
+    margin-left: 2%;
+}
+
+.img_preview {
+    width: 135px;
+}
+
+.account-user {
+    margin-right: 2%;
+    float: right;
+    color: white;
+    font-size: 15px;
+}
+.account-user span:first-of-type {
+    float: right;
+}
+nav a:hover {
+    outline: none;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.section {
+    min-height: 100vh;
+    /* margin-left:0%; */
+}
+
+.sideBar {
+    width:300px;
+    position: fixed;
+    left:0;
+    z-index:2;
+    color: white;
+    min-height: 100vh;
+    background-color: #003460;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px black;
+    padding-top: 3%;
+}
+
+.sideBar-li{
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.sideBar a{
+    text-decoration: none;
+}
+
+.sideBar ul li {
+    list-style-type: none;
+}
+
+.sideBar ul li a{
+    color: white;
+}
+
+.sidebar-menu {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.sidebar-menu ul li {
+    list-style-type: none;
+}
+
+.sidebar-menu ul li a {
+    color: white;
+}
+
+.current-link {
+    margin: 0 1px;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: #baada7;
+}
+
+.cust-info a {
+    color: white;
+}
+
+.order-info ul li {
+    list-style-type: none;
+}
+
+.order-info a {
+    color: white;
+}
+
+.po-list li a {
+    font-size: 15px;
+}
+
+.logout-btn-call-center button{
+    color: white;
+    background-color: #ff6633;
+    border-radius: 10px;
+    width: 70%;
+    margin-left: 14%;
+    position: relative;
+    top: 215px;
+}
+
+.logout-btn-manager-portal button{
+    color: white;
+    background-color: #ff6633;
+    border-radius: 10px;
+    width: 70%;
+    margin-left: 14%;
+    position: relative;
+    top: 280px;
+}
+
+.sideBar hr {
+    background-color: white;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.customer-card {
+    width: fit-content;
+}
+
+.address-box {
+    width: 232px;
+}
+
+.discount {
+    width: 18%;
+}
+
+.select_product {
+    width: 15%;
+}
+
+footer {
+    /* position: sticky;
+    bottom: 0;
+    z-index: 1; */
+    padding: 15px;
+    color: white;
+    background-color: #003460;
+    width: 100%;
+    height: auto;
+}
+
+.copyright {
+    width: 22%;
+    margin: 0 auto;
+}
+
+.submit {
+    margin-left: 40%;
+}
+
+
+/* @media screen and (min-width: 300px) and (max-width: 600px) {
+  header {
+    padding: 10px;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: #003460;
+    box-shadow: 1px 1px black;
+    font-size: 18px;
+  }
+
+  .img_preview {
+    width: 150px;
+  }
+} *

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>From range:</strong>
+  <%= @discount.from_range %>
+</p>
+
+<p>
+  <strong>To range:</strong>
+  <%= @discount.to_range %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @discount.discount %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @discount.status %>
+</p>
+
+<%= link_to 'Edit', edit_discount_path(@discount) %> |
+<%= link_to 'Back', discounts_path %>

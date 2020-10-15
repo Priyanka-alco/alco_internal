@@ -1,0 +1,82 @@
+* {
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.detailConfirmBox .card {
+  height: 450px;
+}
+
+.single-product-order-table {
+  display: block;
+  height: 100%;
+  overflow: auto;
+}
+
+.back_button {
+  font-size: 22px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+}
+
+.table thead {
+  border-bottom: 1px solid;
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+#print-btn {
+  background-color: #003460;
+}
+
+#complete-order-btn {
+  background-color: #1665a7;
+}
+
+.custdetails-info {
+  width: 40%;
+}
+
+.opr-order-custdetails {
+  height: 400px;
+}
+
+.order_complete_popup {
+  display: none;
+  position: fixed;
+  top: 150px;
+  left: 38%;
+  z-index: 1;
+  width: fit-content;
+  z-index: 20;
+}
+
+.order_complete_popup:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
+.order-popup-cardbody {
+  border: none;
+  background-color: #003460;
+  width: 380px;
+  height: 380px;
+}
+
+.quality-check {
+  width: 120px;
+  height: 120px;
+  opacity: 0.9;
+  margin: 2px auto;
+}

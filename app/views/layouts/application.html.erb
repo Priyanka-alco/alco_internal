@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AlcoB2c</title>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+<% if (params[:action] != "bill") && (params[:action] != "caller_login") %>
+
+  <header>
+    <div class="head">
+        <span class="logo"
+        ><%= image_tag("alco_eats.png",:class => "img_preview") %>
+        </span>
+      <% if (params[:action] != "customer_home_page") %>
+        <div class="account-user">
+          <span><%= session[:name] %></span><br>
+          <span class="float-right"><%= session[:email] %></span>
+        </div>
+      <% end %>
+    </div>
+  </header>
+  <main>
+    <div class="container-fluid section">
+      <div class="row">
+        <% if (params[:action] != "bill") && (params[:action] != "customer_home_page") && (params[:action] != "caller_login") && (params[:action] != "customer_payment_page") && (params[:action] != "payment_acknowledgement")  && (session[:category] == 1)  && (params[:action] != "packaging_login") && (params[:action] != "manager_login") %>
+          <div class="col-md-3 sideBar">
+            <div class="row sidebar-menu">
+            <span><h4>Call Center</h4><span>
+            </div>
+            <hr>
+
+            <ul class="mt-5 ml-4">
+            <li class="mt-3 <%= "sideBar-li" if (params[:action] == "search_customer") %>">
+            <a class="ml-3 " href="/search_customer" id="home-link">Home</a>
+            </li>
+            <li class="mt-3 ml-3"><a>Purchase Order</a>
+                  <ul class="po-list">
+                    <li class="mt-2 <%= "sideBar-li" if (params[:action] == "product_selling") %>"><a class="ml-3" href="/product_selling" id="create-Po-link">- Create Purchase Order</a></li>
+                    <li class="mt-1 <%= "sideBar-li" if (params[:action] == "order") %>"><a class="ml-3" href="/order" id="purchase-order-link">- View Purchase Order</a></li>
+                  </ul>
+            </li>
+            
+            </ul>
+
+            <div class="logout-btn-call-center">
+              <button class="btn"><a href="/logout" class="text-white d-block">Logout</a></button>
+            </div>
+
+          </div>
+        <%end  %>
+
+        <% if (params[:action] != "bill") &&  (params[:action] != "customer_home_page") &&  (session[:category] == 2)   && (params[:action] != "packaging_login") && (params[:action] != "manager_login")%>
+          <div class="col-md-3 sideBar">
+            <div class="row sidebar-menu text-center">
+              <span><h5>Manager Portal</h5></span>
+            </div>
+            <hr>
+
+            <ul class="mt-5 ml-4">
+         
+            <li class="mt-3 <%= "sideBar-li" if (params[:action] == "all_order") %>">
+            <a href="all_orders" class="ml-3">All Purchase Orders</a>
+            </li>
+            <li class="mt-3 <%= "sideBar-li" if (params[:action] == "pending_order") %>"><a class="ml-3" href="pending_order">Pending Purchase Order</a>
+            </li>
+            <li class="mt-3 <%= "sideBar-li" if (params[:action] == "completed_order") %>"><a class="ml-3" href="completed_order" >Completed Purchase Order</a></li>
+            </ul>
+
+            
+            <div class="logout-btn-manager-portal">
+              <button class="btn"><a href="/logout" class="text-white d-block">Logout</a></button>
+            </div>
+          </div>
+          
+        <%end  %>
+        <div class="col-md-12" >
+          <div class="content" style="margin-left:20%">
+<% end %>
+<%= yield %>
+<% if params[:action] != "caller_login" %>
+  </div>
+  </div>
+  </div>
+  </div>
+  </main>
+  <% if (params[:action] != "bill") && (params[:action] != "caller_login") %>
+    <footer><div class="copyright">Copyright@Alco Foods PVT LTD.</div></footer>
+  <% end %>
+  <script>
+  
+  </script>
+  </body>
+  </html>
+
+  </body>
+  </html>
+<% end %>

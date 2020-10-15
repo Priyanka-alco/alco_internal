@@ -1,0 +1,182 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+<div class="container  mt-2">
+  <div class="row">
+    <div class="card w-100 rounded border-0">
+      <div class="card-body bg-light p-4 h5"><span>Order Id:  &nbsp;</span><span>#PO<%= @order.id  %></span><span class="float-right"></span><span class="float-right">&nbsp;</span></div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-8">
+      <div class="card bg-light w-100" style="height:450px">
+        <div class="card-header text-center mt-2">
+          <h6>Order Details</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive opr-order-order-table text-center">
+            <table class="table table-borderless ">
+              <thead class="header thead-light">
+              <tr>
+                <th class="header" scope="col">S.No</th>
+                <th class="header" scope="col">Name</th>
+                <th class="header" scope="col">Weight</th>
+                <th class="header" scope="col">Quantity</th>
+                <th class="header" scope="col">Price Per Unit</th>
+                <th class="header" scope="col">Price</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @result.each_with_index do |val,index| %>
+                <tr>
+                  <td><%= index+1 %></td>
+                  <td><%= val['product_name'] %></td>
+                  <td><%= val["order_detail"].sku_id %></td>
+                  <td><%= val["order_detail"].quantity %></td>
+                  <td>&#x20B9; <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+                  <td>&#x20B9; <%= val["order_detail"].selling_price.to_i%></td>
+                </tr>
+              <%end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="row float-left ml-2">
+                <span>Ordered Date:&nbsp;&nbsp;</span>
+                <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
+              </div><br>
+              <div class="row float-left ml-2">
+                <span>Completed Date:&nbsp;&nbsp;</span>
+                <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
+              </div><br>
+              <!--              <div class="row float-left">-->
+              <!--                <span>Time Taken &nbsp;</span>-->
+              <!--                <span><%#= (@order.updated_at - @order.created_at)/1.day  %></span>-->
+              <!--              </div>-->
+            </div>
+            <div class="col-md-4">
+              <div class="row float-right mr-1">
+                <span>Total MRP:&nbsp;&nbsp;</span>
+                <span>&#x20B9; <%= @order.total %></span>
+              </div><br>
+              <% if @discount %>
+                <div class="row float-right mr-1">
+                  <span>Discount on MRP:&nbsp;&nbsp;</span>
+                  <span><%= @discount %></span>
+                </div><br>
+              <% end %>
+              <% if @order.discounted_price %>
+                <div class="row float-right mr-1">
+                  <span>Total Amount:&nbsp;&nbsp;</span>
+
+                  <span>&#x20B9; <%= @order.discounted_price %></span>
+                </div>
+                </div>
+              <% end %>
+
+              </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="col-md-4">
+    <div class="row">
+      <div class="card bg-light w-100 pl-3 pr-3 pb-3">
+        <div class="card-body" style="height:430px">
+          <div>
+            <span class="float-right"><%= link_to "Print", "#", onclick: "printPage()", :class=>"print_bill_btn" %></span>
+          </div><br>
+          <div class="text-center">Customer Details</div>
+          <div class="row">
+            <table class="table table-borderless mt-3">
+              <tbody>
+              <tr>
+                <td class="custdetails-info">First Name:</td>
+                <td ><span><%= @customer_detail[0].first_name%></span></td>
+              </tr>
+              <tr>
+                <td class="custdetails-info">Last Name:</td>
+                <td ><span><%= @customer_detail[0].last_name %></span></td>
+              </tr>
+              <tr>
+                <td class="custdetails-info">Address:</td>
+                <td><span><%= @customer_detail[0].address%></span></td>
+              </tr>
+              <tr>
+                <td class="custdetails-info">Phone No:</td>
+                <td ><span><%= @customer_detail[0].phone %></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>
+
+<div class="order_complete_popup" id="order_complete_popup">
+  <div class="card border-0">
+    <div class="card-body order-popup-cardbody">
+      <div class="row justify-content-end">
+              <span class="mr-2">
+                <a href <%= "operation_order_detail?order_id=#{params['order_id'].to_i+1}" %> class="btn text-white" id="close-order_complete_popup">&times;</a>
+              </span>
+      </div>
+      <div class="row mt-4">
+        <%= image_tag("quality-check.png",:class => "quality-check") %>
+      </div>
+      <div class="row mt-2 text-success h4 justify-content-center">
+        <span>Order Complete</span>
+      </div>
+      <div class="row mt-5 text-white h3 justify-content-center next-order-button">
+        <button class="btn text-white bg-primary">Complete Next Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
+<script>
+
+    function printPage() {
+        window.print()
+    }
+
+    $('#close-order_complete_popup').click(function(){
+        $('#order_complete_popup').hide();
+    });
+
+    $('.complete_order').click(function(){
+        var order_id = $(this).prev().val();
+        // alert(order_id);
+        $.ajax({
+            url:"/complete_order",
+            method: "POST",
+            data: {"order_id":order_id},
+            success: function(data){
+
+                $('#order_complete_popup').show(); //show modal
+
+
+            },
+            error: function(data){
+                window.location.replace("operation_order_detail?order_id="+parseInt(order_id)+1)
+            }
+        });
+    });
+</script>
