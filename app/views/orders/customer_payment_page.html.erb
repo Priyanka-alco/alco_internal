@@ -71,7 +71,7 @@
               <% if @discount %>
                 <div class="row float-right mr-2">
                   <span>Discount on MRP:&nbsp;&nbsp;</span>
-                  <span><%= @discount %></span>
+                  <span>&#x20B9; <%= @discount %></span>
                 </div><br>
               <% end %>
               <% if @order[0].discounted_price %>
@@ -126,7 +126,8 @@
                 <span>OR</span>
               </div>
               <div class="form-group mt-2">
-                <input type="radio" value="2" name="payment_method"><label>&nbsp;&nbsp;Pay via <span><img src="logo.png" width="70px" height="20px"></span></label>
+                <input type="radio" value="2" name="payment_method"><label>&nbsp;&nbsp;Pay via <span>
+                <%= image_tag("Paytm-Logo.png",:class => "payment_img") %></span></label>
               </div>
               <button class="btn btn-lg btn-block" id="payment-btn">
                 Buy Now

@@ -40,8 +40,10 @@ class OrdersController < ApplicationController
       # @result << {"total_price": order.total}
       # order_detail = Order.where("id=#{order_id}")
       product_id =   ( index==0) ? index+1 : index
-      product_detail = Product.where("id=#{product_id}")
-      res['product_name'] = product_detail[0].product_name
+      product = Product.where("id=#{product_id}")
+      product_detail = ProductDetail.where("id=#{product_id}")
+      res['product_name'] = product[0].product_name
+      res['sku_detail'] = product_detail[0].sku
       @result << res
     end
   end
@@ -148,8 +150,16 @@ class OrdersController < ApplicationController
   def operation_order_detail
     order_id = params['order_id']
     get_order_detail = OrderDetail.where("order_id=#{order_id}")
+
     @result = []
     order = Order.where("id=#{order_id}")
+    last_order = Order.last()
+    @next_order = false
+
+    if last_order.id.to_i == order_id.to_i
+      @next_order = true
+    end
+
     customer_id = order[0].cust_id
     customer_detail = Customer.where("id=#{customer_id}")
     @customer_detail = customer_detail

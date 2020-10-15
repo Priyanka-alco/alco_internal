@@ -39,3 +39,8 @@ header {
   color: #ff6633;
   background-color: #003460;
 }
+
+.payment_img{
+    width: 70px;
+    height: 64px;
+}

@@ -55,10 +55,12 @@
                         <span>Ordered Date:&nbsp;&nbsp;</span>
                         <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
                     </div><br>
+                  <% if @order.order_status != 1 %>
                     <div class="row float-left ml-2">
                         <span>Completed Date:&nbsp;&nbsp;</span>
                         <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
                     </div>
+                  <% end %>
                 </div>
                 <div class="col-md-4">
                     <div class="row float-right mr-1">
@@ -121,12 +123,19 @@
           </div>
         </div>
       </div>
-
       <% if @order.order_status != 2 %>
       <div class="row mt-3">
         <input type="hidden" class="order_id" value="<%=  @order.id  %>">
         <button class="btn w-100 p-5 text-white complete_order" id="complete-order-btn">Order Complete</button>
       </div>
+       <% else %>
+
+         <%  if (@next_order == false) %>
+
+          <div class="row mt-3">
+            <a href="/operation_order_detail?order_id=<%= @order.id.to_i+1  %>" class="btn w-100 p-5 text-white d-block btn-primary">Next Order</a>
+          </div>
+         <% end %>
        <% end %>
     </div>
 
@@ -148,7 +157,7 @@
                     <span>Order Complete</span>
                 </div>
                 <div class="row mt-4 text-white h3 justify-content-center next-order-button">
-                    <button class="btn text-white bg-primary">Complete Next Order</button>
+<!--                    <button class="btn text-white bg-primary">Complete Next Order</button>-->
                 </div>
             </div>
         </div>

@@ -159,7 +159,6 @@ class ProductsController < ApplicationController
       product_id =   ( index==0) ? index+1 : index
       product = Product.where("id=#{product_id}")
       product_detail = ProductDetail.where("id=#{product_id}")
-
       res['product_name'] = product[0].product_name
       res['product_detail'] = product_detail
       @result << res
