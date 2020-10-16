@@ -49,7 +49,7 @@
 
 .card-popup {
   position: absolute;
-  top: 250px;
+  top: 320px;
   left: 38%;
   z-index: 1;
   width: fit-content;
