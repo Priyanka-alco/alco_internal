@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20201013091703) do
     t.integer  "status"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "product_id"
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
