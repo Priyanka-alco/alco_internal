@@ -176,7 +176,6 @@ class OrdersController < ApplicationController
     order = Order.where("id=#{order_id}")
     order_status = order[0].order_status
     last_order =  Order.where("order_status=#{order_status} and id NOT IN (?) and id < #{order_id.to_i}",[order_id] ).order("id DESC").first();
-
     @next_order = false
     if last_order.present? && last_order.id.to_i != order_id.to_i
       @next_order = true
