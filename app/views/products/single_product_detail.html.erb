@@ -71,7 +71,6 @@
                 </thead>
               <tbody>
                 <% @result.each_with_index do |val,index| %>
-
                   <tr>
                     <td><%= index+1 %></td>
                     <td><%= val['product_name'] %></td>
@@ -106,32 +105,35 @@
             <div class="col-md-8">
             <div class="row  mr-2">
               <span>Total MRP:&nbsp;&nbsp;</span>
-              <span>&#x20B9;&nbsp;</span><span><%= @total_price.to_i %></span>
+              <span>&#x20B9;&nbsp;</span><span><%= '%.2f' %@order.total.to_f %></span>
             </div>
               <div class="row mt-1 mr-2">
                 <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
-                <span><%= @discount.present? ? " #{@discount.to_i}%" : '' %> </span>
+                <span><%= @discount.present? ? " #{'%.2f' %@discount.to_f}%" : '' %> </span>
               </div>
               <div class="row mt-1 mr-2">
-                <span>Discount on MRP:&nbsp;&nbsp;</span>
-                <span>&#x20B9;<%= @discount_price.present? ? " #{@discount_price.to_i}" : '' %> </span>
+                <span>Discount Price on MRP:&nbsp;&nbsp;</span>
+                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.discount.to_f}" : '' %> </span>
+              </div>
+              <div class="row mt-1 mr-2">
+                <span>GST:&nbsp;&nbsp;</span>
+                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.gst.to_f}" : '' %> </span>
               </div>
               <div class="row mt-1 mr-2">
                 <span>Total Amount:&nbsp;&nbsp;</span>
-                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= "#{@discounted_price}" %></span>
-                <input type="hidden" class="discount_id" value="<%= @discount_id %>">
+                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= @order.present? ? " #{'%.2f' %@order.discounted_price.to_f}" : '' %></span>
               </div>
             </div> 
-            <div class="col-md-4">
-                  <div class="row  mr-2">
-              <span>Total MRP:&nbsp;&nbsp;</span>
-              <span>&#x20B9;&nbsp;</span><span><%= @total_price.to_i %></span>
-            </div>
-              <div class="row mt-1 mr-2">
-                <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
-                <span><%= @discount.present? ? " #{@discount.to_i}%" : '' %> </span>
-              </div>
-            </div>           
+<!--            <div class="col-md-4">-->
+<!--                  <div class="row  mr-2">-->
+<!--              <span>Total MRP:&nbsp;&nbsp;</span>-->
+<!--              <span>&#x20B9;&nbsp;</span><span><%#= @total_price.to_i %></span>-->
+<!--            </div>-->
+<!--              <div class="row mt-1 mr-2">-->
+<!--                <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>-->
+<!--                <span><%#= @discount.present? ? " #{@discount.to_i}%" : '' %> </span>-->
+<!--              </div>-->
+<!--            </div>           -->
           </div>
         </div>     
         </div>

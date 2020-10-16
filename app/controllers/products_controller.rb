@@ -139,8 +139,6 @@ class ProductsController < ApplicationController
     get_order_detail = OrderDetail.where("order_id=#{order_id}")
     get_order[0].status = payment_status
     get_order[0].order_status = (payment_status == 2 ) ? 0 : 1
-    get_order[0].discounted_price = discounted_price
-    get_order[0].discount_id = discount_id
     get_order[0].save!
     get_order_detail.each do |order_detail|
       order_detail.status = 1
@@ -160,7 +158,7 @@ class ProductsController < ApplicationController
     get_order_detail = OrderDetail.where("order_id=#{order_id}")
     @result = []
     order = Order.where("id=#{order_id}")
-    get_discount = Discount.where("   from_range <= #{order[0].total.to_i} AND to_range >=  #{order[0].total.to_i}")
+    get_discount = Discount.where("id = #{order[0].discount_id.to_i}")
     discount = get_discount.present? ? get_discount[0].discount : 20
     discount_id = get_discount.present? ? get_discount[0].id : 0
     get_discount = (order[0].total * discount)/100
@@ -171,15 +169,13 @@ class ProductsController < ApplicationController
     @customer_detail = customer_detail
     @discounted_price = discounted_price
     @discount = discount
-
+    @order = order[0]
     @discount_price = get_discount
     @discount_id = discount_id
-    @total_price = order[0].total
     @payment_type = order[0].payment_type
     get_order_detail.each_with_index do |val,index|
       res = {}
       res['order_detail']  = val
-
       # @result << {"total_price": order.total}
       # order_detail = Order.where("id=#{order_id}")
       product_id =   val.product_id
