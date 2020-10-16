@@ -151,8 +151,8 @@ class OrdersController < ApplicationController
 
   def get_caller_history
     caller_id = params['caller_id']
-    caller_detail = User.where("id=#{caller_id}")
-    orders = Order.where("seller_id=#{caller_detail[0].id}")
+    @caller_detail = User.where("id=#{caller_id}")
+    orders = Order.where("seller_id=#{@caller_detail[0].id}")
     @res = []
     orders.each do |order|
       result = {}
