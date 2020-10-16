@@ -22,7 +22,7 @@
                   </tr>
                   <tr>
                     <td class="custdetails-info">Address:</td>
-                    <td><textarea class="form-control" name="address" required value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %>" style="height: 150px;"><%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %></textarea></td>
+                    <td><textarea minlength="20" class="form-control" name="address" required value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %>" style="height: 150px;"><%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %></textarea></td>
                   </tr>
                   <tr>
                     <td class="custdetails-info">Phone No:</td>

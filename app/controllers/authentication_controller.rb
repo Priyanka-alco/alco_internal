@@ -15,6 +15,8 @@ class AuthenticationController < ApplicationController
             page = "/search_customer"
           when 2
             page = "/all_orders"
+        when 3
+          page = "/pending_order"
           else
             page = "/search_customer"
         end
