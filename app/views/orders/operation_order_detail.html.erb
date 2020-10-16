@@ -53,7 +53,7 @@
                 <div class="row  mr-2">
                 <span>Total MRP:&nbsp;&nbsp;</span>
                 <span>&#x20B9;&nbsp;</span><span><%= @order.total.to_i %></span>
-              </div>
+                </div>
                 <% if @discount_detail %>
                 <div class="row  mr-2">
                   <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
@@ -70,16 +70,16 @@
                     <span>Total Amount:&nbsp;&nbsp;</span>
                     <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= "#{@order.discounted_price}" %></span>
                     <input type="hidden" class="discount_id" value="<%= @discount_id %>">
-                  </div>
-                  </div>
+                  </div>                  
                 <% end %>
+                </div>
                 <div class="col-md-6">
-                  <div class="row float-right ml-2">
+                  <div class="row ml-4">
                     <span>Ordered Date:&nbsp;&nbsp;</span>
                     <span><%= @order.created_at.strftime("%d-%m-%Y %H:%m") %></span>
-                  </div><br>
+                  </div>
                   <% if @order.order_status != 1 %>
-                    <div class="row float-right ml-2">
+                    <div class="row  ml-4">
                       <span>Completed Date:&nbsp;&nbsp;</span>
                       <span><%= @order.created_at.strftime("%d-%m-%Y %H:%m") %></span>
                     </div>
