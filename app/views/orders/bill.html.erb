@@ -72,7 +72,7 @@
               <% if @discount %>
                 <div class="row float-right mr-1">
                   <span>Discount on MRP:&nbsp;&nbsp;</span>
-                  <span>&#x20B9; <%= @discount %></span>
+                  <span>&#x20B9; <%= @discount.to_i %></span>
                 </div><br>
               <% end %>
               <% if @order.discounted_price %>

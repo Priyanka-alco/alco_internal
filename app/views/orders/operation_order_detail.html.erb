@@ -67,12 +67,12 @@
                 <% if @discount_detail %>
                 <div class="row  mr-2">
                   <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
-                  <span><%= @discount_detail.present? ? " #{@discount_detail[0].discount}%" : '' %> </span>
+                  <span><%= @discount_detail.present? ? " #{@discount_detail[0].discount.to_i}%" : '' %> </span>
                 </div>
 
                   <div class="row  mr-2">
                     <span>Discount on MRP:&nbsp;&nbsp;</span>
-                    <span>&#x20B9;<%= @discount.present? ? " #{@discount}" : '' %> </span>
+                    <span>&#x20B9;<%= @discount.present? ? " #{@discount.to_i}" : '' %> </span>
                   </div>
                 <% end %>
                 <% if @order.discounted_price %>

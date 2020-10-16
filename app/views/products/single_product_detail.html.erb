@@ -93,11 +93,11 @@
             </div>
               <div class="row  mr-2">
                 <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
-                <span><%= @discount.present? ? " #{@discount}%" : '' %> </span>
+                <span><%= @discount.present? ? " #{@discount.to_i}%" : '' %> </span>
               </div>
               <div class="row  mr-2">
                 <span>Discount on MRP:&nbsp;&nbsp;</span>
-                <span>&#x20B9;<%= @discount_price.present? ? " #{@discount_price}" : '' %> </span>
+                <span>&#x20B9;<%= @discount_price.present? ? " #{@discount_price.to_i}" : '' %> </span>
               </div>
               <div class="row  mr-2">
                 <span>Total Amount:&nbsp;&nbsp;</span>
