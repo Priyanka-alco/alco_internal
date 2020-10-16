@@ -58,7 +58,8 @@
                     <% @result['product'].each_with_index  do |product,index| %>
                       <tr>
                         <td>
-                          <input type="text" name="product_name[<%= index %>]" value="<%= product['product'].product_name %> " class="form_product_name form-control">
+                          <input type="hidden" name="product_name[<%= index %>]" value="<%= product['product'].id %> " class="form_product_name form-control">
+                          <span><%= product['product'].product_name %></span>
                         </td>
                         <td>
                           <select required class="ml-2 form-control form_sku sku_<%= index %> sku_detail" name="sku[<%= index %>]">

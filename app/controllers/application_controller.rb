@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
-  # protect_from_forgery with: :exception
+  # def not_found
+  #   render :file => "#{Rails.root}/public/error.html", :status => 404, :layout => false
+  # end
+
 end
 

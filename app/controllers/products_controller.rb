@@ -85,6 +85,7 @@ class ProductsController < ApplicationController
     else
       create_customer = find_cust[0]
     end
+
     create_order = Order.create(:cust_id=>create_customer.id,
                                 :seller_id=>1,
                                 :total=>total_price,
@@ -94,7 +95,9 @@ class ProductsController < ApplicationController
     # puts "********#{create_customer.id}*********#{create_order.id}"
     product_name.each_with_index do |val,index|
       if(product_sku["#{index}"].present? && product_qty["#{index}"].present? && price["#{index}"].present?)
-        OrderDetail.create(:sku_id=>product_sku["#{index}"],
+
+        OrderDetail.create(:product_id => product_name["#{index}"],
+                           :sku_id=>product_sku["#{index}"],
                            :order_id=>create_order.id,
                            :quantity=>product_qty["#{index}"],
                            :selling_price=>price["#{index}"],
@@ -156,7 +159,8 @@ class ProductsController < ApplicationController
 
       # @result << {"total_price": order.total}
       # order_detail = Order.where("id=#{order_id}")
-      product_id =   ( index==0) ? index+1 : index
+      product_id =   val.product_id
+      
       product = Product.where("id=#{product_id}")
       product_detail = ProductDetail.where("id=#{product_id}")
       res['product_name'] = product[0].product_name

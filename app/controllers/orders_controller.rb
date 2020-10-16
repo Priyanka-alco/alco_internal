@@ -177,6 +177,7 @@ class OrdersController < ApplicationController
       res['sku_detail'] = product_detail[0].sku
       @result << res
     end
+
   end
 
   # GET /orders/1/edit
