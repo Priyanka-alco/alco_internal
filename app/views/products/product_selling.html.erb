@@ -41,7 +41,7 @@
           <div class="card bg-light w-100">
             <div class="card-header">
               <span>Buy Products</span>
-              <span class="float-right"><a href id="discounts">Discounts</a></span>
+              <span class="float-right"><a class="btn text-warning" id="discounts">Discounts</a></span>
             </div>
             <div class="card-body">              
               <div class="table-responsive product-selling-order-table">
@@ -151,32 +151,41 @@
         <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_discounts_modal">&#10006;</a></span>
       </div>
       <div class="row mt-2 text-white h6 justify-content-center">
-        <table class="table">
+        <table class="table text-center text-white">
         <tr>
-        <td></td>
-        <td></td>
+        <td>100 - 299</td>
+        <td>5%</td>
         </tr>
         <tr>
-        <td></td>
-        <td></td>
+        <td>100 - 299</td>
+        <td>5%</td>
         </tr>
         <tr>
-        <td></td>
-        <td></td>
+        <td>100 - 299</td>
+        <td>5%</td>
+        </tr>
+        <tr>
+        <td>100 - 299</td>
+        <td>5%</td>
+        </tr>
+        <tr>
+        <td>100 - 299</td>
+        <td>5%</td>
         </tr>
         </table>
         </div>        
       </div>
     </div>
   </div>
-</div>
 
 <script>
  $('#discounts').click(function(){
     $('#discounts_modal').show();
   });
 
- 
+  $('#close_discounts_modal').click(function(){
+    $('#discounts_modal').hide();
+  });
 
    $('#close_product_modal').click(function(){
     $('#product_modal').hide();
