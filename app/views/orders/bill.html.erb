@@ -45,9 +45,6 @@
             </table>
           </div>
         </div>
-
-
-
         <div class="card-footer">
           <div class="row">
             <div class="col-md-7">
@@ -55,10 +52,14 @@
                 <span>Ordered Date:&nbsp;&nbsp;</span>
                 <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
               </div><br>
-              <div class="row float-left ml-2">
-                <span>Completed Date:&nbsp;&nbsp;</span>
-                <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
-              </div><br>
+
+              
+              <% if @order.status.to_i == 2%>
+                <div class="row float-left ml-2">
+                  <span>Completed Date:&nbsp;&nbsp;</span>
+                  <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
+                </div><br>
+              <% end %>
               <!--              <div class="row float-left">-->
               <!--                <span>Time Taken &nbsp;</span>-->
               <!--                <span><%#= (@order.updated_at - @order.created_at)/1.day  %></span>-->
@@ -78,17 +79,14 @@
               <% if @order.discounted_price %>
                 <div class="row float-right mr-1">
                   <span>Total Amount:&nbsp;&nbsp;</span>
-
                   <span>&#x20B9; <%= @order.discounted_price %></span>
                 </div>
                 </div>
               <% end %>
-
               </div>
         </div>
       </div>
     </div>
-
   <div class="col-md-4">
     <div class="row">
       <div class="card bg-light w-100 pl-3 pr-3 pb-3">
@@ -122,19 +120,16 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
 </div>
-
 <div class="order_complete_popup" id="order_complete_popup">
   <div class="card border-0">
     <div class="card-body order-popup-cardbody">
       <div class="row justify-content-end">
-              <span class="mr-2">
-                <a href <%= "operation_order_detail?order_id=#{params['order_id'].to_i+1}" %> class="btn text-white" id="close-order_complete_popup">&times;</a>
-              </span>
+          <span class="mr-2">
+            <a href <%= "operation_order_detail?order_id=#{params['order_id'].to_i+1}" %> class="btn text-white" id="close-order_complete_popup">&times;</a>
+          </span>
       </div>
       <div class="row mt-4">
         <%= image_tag("quality-check.png",:class => "quality-check") %>
