@@ -87,17 +87,21 @@
 <!--                <span><%#= @order.created_at.strftime("%d-%m-%Y") %></span>-->
 <!--              </div>-->
 <!--            </div>-->
-            <div class="col-md-4"><div class="row float-right mr-2">
+            <div class="col-md-12"><div class="row  mr-2">
               <span>Total MRP:&nbsp;&nbsp;</span>
-              <span>&#x20B9;</span><span><%= @total_price.to_i %></span>
-            </div><br>
-              <div class="row float-right mr-2">
-                <span>Discount on MRP:&nbsp;&nbsp;</span>
+              <span>&#x20B9;&nbsp;</span><span><%= @total_price.to_i %></span>
+            </div>
+              <div class="row  mr-2">
+                <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
                 <span><%= @discount.present? ? " #{@discount}%" : '' %> </span>
-              </div><br>
-              <div class="row float-right mr-2">
+              </div>
+              <div class="row  mr-2">
+                <span>Discount on MRP:&nbsp;&nbsp;</span>
+                <span>&#x20B9;<%= @discount_price.present? ? " #{@discount_price}" : '' %> </span>
+              </div>
+              <div class="row  mr-2">
                 <span>Total Amount:&nbsp;&nbsp;</span>
-                <span>&#x20B9;</span><span class="discounted_price"> <%= "#{@discounted_price}" %></span>
+                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= "#{@discounted_price}" %></span>
                 <input type="hidden" class="discount_id" value="<%= @discount_id %>">
               </div></div>
 

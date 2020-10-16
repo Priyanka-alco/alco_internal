@@ -60,24 +60,60 @@
                     </div>
                   <% end %>
                 </div>
-                <div class="col-md-4">
-                    <div class="row float-right mr-1">
-                        <span>Total MRP:&nbsp;&nbsp;</span>
-                        <span>&#x20B9; <%= @order.total %></span>
-                    </div><br>
-                    <% if @discount %>
-                    <div class="row float-right mr-1">
-                        <span>Discount on MRP:&nbsp;&nbsp;</span>
-                        <span>&#x20B9; <%= @discount %></span>
-                    </div><br>
-                    <% end %>
-                    <% if @order.discounted_price %>
-                    <div class="row float-right mr-1">
-                        <span>Total Amount:&nbsp;&nbsp;</span>
-                        <span>&#x20B9; <%= @order.discounted_price %></span>
-                    </div>
-                    <% end %>
+              <div class="col-md-12"><div class="row  mr-2">
+                <span>Total MRP:&nbsp;&nbsp;</span>
+                <span>&#x20B9;&nbsp;</span><span><%= @order.total.to_i %></span>
+              </div>
+                <% if @discount_detail %>
+                <div class="row  mr-2">
+                  <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
+                  <span><%= @discount_detail.present? ? " #{@discount_detail[0].discount}%" : '' %> </span>
                 </div>
+
+                  <div class="row  mr-2">
+                    <span>Discount on MRP:&nbsp;&nbsp;</span>
+                    <span>&#x20B9;<%= @discount.present? ? " #{@discount}" : '' %> </span>
+                  </div>
+                <% end %>
+                <% if @order.discounted_price %>
+                  <div class="row  mr-2">
+                    <span>Total Amount:&nbsp;&nbsp;</span>
+                    <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= "#{@order.discounted_price}" %></span>
+                    <input type="hidden" class="discount_id" value="<%= @discount_id %>">
+                  </div></div>
+                <% end %>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--                <div class="col-md-4">-->
+<!--                    <div class="row float-right mr-1">-->
+<!--                        <span>Total MRP:&nbsp;&nbsp;</span>-->
+<!--                        <span>&#x20B9; <%#= @order.total %></span>-->
+<!--                    </div><br>-->
+                    <%# if @discount %>
+<!--                    <div class="row float-right mr-1">-->
+<!--                        <span>Discount on MRP:&nbsp;&nbsp;</span>-->
+<!--                        <span>&#x20B9; <%#= @discount %></span>-->
+<!--                    </div><br>-->
+                    <%# end %>
+                    <%# if @order.discounted_price %>
+<!--                    <div class="row float-right mr-1">-->
+<!--                        <span>Total Amount:&nbsp;&nbsp;</span>-->
+<!--                        <span>&#x20B9; <%#= @order.discounted_price %></span>-->
+<!--                    </div>-->
+                    <%# end %>
+<!--                </div>-->
             </div>
           </div>
       

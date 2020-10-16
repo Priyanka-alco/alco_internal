@@ -140,7 +140,7 @@ class ProductsController < ApplicationController
     @result = []
     order = Order.where("id=#{order_id}")
     get_discount = Discount.where("   from_range <= #{order[0].total.to_i} AND to_range >=  #{order[0].total.to_i}")
-    discount = get_discount.present? ? get_discount[0].discount : 30
+    discount = get_discount.present? ? get_discount[0].discount : 20
     discount_id = get_discount.present? ? get_discount[0].id : 0
     get_discount = (order[0].total * discount)/100
     discounted_price = (order[0].total.to_i - get_discount.to_i)
@@ -150,6 +150,8 @@ class ProductsController < ApplicationController
     @customer_detail = customer_detail
     @discounted_price = discounted_price
     @discount = discount
+
+    @discount_price = get_discount
     @discount_id = discount_id
     @total_price = order[0].total
     @payment_type = order[0].payment_type

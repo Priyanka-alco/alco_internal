@@ -163,6 +163,10 @@ class OrdersController < ApplicationController
     customer_id = order[0].cust_id
     customer_detail = Customer.where("id=#{customer_id}")
     @customer_detail = customer_detail
+    discount_id = order[0].discount_id.present? ? order[0].discount_id : 20
+    # debugger
+    get_discount_detail = Discount.where("id=#{discount_id}")
+    @discount_detail = get_discount_detail
     @order = order[0]
     @discount =  order[0].total.to_i - order[0].discounted_price.to_i
     get_order_detail.each_with_index do |val,index|
@@ -219,7 +223,7 @@ class OrdersController < ApplicationController
     total_price = params['total_price']
     get_discount = Discount.where("from_range <= #{total_price.to_i} AND to_range >=  #{total_price.to_i}")
 
-    discount = get_discount.present? ? get_discount[0].discount : 30
+    discount = get_discount.present? ? get_discount[0].discount : 20
     discount_id = get_discount.present? ? get_discount[0].id : 0
     get_discount = (total_price.to_i * discount.to_i)/100
     discounted_price = (total_price.to_i - get_discount.to_i)
