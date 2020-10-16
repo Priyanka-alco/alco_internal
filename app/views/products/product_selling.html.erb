@@ -22,7 +22,7 @@
                   </tr>
                   <tr>
                     <td class="custdetails-info">Address:</td>
-                    <td><textarea class="form-control" name="address" required value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %>" style="height: 150px;"><%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %></textarea></td>
+                    <td><textarea minlength="30" class="form-control" name="address" required value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %>" style="height: 150px;"><%= @result['customer_detail'].present? ? @result['customer_detail'][0].address : '' %></textarea></td>
                   </tr>
                   <tr>
                     <td class="custdetails-info">Phone No:</td>
@@ -64,7 +64,7 @@
                           <select required class="ml-2 form-control form_sku sku_<%= index %> sku_detail" name="sku[<%= index %>]">
                             <option disabled selected>SKU</option>
                             <% product['product_detail'].each do |product_detail_val| %>
-                              <option value="<%=product_detail_val.id %>"><%=product_detail_val.sku %>gms</option>
+                              <option value="<%=product_detail_val.id %>"><%=product_detail_val.sku %>g</option>
                             <% end %>
                           </select>
                           <input type="hidden" value="<%= index %>">
@@ -153,7 +153,7 @@
     });
     $(".qty").change(function () {
         var id = $(this).attr("id");
-        var sku = parseInt(parseInt($(".sku_" + id + " option:selected").text().replace("gms",""))
+        var sku = parseInt(parseInt($(".sku_" + id + " option:selected").text().replace("g",""))
             ,
             10
         );
