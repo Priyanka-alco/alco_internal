@@ -64,13 +64,18 @@
 
                   <div class="row mt-2 mr-2">
                     <span>Discount on MRP:&nbsp;&nbsp;</span>
-                    <span>&#x20B9;<%= @discount.present? ? " #{@discount.to_i}" : '' %> </span>
+                    <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.discount.to_f}" : '' %> </span>
                   </div>
                 <% end %>
+                <div class="row mt-2 mr-2">
+                  <span>GST:&nbsp;&nbsp;</span>
+                  <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.gst.to_f}" : '' %> </span>
+                  <input type="hidden" class="discount_id" value="<%= @discount_id %>">
+                </div>
                 <% if @order.discounted_price %>
                   <div class="row mt-2 mr-2">
                     <span>Total Amount:&nbsp;&nbsp;</span>
-                    <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= "#{@order.discounted_price}" %></span>
+                    <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= @order.present? ? " #{'%.2f' %@order.discounted_price.to_f}" : '' %></span>
                     <input type="hidden" class="discount_id" value="<%= @discount_id %>">
                   </div>                  
                 <% end %>

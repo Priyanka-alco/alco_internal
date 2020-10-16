@@ -184,7 +184,6 @@ class OrdersController < ApplicationController
     customer_detail = Customer.where("id=#{customer_id}")
     @customer_detail = customer_detail
     discount_id = order[0].discount_id.present? ? order[0].discount_id : 20
-    # debugger
     get_discount_detail = Discount.where("id=#{discount_id}")
     @discount_detail = get_discount_detail
     @order = order[0]
