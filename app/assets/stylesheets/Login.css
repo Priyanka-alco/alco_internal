@@ -31,3 +31,42 @@
   margin-top: 13%;
   padding-right: 5px;
 }
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 150px;
+  left: 38%;
+  z-index: 1;
+  width: fit-content;
+  z-index: 20;
+}
+
+#valid_password_modal:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
+#valid_email_modal:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
+.popup-cardbody {
+  border: none;
+  background-color: #003460;
+  width: 400px;
+  height: 180px;
+}

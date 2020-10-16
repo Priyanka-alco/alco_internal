@@ -40,7 +40,8 @@
         <div class="row">
           <div class="card bg-light w-100">
             <div class="card-header">
-              Buy Products
+              <span>Buy Products</span>
+              <span class="float-right"><a href id="discounts">Discounts</a></span>
             </div>
             <div class="card-body">              
               <div class="table-responsive product-selling-order-table">
@@ -98,14 +99,9 @@
         <div class="row">
           <div class="card bg-light w-100 pb-5">
             <div class="card-body payment-tag-title">
-              <div class="text-center">Select Payment Method</div>
+              <div class="text-center">Payment Method</div>
               <div class="row justify-content-center mt-4">
-                <div class="col-md-5 mr-3 payment-tag p-3 h6">
-                  <input type="radio" name="payment_type" value="2">
-                  <span class="ml-3">
-                                        Online Payment
-                                    </span>
-                </div>
+                
                 <div class="col-md-5 payment-tag p-3 h6">
                   <input type="radio" name="payment_type" checked value="1">
                   <span class="ml-3">
@@ -132,14 +128,64 @@
     </div>
   </div>
 
-
 </form>
+
+<div class="popup" id="product_modal">
+  <div class="card border-0 popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_product_modal">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <span>Please Add Atleast 1 Product</span>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup" id="discounts_modal">
+  <div class="card border-0 discount-popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_discounts_modal">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <table class="table">
+        <tr>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td></td>
+        </tr>
+        <tr>
+        <td></td>
+        <td></td>
+        </tr>
+        </table>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+ $('#discounts').click(function(){
+    $('#discounts_modal').show();
+  });
+
+ 
+
+   $('#close_product_modal').click(function(){
+    $('#product_modal').hide();
+  });
 
     function checker(event){
         if ($('.form_price').hasClass("add_price")) {
         } else {
-            alert('Please add atleast 1 product');
+            $('#product_modal').show(); 
             event.preventDefault();
         }
     }

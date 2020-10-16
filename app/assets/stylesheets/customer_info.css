@@ -67,11 +67,62 @@
   z-index: -2;
 }
 
+#valid_phone_modal:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
+#valid_data_details:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
+#product_modal:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
+#discounts_modal:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+}
+
 .popup-cardbody {
   border: none;
   background-color: #003460;
   width: 400px;
   height: 180px;
+}
+
+.discount-popup-cardbody {
+  border: none;
+  background-color: #003460;
+  width: 400px;
+  height: 400px;
 }
 
 .quality-check {
