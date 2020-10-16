@@ -1,0 +1,32 @@
+<%= form_for(gst) do |f| %>
+  <% if gst.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(gst.errors.count, "error") %> prohibited this gst from being saved:</h2>
+
+      <ul>
+      <% gst.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :gst_percentage %>
+    <%= f.number_field :gst_percentage %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category %>
+    <%= f.number_field :category %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.check_box :status %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

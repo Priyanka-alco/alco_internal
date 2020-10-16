@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201013091703) do
+ActiveRecord::Schema.define(version: 20201016192318) do
 
   create_table "card_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cust_id"
@@ -86,6 +86,14 @@ ActiveRecord::Schema.define(version: 20201013091703) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "gsts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "gst_percentage"
+    t.integer  "category"
+    t.boolean  "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "order_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "order_id"
     t.integer  "sku_id"
@@ -109,6 +117,8 @@ ActiveRecord::Schema.define(version: 20201013091703) do
     t.integer  "payment_type"
     t.integer  "order_status",                default: 1
     t.float    "discounted_price", limit: 24
+    t.float    "gst",              limit: 24
+    t.integer  "discount"
   end
 
   create_table "paytm_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

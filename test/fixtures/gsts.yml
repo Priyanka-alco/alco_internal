@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gst_percentage: 1
+  category: 1
+  status: false
+
+two:
+  gst_percentage: 1
+  category: 1
+  status: false

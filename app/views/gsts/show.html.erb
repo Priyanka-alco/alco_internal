@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gst percentage:</strong>
+  <%= @gst.gst_percentage %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @gst.category %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @gst.status %>
+</p>
+
+<%= link_to 'Edit', edit_gst_path(@gst) %> |
+<%= link_to 'Back', gsts_path %>

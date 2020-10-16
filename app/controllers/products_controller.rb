@@ -85,26 +85,47 @@ class ProductsController < ApplicationController
     else
       create_customer = find_cust[0]
     end
-
+    product_price_detail = {}
+    product_price_detail['product_price'] = total_price
+    get_discount = Discount.where("   from_range <= #{total_price.to_i} AND to_range >=  #{total_price.to_i}")
+    discount = get_discount.present? ? get_discount[0].discount : 20
+    product_price_detail['discount'] = discount
+    get_gst = Gst.where("status=1 and category=1")
+    product_price_detail['gst'] = get_gst.present? ? get_gst[0].gst_percentage : 5
+    calculate_gst = calculate_gst(product_price_detail)
     create_order = Order.create(:cust_id=>create_customer.id,
                                 :seller_id=>1,
                                 :total=>total_price,
                                 :order_status => 0,
                                 :payment_type=>payment_type,
-                                :status=>payment_type)
+                                :status=>payment_type,
+                                :discounted_price=>calculate_gst['discounted_product_price'],
+                                :gst=>calculate_gst['gst'],
+                                :discount=>calculate_gst['discount'],
+                                :discount_id=>get_discount[0].id)
     # puts "********#{create_customer.id}*********#{create_order.id}"
     product_name.each_with_index do |val,index|
       if(product_sku["#{index}"].present? && product_qty["#{index}"].present? && price["#{index}"].present?)
-
         OrderDetail.create(:product_id => product_name["#{index}"],
                            :sku_id=>product_sku["#{index}"],
                            :order_id=>create_order.id,
                            :quantity=>product_qty["#{index}"],
                            :selling_price=>price["#{index}"],
-                           :status=>0)
+                           :status=>0,
+                           :discount_id=>get_discount[0].id)
       end
     end
     redirect_to  "/single_product_detail?order_id=#{create_order.id}&&view_detail=true"
+  end
+
+  def calculate_gst(product_price_detail={})
+    product_price_detail['discounted_product_price'] = (product_price_detail['product_price'].to_f/(100+product_price_detail['discount'].to_f))*100
+    product_price_detail['discount'] = (product_price_detail['product_price'].to_f - product_price_detail['discounted_product_price'].to_f)
+    discount = product_price_detail['gst'].to_f/100
+    product_price_detail['gst'] = (product_price_detail['discounted_product_price'].to_f*discount.to_f)
+
+    return product_price_detail
+
   end
 
   # order status will be pending

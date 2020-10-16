@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Gsts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gst percentage</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gsts.each do |gst| %>
+      <tr>
+        <td><%= gst.gst_percentage %></td>
+        <td><%= gst.category %></td>
+        <td><%= gst.status %></td>
+        <td><%= link_to 'Show', gst %></td>
+        <td><%= link_to 'Edit', edit_gst_path(gst) %></td>
+        <td><%= link_to 'Destroy', gst, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gst', new_gst_path %>
