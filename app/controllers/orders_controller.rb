@@ -151,8 +151,8 @@ class OrdersController < ApplicationController
 
   def get_caller_history
     caller_id = params['caller_id']
-    caller_detail = User.where("id=#{caller_id}")
-    orders = Order.where("seller_id=#{caller_detail[0].id}")
+    @caller_detail = User.where("id=#{caller_id}")
+    orders = Order.where("seller_id=#{@caller_detail[0].id}")
     @res = []
     orders.each do |order|
       result = {}
@@ -174,7 +174,9 @@ class OrdersController < ApplicationController
     get_order_detail = OrderDetail.where("order_id=#{order_id}")
     @result = []
     order = Order.where("id=#{order_id}")
-    last_order =  Order.where("status=#{order[0].order_status}").order("id DESC").last()
+    order_status = order[0].order_status
+    last_order =  Order.where("order_status=#{order_status} and id NOT IN (?) and id < #{order_id.to_i}",[order_id] ).order("id DESC").first();
+
     @next_order = false
     if last_order.present? && last_order.id.to_i != order_id.to_i
       @next_order = true
