@@ -67,7 +67,8 @@
                 <input type="text"  id="search-box" class="form-control">
 
               </div>
-              <div id="suggesstion-box" class="col-md-6"></div>
+              <div id="suggesstion-box" class="col-md-6">
+              </div>
 
             </div>
           </div>
@@ -107,6 +108,7 @@
     </div>
   </div>
 </div>
+
 <div class="popup" id="common_comdal">
   <div class="card border-0 popup-cardbody">
     <div class="card-body">
@@ -124,12 +126,44 @@
     </div>
   </div>
 </div>
+
+<div class="popup" id="valid_phone_modal">
+  <div class="card border-0 popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_valid_phone_modal">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <span>Please Enter Correct Phone Number</span>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup" id="valid_data_details">
+  <div class="card border-0 popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_valid_data_details">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <span>Please Enter Valid Details</span>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <script>
 
     $('.edit_cust_detail ').click(function(){
       $('.save_cust_detail ').show();
       $('.edit_cust_detail ').hide();
   })
+  
     $("#search-box").keyup(function(){
         var address = $(this).val();
         var data = {address:address}
@@ -152,6 +186,7 @@
             }
         });
     });
+
     function get_customer(){
         var phone_number = document.getElementById("new_address").value;
         var data = {
@@ -200,6 +235,12 @@
   });
   $('#closeBtn').click(function(){
     $('#common_comdal').hide();
+  });
+   $('#close_valid_phone_modal').click(function(){
+    $('#valid_phone_modal').hide();
+  });
+  $('#close_valid_data_details').click(function(){
+    $('#valid_data_details').hide();
   });
   // ======close modal=======
   // ======create purchase order=======
@@ -262,7 +303,7 @@
         }
         else
         {
-            alert('Please Enter Correct Phone Number');
+            $('#valid_phone_modal').show();   
             $(this).val("");
             return false;
         }
@@ -292,7 +333,7 @@
         if( cust_first_name.match(alphabets) && cust_last_name.match(alphabets)  ){
             $('#common_comdal').show();
         }else{
-            alert("Please enter valid credentials");
+            $('#valid_data_details').show(); 
         }
     })
 

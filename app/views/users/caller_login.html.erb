@@ -46,13 +46,50 @@
     <!--  -->
   </div>
 </div>
+
+<div class="popup" id="valid_email_modal">
+  <div class="card border-0 popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_valid_email">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <span>Please Enter Valid Email</span>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup" id="valid_password_modal">
+  <div class="card border-0 popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_valid_password">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <span>Please Enter Valid Password</span>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 
 <script>
+
+ $('#close_valid_email').click(function(){
+    $('#valid_email_modal').hide();
+  });
+   $('#close_valid_password').click(function(){
+    $('#valid_password_modal').hide();
+  });
+
     <% if params['status'] == "400" %>
-    alert("Please enter correct password");
+    $('#valid_password_modal').show();  
     <% end %>
     <% if params['status'] == "300" %>
-    alert("Please enter correct email id");
+    $('#valid_email_modal').show();
     <% end %>
 </script>
