@@ -160,7 +160,6 @@ class ProductsController < ApplicationController
       # @result << {"total_price": order.total}
       # order_detail = Order.where("id=#{order_id}")
       product_id =   val.product_id
-      
       product = Product.where("id=#{product_id}")
       product_detail = ProductDetail.where("id=#{product_id}")
       res['product_name'] = product[0].product_name

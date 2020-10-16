@@ -25,18 +25,18 @@
           <% @result['product'].each_with_index  do |product,index| %>
             <tr>
               <td>
-                <span data-toggle="tooltip" title="Weight: 200gms Qty: 1"><%= product['product'].product_name %></span>
+                <span data-toggle="tooltip" title="Weight: 200g Qty: 1"><%= product['product'].product_name %></span>
               </td>
               <td>
                 <select  class="ml-2 form-control sku_<%= index %> sku_detail" name="sku[<%= index %>]">
-                  <option  selected>50 gms</option>
+                  <option  selected>50 g</option>
                   <% product['product_detail'].each do |product_detail_val| %>
-                    <option value="<%=product_detail_val.id %>"><%=product_detail_val.sku %> gms</option>
+                    <option value="<%=product_detail_val.id %>"><%=product_detail_val.sku %>g</option>
                   <% end %>
                 </select>
                 <input type="hidden" value="<%= index %>">
               </td>
-              <td><span data-toggle="tooltip" title="Weight: 200gms Qty: 1">100/-</span></td>
+              <td><span data-toggle="tooltip" title="Weight: 200g Qty: 1">100/-</span></td>
               <td >
                 <select  class="ml-3 form-control qty qty_<%= index %>" name="qty[<%= index %>]" id="<%= index %>">
 
@@ -174,7 +174,7 @@
         $('#shopping_cart_element').append("<div class='row bg-light mt-2 text-dark rounded product-detail' id='"+random_id+"'>" +
             "  <div class='col-md-8 pt-3'>\n" +
             "    <span class='float-left'>"+product_name+"</span><br>" +
-            "    <span class='float-left'><span class='cart_price'>"+total_price+"</span>gms</span>" +
+            "    <span class='float-left'><span class='cart_price'>"+total_price+"</span>g</span>" +
             "    <span class='float-right'><span>"+qty+"</span> pcs</span>" +
             "  </div>\n" +
             "  <div class='col-md-4 product-detail-price cross_cart'>" +
