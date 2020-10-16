@@ -25,11 +25,8 @@
         <span>you will be on your way.</span>
       </div>
     </div>
-<<<<<<< Updated upstream
-    <div class="col-md-5">
-=======
+
     <div class="col-md-5 pr-1">
->>>>>>> Stashed changes
       <div class="card bg-light w-100" style="height:550px">
         <div class="card-body">
           <div class="row justify-content-center">
@@ -52,13 +49,9 @@
                 <% @result.each_with_index do |val,index| %>
                   <tr>
                     <td><%= index+1 %></td>
-<<<<<<< Updated upstream
                     <td><%= val['product_name'] %></td>
                     <td><%= val["sku_detail"].present? ? "#{val["sku_detail"]}gms" : "" %></td>
-=======
-                    <td>Turmeric Powder & chilli Powder</td>
-                    <td><%= val["sku_detail"].present? ? "#{val["sku_detail"]}g" : "" %></td>
->>>>>>> Stashed changes
+
                     <td><%= val["order_detail"].quantity %></td>
                     <td>&#x20B9; <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
                     <td>&#x20B9; <%= val["order_detail"].selling_price.to_i%></td>
