@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get 'logout' , to:'authentication#logout'
   get 'payment_acknowledgement' , to:'orders#payment_acknowledgement'
   get 'get_caller_history' , to:'orders#get_caller_history'
+  get 'next_order' , to:'orders#next_order'
 
   post 'update_order_status' , to:'products#update_order_status'
   post 'authenticate', to: 'authentication#authenticate'

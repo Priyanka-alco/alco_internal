@@ -14,13 +14,13 @@ class OrdersController < ApplicationController
 
   def pending_order
      @res = {}
-    get_order_detail = Order.where("order_status=1")
+    get_order_detail = Order.where("order_status=1").order("id DESC")
     @res['order_details'] = get_order_detail
   end
 
   def completed_order
     @res = {}
-    get_order_detail = Order.where("order_status=2")
+    get_order_detail = Order.where("order_status=2").order("id DESC")
     @res['order_details'] = get_order_detail
   end
 
@@ -106,7 +106,7 @@ class OrdersController < ApplicationController
   def complete_order
     order_id = params['order_id']
 
-    get_order_detail = Order.where("id=#{order_id}")
+    get_order_detail = Order.where("id=#{order_id}").order("id DESC")
     get_order_detail[0].order_status = 2
     get_order_detail[0].save!
   end
@@ -141,6 +141,14 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def next_order
+    order_id = params['order_id']
+    order_status = params['order_status']
+
+    orders = Order.where("order_status=#{order_status} and id NOT IN (?) and id < #{order_id.to_i}",[order_id] ).order("id DESC").first();
+    redirect_to "/operation_order_detail?order_id=#{orders.id}"
+  end
+
   def get_caller_history
     caller_id = params['caller_id']
     caller_detail = User.where("id=#{caller_id}")
@@ -157,7 +165,7 @@ class OrdersController < ApplicationController
 
   def all_order
     @res = {}
-    get_order_detail = Order.all()
+    get_order_detail = Order.all().order("id DESC")
     @res['order_details'] = get_order_detail
   end
 
@@ -167,10 +175,11 @@ class OrdersController < ApplicationController
 
     @result = []
     order = Order.where("id=#{order_id}")
-    last_order = Order.last()
+
+    last_order =  Order.where("status=#{order[0].order_status}").order("id DESC").last()
     @next_order = false
 
-    if last_order.id.to_i == order_id.to_i
+    if last_order.id.to_i != order_id.to_i
       @next_order = true
     end
 
@@ -205,10 +214,8 @@ class OrdersController < ApplicationController
   def order
     seller = session[:admin] != true ? User.where("email='#{session[:email_id]}' and status =1") :  User.where("status =1")
     order_detail = Order.where("seller_id=#{seller[0].id}").order( 'id DESC' )
-
     @res = []
     order_detail.each do |val|
-
       result = {}
       result['order_detail'] = val
       customer_detail = Customer.where("id=#{val.cust_id}")
@@ -236,7 +243,6 @@ class OrdersController < ApplicationController
   def customer_discount
     total_price = params['total_price']
     get_discount = Discount.where("from_range <= #{total_price.to_i} AND to_range >=  #{total_price.to_i}")
-
     discount = get_discount.present? ? get_discount[0].discount : 20
     discount_id = get_discount.present? ? get_discount[0].id : 0
     get_discount = (total_price.to_i * discount.to_i)/100
