@@ -172,17 +172,13 @@ class OrdersController < ApplicationController
   def operation_order_detail
     order_id = params['order_id']
     get_order_detail = OrderDetail.where("order_id=#{order_id}")
-
     @result = []
     order = Order.where("id=#{order_id}")
-
     last_order =  Order.where("status=#{order[0].order_status}").order("id DESC").last()
     @next_order = false
-
-    if last_order.id.to_i != order_id.to_i
+    if last_order.present? && last_order.id.to_i != order_id.to_i
       @next_order = true
     end
-
     customer_id = order[0].cust_id
     customer_detail = Customer.where("id=#{customer_id}")
     @customer_detail = customer_detail
