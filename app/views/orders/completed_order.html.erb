@@ -35,7 +35,7 @@
               <td><span>#PO<%= data.id %></span></td>
               <td><span>&#x20B9; <%= data.total %></span></td>
               <td><span>Completed</span></td>
-              <td><%= data.updated_at.strftime("%d-%m-%Y") %></td>
+              <td><%= data.updated_at.strftime("%d-%m-%Y %H:%m") %></td>
               <td><a target="_blank" href="/operation_order_detail?order_id=<%= data.id  %>">View Detail</a></td>
             </tr>
           <% end %>

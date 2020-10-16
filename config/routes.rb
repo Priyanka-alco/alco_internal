@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'customer_buy_detail' , to:'products#customer_buy_detail'
   get 'logout' , to:'authentication#logout'
   get 'payment_acknowledgement' , to:'orders#payment_acknowledgement'
+  get 'get_caller_history' , to:'orders#get_caller_history'
 
   post 'update_order_status' , to:'products#update_order_status'
   post 'authenticate', to: 'authentication#authenticate'

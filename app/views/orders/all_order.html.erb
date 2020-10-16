@@ -20,6 +20,7 @@
         <tr>
           <td>S.No</td>
           <td>PO Number</td>
+          <td>Caller Name</td>
           <td>Total Amount</td>
           <td>Payment Status</td>
           <td>Order Status</td>
@@ -31,11 +32,12 @@
         <tbody>
         <% if @res.present? %>
           <% @res['order_details'].each_with_index do |data,index| %>
-
+          <% get_caller_detail = get_caller_detail(data.id) %>
 
             <tr class="" >
               <td><span><%= index+1 %></span></td>
               <td><span>#PO<%= data.id %></span></td>
+              <td><span><a href="/get_caller_history?caller_id=<%= get_caller_detail[0].id %>"><%= get_caller_detail[0].first_name %></a></span></td>
               <td><span>&#x20B9; <%= data.total %></span></td>
               <td><%= data.status == 1 ? "COD" : data.status == 2 ? "Online" : "COD Received" %></td>
               <td><span><%= data.order_status == 1 ? "Pending" : "Completed" %></span></td>

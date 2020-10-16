@@ -141,6 +141,12 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def get_caller_history
+    caller_id = params['caller_id']
+    caller_detail = User.where("id=#{caller_id}")
+    # order_detail =
+  end
+
   def all_order
     @res = {}
     get_order_detail = Order.all()
