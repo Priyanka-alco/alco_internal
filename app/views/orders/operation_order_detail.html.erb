@@ -3,7 +3,7 @@
 <html lang="en">
 
 <body>
-<div class="container  mt-2">
+<div class="container  mt-2 mb-3">
  
   <div class="row">
     <div class="card w-100 rounded border-0">
@@ -18,7 +18,7 @@
           <h6>Order Details</h6>
         </div>
         <div class="card-body">
-          <div class="table-responsive opr-order-order-table text-center">
+          <div class="table-responsive single-product-order-table text-center" style="height:450">
             <table class="table table-borderless ">
               <thead class="header thead-light">
               <tr>
@@ -28,7 +28,7 @@
                 <th class="header" scope="col">Quantity</th>
                 <th class="header" scope="col">Price Per Unit</th>
                 <th class="header" scope="col">Price</th>
-              </tr>
+              </tr>              
               </thead>
               <tbody>
               <% @result.each_with_index do |val,index| %>
@@ -40,57 +40,58 @@
                   <td>&#x20B9;<%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
                   <td>&#x20B9;<%= val["order_detail"].selling_price.to_i%></td>
                 </tr>
-              <%end %>
+              <%end %>              
               </tbody>
             </table>
           </div>
-          </div>
+          </div>       
+      
+      </div>
 
-          <div class="card-footer">
+      <div class="card mt-3" style="height:250px">
+      <div class="card-body bg-light h5">
             <div class="row">
-
-              <div class="col-md-6">
+              <div class="col-md-8">
                 <div class="row  mr-2">
                 <span>Total MRP:&nbsp;&nbsp;</span>
                 <span>&#x20B9;&nbsp;</span><span><%= @order.total.to_i %></span>
                 </div>
                 <% if @discount_detail %>
-                <div class="row  mr-2">
+                <div class="row mt-2 mr-2">
                   <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
                   <span><%= @discount_detail.present? ? " #{@discount_detail[0].discount.to_i}%" : '' %> </span>
                 </div>
 
-                  <div class="row  mr-2">
+                  <div class="row mt-2 mr-2">
                     <span>Discount on MRP:&nbsp;&nbsp;</span>
                     <span>&#x20B9;<%= @discount.present? ? " #{@discount.to_i}" : '' %> </span>
                   </div>
                 <% end %>
                 <% if @order.discounted_price %>
-                  <div class="row  mr-2">
+                  <div class="row mt-2 mr-2">
                     <span>Total Amount:&nbsp;&nbsp;</span>
                     <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= "#{@order.discounted_price}" %></span>
                     <input type="hidden" class="discount_id" value="<%= @discount_id %>">
                   </div>                  
                 <% end %>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="row ml-4">
                     <span>Ordered Date:&nbsp;&nbsp;</span>
                     <span><%= @order.created_at.strftime("%d-%m-%Y %H:%m") %></span>
                   </div>
                   <% if @order.order_status != 1 %>
-                    <div class="row  ml-4">
+                    <div class="row mt-2 ml-4">
                       <span>Completed Date:&nbsp;&nbsp;</span>
                       <span><%= @order.created_at.strftime("%d-%m-%Y %H:%m") %></span>
                     </div>
                   <% end %>
                 </div>
-
-            </div>
+                </div>
+                </div>
 
           </div>
-      
-      </div>
+
     </div>
 
     <div class="col-md-4">
