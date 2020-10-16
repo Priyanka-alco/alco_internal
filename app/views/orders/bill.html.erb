@@ -13,12 +13,12 @@
   </div>
   <div class="row mt-4">
     <div class="col-md-8">
-      <div class="card bg-light w-100" style="height:450px">
+      <div class="card bg-light w-100" style="min-height:450px">
         <div class="card-header text-center mt-2">
           <h6>Order Details</h6>
         </div>
         <div class="card-body">
-          <div class="table-responsive opr-order-order-table text-center">
+          <div class="table-responsive text-center">
             <table class="table table-borderless ">
               <thead class="header thead-light">
               <tr>
@@ -44,49 +44,56 @@
               </tbody>
             </table>
           </div>
+        </div>        
         </div>
-        <div class="card-footer">
-          <div class="row">
-            <div class="col-md-7">
-              <div class="row float-left ml-2">
+
+    <div class="card mt-3" style="height:200px">
+      <div class="card-body bg-light h5">
+          <div class="row">            
+            <div class="col-md-8">
+              <div class="row mt-1 mr-1">
+                <span>Total MRP:&nbsp;&nbsp;</span>
+                <span>&#x20B9; <%= @order.total %></span>
+              </div>
+              <% if @discount %>
+                <div class="row mt-1 mr-1">
+                  <span>Discount on MRP:&nbsp;&nbsp;</span>
+                  <span>&#x20B9; <%= @discount.to_i %></span>
+                </div>
+              <% end %>
+              <% if @order.discounted_price %>
+                <div class="row mt-1 mr-1">
+                  <span>Total Amount:&nbsp;&nbsp;</span>
+                  <span>&#x20B9; <%= @order.discounted_price %></span>
+                </div>
+                <% end %>
+              </div>
+              
+              
+              <div class="col-md-4">
+              <div class="row ml-2">
                 <span>Ordered Date:&nbsp;&nbsp;</span>
-                <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
-              </div><br>
+                <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
+              </div>
 
 
               <% if @order.status.to_i == 2%>
-                <div class="row float-left ml-2">
+                <div class="row mt-1 ml-2">
                   <span>Completed Date:&nbsp;&nbsp;</span>
-                  <span><%= @order.created_at.strftime("%d-%m-%Y") %></span>
-                </div><br>
+                  <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
+                </div>
               <% end %>
               <!--              <div class="row float-left">-->
               <!--                <span>Time Taken &nbsp;</span>-->
               <!--                <span><%#= (@order.updated_at - @order.created_at)/1.day  %></span>-->
               <!--              </div>-->
             </div>
-            <div class="col-md-4">
-              <div class="row float-right mr-1">
-                <span>Total MRP:&nbsp;&nbsp;</span>
-                <span>&#x20B9; <%= @order.total %></span>
-              </div><br>
-              <% if @discount %>
-                <div class="row float-right mr-1">
-                  <span>Discount on MRP:&nbsp;&nbsp;</span>
-                  <span>&#x20B9; <%= @discount.to_i %></span>
-                </div><br>
-              <% end %>
-              <% if @order.discounted_price %>
-                <div class="row float-right mr-1">
-                  <span>Total Amount:&nbsp;&nbsp;</span>
-                  <span>&#x20B9; <%= @order.discounted_price %></span>
-                </div>
-                </div>
-              <% end %>
-              </div>
+              
         </div>
       </div>
     </div>
+    </div>
+
   <div class="col-md-4">
     <div class="row">
       <div class="card bg-light w-100 pl-3 pr-3 pb-3">
