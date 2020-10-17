@@ -4,21 +4,23 @@
 
 <body>
 <div class="container  mt-2 mb-3">
- 
+ <div class="row">
+ <a class="h4" href="#" onclick="location.href = document.referrer; return false;">Go Back</a>
+ </div><br>
   <div class="row">
     <div class="card w-100 rounded border-0">
       <div class="card-body bg-light p-4 h5"><span>PO Number&nbsp;</span><span>#PO<%= @order.id  %></span><span class="float-right"><%= @order.order_status == 1 ? "Pending" : "Completed"  %></span><span class="float-right">Status:&nbsp;</span></div>
-    </div>
+    </div> 
   </div>
 
   <div class="row mt-4">
     <div class="col-md-8">
-      <div class="card bg-light w-100" style="height:450px">
+      <div class="card bg-light w-100 operation-order-table-card">
         <div class="card-header text-center mt-2">
           <h6>Order Details</h6>
         </div>
         <div class="card-body">
-          <div class="table-responsive single-product-order-table text-center" style="height:450">
+          <div class="table-responsive single-product-order-table text-center">
             <table class="table table-borderless ">
               <thead class="header thead-light">
               <tr>
@@ -48,7 +50,7 @@
       
       </div>
 
-      <div class="card mt-3" style="height:250px">
+      <div class="card mt-3 operation-order-detail-price-card">
       <div class="card-body bg-light h5">
             <div class="row">
               <div class="col-md-8">
@@ -102,9 +104,9 @@
     <div class="col-md-4">
       <div class="row">
         <div class="card bg-light w-100 pl-3 pr-3 pb-3">
-          <div class="card-body" style="height:430px">
+          <div class="card-body opr-order-custdetails">
           <div>
-            <span class="float-right"><a href="/bill?order_id=<%= params['order_id'] %>">View Bill</a></span>
+            <span class="float-right"><a target="_blank" href="/bill?order_id=<%= params['order_id'] %>">View Bill</a></span>
             </div><br>
             <div class="text-center">Customer Details</div>
             <div class="row">
@@ -176,8 +178,9 @@
 
 </html>
 <script>
+
     function printPage() {
-        window.print()
+        window.print();
     }
 
     $('#close-order_complete_popup').click(function(){
