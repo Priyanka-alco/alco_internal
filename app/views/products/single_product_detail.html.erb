@@ -18,7 +18,7 @@
         <div class="card-body">
           <div class="text-center">Customer Details</div>
           <div class="row">
-            <table class="table table-borderless mt-3">
+            <table class="table table-borderless mt-3" style="table-layout: fixed;">
               <tbody>
                <tr>
                   <td class="custdetails-info">First Name:</td>
@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                   <td class="custdetails-info">Address:</td>
-                  <td><span><%= @customer_detail[0].address%></span></td>
+                  <td style="word-wrap: break-word;"><span><%= @customer_detail[0].address%></span></td>
                 </tr>
                 <tr>
                   <td class="custdetails-info">Phone No:</td>
