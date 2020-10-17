@@ -39,7 +39,7 @@
               <td><span><a href="/get_caller_history?caller_id=<%= get_caller_detail[0].id %>"><%= get_caller_detail[0].first_name %></a></span></td>
               <td><span>&#x20B9; <%= data.total %></span></td>
               <td><span>Pending</span></td>
-              <td><span><%= data.created_at.strftime("%d-%m-%Y %H:%m") %></span></td>
+              <td><span><%= data.created_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></span></td>
               <% if (session[:category] != 3) %>
                 <td><a href="/operation_order_detail?order_id=<%= data.id  %>">View Detail</a></td>
               <% end %>

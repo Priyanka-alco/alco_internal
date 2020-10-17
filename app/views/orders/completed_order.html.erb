@@ -40,7 +40,7 @@
 
               <td><span>&#x20B9; <%= data.total %></span></td>
               <td><span>Completed</span></td>
-              <td><%= data.updated_at.strftime("%d-%m-%Y %H:%m") %></td>
+              <td><%= data.updated_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></td>
               <% if (session[:category] != 3) %>
                 <td><a href="/operation_order_detail?order_id=<%= data.id  %>">View Detail</a></td>
               <% end %>

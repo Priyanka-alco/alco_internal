@@ -37,8 +37,8 @@ class ProductsController < ApplicationController
           product.each do |val|
             product_detail = {}
             product_detail['product'] = val # product
-            product_detail['vendor_detail'] = val.vendor_detail # vendor
-            product_detail['discount_detail'] = val.discounts # discounts
+            # product_detail['vendor_detail'] = val.vendor_detail # vendor
+            # product_detail['discount_detail'] = val.discounts # discounts
             product_detail['product_detail'] = val.product_details # product_details
             res << product_detail
           end
