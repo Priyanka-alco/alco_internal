@@ -7,6 +7,9 @@
 </head>
 <body>
 <div class="container-fluid mt-3">
+<div class="row">
+ <a class="h4" href="#" onclick="location.href = document.referrer; return false;">Go Back</a>
+ </div><br>
   <div class="row">
     <div class="col-md-12 ml-1">
     <div class="card">
@@ -44,7 +47,7 @@
               <td><%= val['order'].status == 1 ? "COD" : val['order'].status == 2 ? "Online" : "COD Received" %></td>
               <td><%= val['order'].order_status == 1 ? "Pending" : "Completed" %></td>
               <td><%= val['order'].created_at.strftime("%d-%m-%Y %H:%m") %></td>
-              <td><%= val['order'].updated_at.strftime("%d-%m-%Y %H:%m") %></td>
+              <td><%=  val['order'].order_status == 1 ? '' : val['order'].updated_at.strftime("%d-%m-%Y %H:%m") %></td>
             </tr>
           <% end %>
         <% end %>
