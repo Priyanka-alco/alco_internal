@@ -14,6 +14,10 @@ class UsersController < ApplicationController
   def caller_login
     # render layout: false
   end
+
+  def import
+    User.import
+  end
   # GET /users/new
   def new
     @user = User.new
