@@ -54,7 +54,7 @@
                         <th class="table-header" scope="col">Price</th>
                         </tr>
                     </thead>
-                  <tbody>
+                  <tbody>                 
                   <% if  @result['product'].present? %>
                     <% @result['product'].each_with_index  do |product,index| %>
                       <tr>
@@ -153,24 +153,24 @@
       <div class="row mt-2 text-white h6 justify-content-center">
         <table class="table text-center text-white">
         <tr>
-        <td>100 - 299</td>
+        <td>&#x20B9; 100 - &#x20B9; 299</td>
+        <td>*Free Delivery</td>
+        </tr>
+        <tr>
+        <td>&#x20B9; 300 - &#x20B9; 499</td>
         <td>5%</td>
         </tr>
         <tr>
-        <td>100 - 299</td>
-        <td>5%</td>
+        <td>&#x20B9; 500 - &#x20B9; 999</td>
+        <td>10%</td>
         </tr>
         <tr>
-        <td>100 - 299</td>
-        <td>5%</td>
+        <td>&#x20B9; 1000 - &#x20B9; 1099</td>
+        <td>15%</td>
         </tr>
         <tr>
-        <td>100 - 299</td>
-        <td>5%</td>
-        </tr>
-        <tr>
-        <td>100 - 299</td>
-        <td>5%</td>
+        <td>&#x20B9; 2000+</td>
+        <td>20%</td>
         </tr>
         </table>
         </div>        
