@@ -86,7 +86,7 @@ class ProductsController < ApplicationController
     price = params['price']
     arr_price = price.values
     total_price = arr_price.map(&:to_f).reduce(:+)
-    find_cust = Customer.where("phone=#{phone_no}")
+    find_cust = Customer.where("phone=';#{phone_no}'")
     if !find_cust.present?
       create_customer = Customer.create(:first_name=>name, :last_name=>last_name,:email=>email_id,:phone=>phone_no,:address=>address)
     else
