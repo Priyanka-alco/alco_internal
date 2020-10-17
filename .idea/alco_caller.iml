@@ -65,10 +65,10 @@
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.0.2, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.4.0, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.14.2, ruby-2.5.8-p224) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.5.3, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.5.4, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.10.10, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, ruby-2.5.8-p224) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg (v1.2.3, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry (v0.13.1, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry-byebug (v3.9.0, ruby-2.5.8-p224) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.12.6, ruby-2.5.8-p224) [gem]" level="application" />
