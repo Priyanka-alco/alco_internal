@@ -10,10 +10,18 @@
   height: 450px;
 }
 
+.operation-order-table-card {
+  height: 450px;
+}
+
 .single-product-order-table {
   display: block;
   height: 100%;
   overflow: auto;
+}
+
+.operation-order-detail-price-card {
+  height: 250px;
 }
 
 .back_button {
@@ -43,7 +51,7 @@
 }
 
 .opr-order-custdetails {
-  height: 400px;
+  height: 430px;
 }
 
 .order_complete_popup {
@@ -79,4 +87,16 @@
   height: 120px;
   opacity: 0.9;
   margin: 2px auto;
+}
+
+.bill-order-detail {
+  min-height: 450px;
+}
+
+.bill-order-price-detail {
+  height: 200px;
+}
+
+.bill-order-cust-detail {
+  height: 430px;
 }

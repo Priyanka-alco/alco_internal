@@ -40,7 +40,11 @@ header {
   background-color: #003460;
 }
 
-.payment_img{
-    width: 70px;
-    height: 64px;
+.payment_img {
+  width: 70px;
+  height: 64px;
+}
+
+.customer-page-order {
+  height: 550px;
 }

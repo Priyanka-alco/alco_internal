@@ -43,7 +43,7 @@
               <td><span><%= data.order_status == 1 ? "Pending" : "Completed" %></span></td>
               <td><%= data.created_at.strftime("%d-%m-%Y %H:%m") %></td>
               <td><%= data.order_status != 1 ? data.updated_at.strftime("%d-%m-%Y %H:%m") : '' %></td>
-              <td><a target="_blank" href="/operation_order_detail?order_id=<%= data.id  %>">View Detail</a></td>
+              <td><a href="/operation_order_detail?order_id=<%= data.id  %>">View Detail</a></td>
             </tr>
           <% end %>
         <% end %>

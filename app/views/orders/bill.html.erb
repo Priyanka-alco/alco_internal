@@ -13,7 +13,7 @@
   </div>
   <div class="row mt-4">
     <div class="col-md-8">
-      <div class="card bg-light w-100" style="min-height:450px">
+      <div class="card bg-light w-100 bill-order-detail">
         <div class="card-header text-center mt-2">
           <h6>Order Details</h6>
         </div>
@@ -41,13 +41,13 @@
                   <td>&#x20B9; <%= val["order_detail"].selling_price.to_i%></td>
                 </tr>
               <%end %>
-              </tbody>
+              </tbody> 
             </table>
           </div>
         </div>        
         </div>
 
-    <div class="card mt-3" style="height:200px">
+    <div class="card mt-3 bill-order-price-detail">
       <div class="card-body bg-light h5">
           <div class="row">            
             <div class="col-md-8">
@@ -81,10 +81,11 @@
                 <span>Ordered Date:&nbsp;&nbsp;</span>
                 <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
               </div>
-              <% if @order.status.to_i == 2%>
+              
+              <% if @order.order_status.to_i == 2%>
                 <div class="row mt-1 ml-2">
                   <span>Completed Date:&nbsp;&nbsp;</span>
-                  <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
+                  <span><%= @order.updated_at.strftime("%d-%m-%Y %H:%M") %></span>
                 </div>
               <% end %>
               <!--              <div class="row float-left">-->
@@ -101,7 +102,7 @@
   <div class="col-md-4">
     <div class="row">
       <div class="card bg-light w-100 pl-3 pr-3 pb-3">
-        <div class="card-body" style="height:430px">
+        <div class="card-body bill-order-cust-detail">
           <div>
             <span class="float-right"><%= link_to "Print", "#", onclick: "printPage()", :class=>"print_bill_btn" %></span>
           </div><br>
