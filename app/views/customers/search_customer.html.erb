@@ -92,7 +92,7 @@
                   <% @result['order_detail'].each do |val| %>
                     <tr>
                       <td>#PO<%= val.id %></td>
-                      <td><%= val.created_at.to_date.strftime('%d-%m-%Y') %></td>
+                      <td><%= val.created_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></td>
                       <td>&#x20B9; <%= val.total %></td>
                       <td><a target="_blank" href="single_product_detail?order_id=<%= val.id %>">View Details</a></td>
                     </tr>

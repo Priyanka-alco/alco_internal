@@ -41,8 +41,8 @@
               <td><span>&#x20B9; <%= data.total %></span></td>
               <td><%= data.status == 1 ? "COD" : data.status == 2 ? "Online" : "COD Received" %></td>
               <td><span><%= data.order_status == 1 ? "Pending" : "Completed" %></span></td>
-              <td><%= data.created_at.strftime("%d-%m-%Y %H:%m") %></td>
-              <td><%= data.order_status != 1 ? data.updated_at.strftime("%d-%m-%Y %H:%m") : '' %></td>
+              <td><%= data.created_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></td>
+              <td><%= data.order_status != 1 ? data.updated_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") : '' %></td>
               <td><a href="/operation_order_detail?order_id=<%= data.id  %>">View Detail</a></td>
             </tr>
           <% end %>
