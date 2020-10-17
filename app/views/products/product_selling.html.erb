@@ -50,6 +50,7 @@
                     <tr>
                         <th class="table-header" scope="col">Name</th>
                         <th class="table-header" scope="col">Weight</th>
+                        <th class="table-header" scope="col">Per Unit Price</th>
                         <th class="table-header" scope="col">Quantity</th>
                         <th class="table-header" scope="col">Price</th>
                         </tr>
@@ -66,10 +67,13 @@
                           <select required class="ml-2 form-control form_sku sku_<%= index %> sku_detail" name="sku[<%= index %>]">
                             <option disabled selected>SKU</option>
                             <% product['product_detail'].each do |product_detail_val| %>
-                              <option value="<%=product_detail_val.id %>"><%=product_detail_val.sku %>g</option>
+                              <option value="<%=product_detail_val.id %>" data-value="<%=product_detail_val.selling_rice %>"><%=product_detail_val.sku %>g</option>
                             <% end %>
                           </select>
                           <input type="hidden" value="<%= index %>">
+                        </td>
+                        <td>
+                          <span class="per_unit_price"></span>
                         </td>
                         <td >
                           <select required class="ml-3 form-control qty form_qty qty_<%= index %>" name="qty[<%= index %>]" id="<%= index %>">
@@ -80,7 +84,8 @@
                           </select>
                         </td>
                         <td>
-                          <input type="text" read_only="true" class="w-50 ml-auto mr-auto form-control form_price price_<%= index %>" name="price[<%= index %>]">
+                          <span class="form_price view_price_<%= index %> price_<%= index %>"></span>
+                          <input type="hidden" read_only="true" class="w-50 ml-auto mr-auto form-control form_price price_<%= index %>" name="price[<%= index %>]">
                         </td>
                       </tr>
                     <% end %>
@@ -227,25 +232,33 @@
     });
     $(".qty").change(function () {
         var id = $(this).attr("id");
-        var sku = parseInt(parseInt($(".sku_" + id + " option:selected").text().replace("g",""))
+        var unit_price = $(".sku_" + id + " option:selected").attr("data-value");
+        var sku = parseInt(parseInt($(".sku_" + id + " option:selected").attr("data-value").replace("g",""))
             ,
             10
         );
+
+        $(this).parent().prev().children().text(unit_price)
         // console.log("*****"+id);
         // console.log("*****"+sku);
         var qty = parseInt($(this).val(), 10);
         var price = sku * qty;
         $(".price_" + id).val(price);
+        $(".view_price_" + id).val(price);
         (parseInt(price)||0) ? $(".price_" + id).val(price) : $(".price_" + id).val("0");
+        (parseInt(price)||0) ? $(".view_price_" + id).text(price) : $(".view_price_" + id).text("0");
         $(".price_" + id).addClass("add_price");
+        $(".view_price_" + id).addClass("add_price");
 
     });
     $(".sku_detail").change(function () {
         var id = $(this).next().val();
+        var unit_price = $(".sku_" + id + " option:selected").attr("data-value");
         var sku = parseInt(
-            $(".sku_" + id + " option:selected").text(),
+            $(".sku_" + id + " option:selected").attr("data-value"),
             10
         );
+        $(this).parent().next().children().text(unit_price)
         var qty = parseInt($('.qty_'+id).val(), 10);
         var price = sku * qty;
         // console.log("*****"+id);
@@ -253,7 +266,9 @@
         // console.log("*****"+qty);
         // $(".price_" + id).val(price);
         (parseInt(price)||0) ? $(".price_" + id).val(price) : $(".price_" + id).val("0");
+        (parseInt(price)||0) ? $(".view_price_" + id).text(price) : $(".view_price_" + id).text("0");
         $(".price_" + id).addClass("add_price");
+        $(".view_price_" + id).addClass("add_price");
 
     });
     <% if params['status'] == "3" %>

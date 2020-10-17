@@ -81,7 +81,7 @@
                 <span>Ordered Date:&nbsp;&nbsp;</span>
                 <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
               </div>
-              
+
               <% if @order.order_status.to_i == 2%>
                 <div class="row mt-1 ml-2">
                   <span>Completed Date:&nbsp;&nbsp;</span>
