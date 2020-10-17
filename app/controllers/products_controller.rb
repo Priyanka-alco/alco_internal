@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
         end
         product_id = params['product_id']
         start_time = Time.now
-        product = Product
+        product = Product.all
         # product = Product.active_product
         res = []
     puts "**product list****#{product}"
