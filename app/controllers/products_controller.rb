@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
         # product = Product.active_product
         res = []
     puts "**product list****#{product}"
-        if product
+        if product.present?
           product.each do |val|
             product_detail = {}
             product_detail['product'] = val # product
