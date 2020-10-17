@@ -204,6 +204,7 @@
             method: "POST",
             data: {"order_id":order_id},
             success: function(data){
+                $('loader').show();//
                 $('#order_complete_popup').show(); //show modal
             },
             error: function(data){
