@@ -6,15 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-[{"id"=>1, "from_range"=>100, "to_range"=>299, "discount"=>0.0, "status"=>true}, {"id"=>2, "from_range"=>300, "to_range"=>499, "discount"=>5.0, "status"=>true}, {"id"=>3, "from_range"=>500, "to_range"=>999, "discount"=>10.0, "status"=>true}, {"id"=>4, "from_range"=>1000, "to_range"=>1099, "discount"=>15.0, "status"=>true}].each do |aa|
-  Discount.create!(aa)
-end
-
-[{"id"=>1, "gst_percentage"=>5, "category"=>1, "status"=>true}].each do |aa|
-  Gst.create!(aa)
-end
-
-[{"id"=>1, "first_name"=>"Priyanka", "last_name"=>"Khandelwal", "email"=>"caller@mail.com", "password_digest"=>"123456789", "status"=>true, "category"=>1}, {"id"=>2, "first_name"=>"Adit", "last_name"=>"Agrawal", "email"=>"manager@gmail.com", "password_digest"=>"123456789", "status"=>true, "category"=>2}, {"id"=>3, "first_name"=>"Arpit", "last_name"=>"Sharma", "email"=>"packaging@gmail.com", "password_digest"=>"123456789", "status"=>true, "category"=>3}].each do |aa|
-  User.create!(aa)
+[{"id"=>1, "product_id"=>1, "sku"=>200, "category"=>1, "selling_rice"=>500.0, "cost_price"=>350.0, "gst"=>15.0, "discount_id"=>nil, "discount_amount"=>nil, "discount_percentage"=>nil, "quantity"=>2, "exchange_available"=>true, "replace"=>true, "status"=>true, "delivery_date"=>Sun, 18 Oct 2020}, {"id"=>2, "product_id"=>1, "sku"=>600, "category"=>2, "selling_rice"=>500.0, "cost_price"=>350.0, "gst"=>15.0, "discount_id"=>nil, "discount_amount"=>nil, "discount_percentage"=>nil, "quantity"=>2, "exchange_available"=>true, "replace"=>true, "status"=>true, "delivery_date"=>Sat, 17 Oct 2020}, {"id"=>3, "product_id"=>1, "sku"=>600, "category"=>3, "selling_rice"=>500.0, "cost_price"=>350.0, "gst"=>15.0, "discount_id"=>nil, "discount_amount"=>nil, "discount_percentage"=>nil, "quantity"=>1, "exchange_available"=>true, "replace"=>true, "status"=>true, "delivery_date"=>Sat, 17 Oct 2020}, {"id"=>4, "product_id"=>2, "sku"=>300, "category"=>1, "selling_rice"=>300.0, "cost_price"=>50.0, "gst"=>15.0, "discount_id"=>nil, "discount_amount"=>nil, "discount_percentage"=>nil, "quantity"=>3, "exchange_available"=>true, "replace"=>true, "status"=>true, "delivery_date"=>Sun, 18 Oct 2020}, {"id"=>5, "product_id"=>2, "sku"=>600, "category"=>2, "selling_rice"=>600.0, "cost_price"=>150.0, "gst"=>15.0, "discount_id"=>nil, "discount_amount"=>nil, "discount_percentage"=>nil, "quantity"=>4, "exchange_available"=>true, "replace"=>true, "status"=>true, "delivery_date"=>Sat, 17 Oct 2020}, {"id"=>6, "product_id"=>2, "sku"=>900, "category"=>3, "selling_rice"=>900.0, "cost_price"=>200.0, "gst"=>15.0, "discount_id"=>nil, "discount_amount"=>nil, "discount_percentage"=>nil, "quantity"=>5, "exchange_available"=>true, "replace"=>true, "status"=>true, "delivery_date"=>Sat, 17 Oct 2020}].each do |aa|
+  ProductDetail.create!(aa)
 end
 
