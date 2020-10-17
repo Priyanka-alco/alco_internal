@@ -10,6 +10,6 @@
   ProductDetail.create!(aa)
 end
 
-[{"id"=>1, "product_name"=>"Turmeric", "description"=>"Good For Health", "image"=>"", "over_all_rating"=>5.0, "discount_available"=>true, "total_quantity"=>6, "available"=>true, "vendor_detail_id"=>nil}, {"id"=>2, "product_name"=>"Chilli Powder", "description"=>"Organic", "image"=>nil, "over_all_rating"=>5.0, "discount_available"=>true, "total_quantity"=>8, "available"=>true, "vendor_detail_id"=>nil}].each do |aa|
+[{"id"=>1, "product_name"=>"Turmeric", "description"=>"Good For Health", "image"=>"", "over_all_rating"=>5.0, "discount_available"=>true, "total_quantity"=>6, "available"=>true, "vendor_detail_id"=>1}, {"id"=>2, "product_name"=>"Chilli Powder", "description"=>"Organic", "image"=>nil, "over_all_rating"=>5.0, "discount_available"=>true, "total_quantity"=>8, "available"=>true, "vendor_detail_id"=>1}].each do |aa|
   Product.create!(aa)
 end
