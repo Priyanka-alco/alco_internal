@@ -31,7 +31,8 @@ class ProductsController < ApplicationController
         end
         product_id = params['product_id']
         start_time = Time.now
-        product = Product.active_product
+        product = Product
+        # product = Product.active_product
         res = []
         if product
           product.each do |val|
