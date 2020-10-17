@@ -81,10 +81,11 @@
                 <span>Ordered Date:&nbsp;&nbsp;</span>
                 <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
               </div>
-              <% if @order.status.to_i == 2%>
+              
+              <% if @order.order_status.to_i == 2%>
                 <div class="row mt-1 ml-2">
                   <span>Completed Date:&nbsp;&nbsp;</span>
-                  <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
+                  <span><%= @order.updated_at.strftime("%d-%m-%Y %H:%M") %></span>
                 </div>
               <% end %>
               <!--              <div class="row float-left">-->
