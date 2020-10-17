@@ -34,6 +34,7 @@ class ProductsController < ApplicationController
         product = Product
         # product = Product.active_product
         res = []
+    puts "**product list****#{product}"
         if product
           product.each do |val|
             product_detail = {}
