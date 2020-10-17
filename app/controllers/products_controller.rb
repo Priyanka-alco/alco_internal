@@ -93,6 +93,7 @@ class ProductsController < ApplicationController
     get_gst = Gst.where("status=1 and category=1")
     product_price_detail['gst'] = get_gst.present? ? get_gst[0].gst_percentage : 5
     calculate_gst = calculate_gst(product_price_detail)
+
     create_order = Order.create(:cust_id=>create_customer.id,
                                 :seller_id=>1,
                                 :total=>total_price,
@@ -102,7 +103,7 @@ class ProductsController < ApplicationController
                                 :discounted_price=>calculate_gst['discounted_product_price'],
                                 :gst=>calculate_gst['gst'],
                                 :discount=>calculate_gst['discount'],
-                                :discount_id=>get_discount[0].id)
+                                :discount_id=>get_discount[0].id.to_i)
     # puts "********#{create_customer.id}*********#{create_order.id}"
     product_name.each_with_index do |val,index|
       if(product_sku["#{index}"].present? && product_qty["#{index}"].present? && price["#{index}"].present?)
@@ -112,7 +113,7 @@ class ProductsController < ApplicationController
                            :quantity=>product_qty["#{index}"],
                            :selling_price=>price["#{index}"],
                            :status=>0,
-                           :discount_id=>get_discount[0].id)
+                           :discount_id=>get_discount[0].id.to_i)
       end
     end
     redirect_to  "/single_product_detail?order_id=#{create_order.id}&&view_detail=true"

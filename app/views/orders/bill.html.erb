@@ -53,30 +53,34 @@
             <div class="col-md-8">
               <div class="row mt-1 mr-1">
                 <span>Total MRP:&nbsp;&nbsp;</span>
-                <span>&#x20B9; <%= @order.total %></span>
+                <span>&#x20B9; <%= '%.2f' %@order.total.to_f %></span>
               </div>
               <% if @discount %>
                 <div class="row mt-1 mr-1">
                   <span>Discount on MRP:&nbsp;&nbsp;</span>
-                  <span>&#x20B9; <%= @discount.to_i %></span>
+                  <span>&#x20B9; <%= @discount.present? ? " #{'%.2f' %@discount.to_f}%" : '' %></span>
                 </div>
               <% end %>
-              <% if @order.discounted_price %>
+              <% if @order.discount %>
                 <div class="row mt-1 mr-1">
-                  <span>Total Amount:&nbsp;&nbsp;</span>
-                  <span>&#x20B9; <%= @order.discounted_price %></span>
+                  <span>Discount Price on MRP:&nbsp;&nbsp;</span>
+                  <span>&#x20B9; <%= @order.present? ? " #{'%.2f' %@order.discount.to_f}" : '' %></span>
                 </div>
                 <% end %>
+              <div class="row mt-1 mr-1">
+                <span>GST:&nbsp;&nbsp;</span>
+                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.gst.to_f}" : '' %></span>
               </div>
-              
-              
+              <div class="row mt-1 mr-1">
+                <span>Total Amount:&nbsp;&nbsp;</span>
+                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= @order.present? ? " #{'%.2f' %@order.discounted_price.to_f}" : '' %></span>
+              </div>
+              </div>
               <div class="col-md-4">
               <div class="row ml-2">
                 <span>Ordered Date:&nbsp;&nbsp;</span>
                 <span><%= @order.created_at.strftime("%d-%m-%Y %H:%M") %></span>
               </div>
-
-
               <% if @order.status.to_i == 2%>
                 <div class="row mt-1 ml-2">
                   <span>Completed Date:&nbsp;&nbsp;</span>
