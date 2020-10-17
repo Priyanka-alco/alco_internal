@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # get '*unmatched_route', to: 'application#not_found'
+  match '(errors)/:status', to: 'errors#error_show', constraints: {status: /\d{3}/} , via: :all
   resources :gsts
   # get '*unmatched_route', to: 'application#not_found'
   resources :discounts
