@@ -1,0 +1,140 @@
+Product_name,Sku,Packaging,selling_price,Cost_price,Gst
+Turmeric Powder,15 gm,Pillow,5.00,5.00,5%
+Turmeric Powder,50 gm,Pillow,15.00,15.00,5%
+Turmeric Powder,100 gm,Pillow,28.00,28.00,5%
+Turmeric Powder,200 gm,Pillow,54.00,54.00,5%
+Turmeric Powder,500 gm,Pillow,130.00,130.00,5%
+Turmeric Powder,500 Gm ,Jar ,145.00,145.00,5%
+Turmeric Powder,1000 gm,Pillow,255.00,255.00,5%
+Red chilli Powder,15 gm,Pillow,6.00,6.00,5%
+Red chilli Powder,50 gm,Pillow,24.00,24.00,5%
+Red chilli Powder,100 gm,Pillow,46.00,46.00,5%
+Red chilli Powder,200 gm,Pillow,90.00,90.00,5%
+Red chilli Powder,500 gm,Pillow,210.00,210.00,5%
+Red chilli Powder,500 gm,Jar,225.00,225.00,5%
+Red chilli Powder,1000 gm,Pillow,400.00,400.00,5%
+Kashmiri Mirch Powder,50 gm,Zipper,40.00,40.00,5%
+Kashmiri Mirch Powder,100 gm,Zipper,72.00,72.00,5%
+Kashmiri Mirch Powder,500 gm,Zipper,330.00,330.00,5%
+Kashmiri Mirch Powder,1000 gm,Zipper,650.00,650.00,5%
+Red Hot Chilli Powder,50 gm,Zipper,21.00,21.00,5%
+Red Hot Chilli Powder,100 gm,Zipper,46.00,46.00,5%
+Red Hot Chilli Powder,500 gm,Zipper,210.00,210.00,5%
+Red Hot Chilli Powder,1000 gm,Zipper,400.00,400.00,5%
+Coriander Powder,15 gm,Pillow,5.00,5.00,5%
+Coriander Powder,50 gm,Pillow,15.00,15.00,5%
+Coriander Powder,100 gm,Pillow,28.00,28.00,5%
+Coriander Powder,200 gm,Pillow,54.00,54.00,5%
+Coriander Powder,500 gm,Pillow,130.00,130.00,5%
+Coriander Powder,500 gm ,Jar,145.00,145.00,5%
+Coriander Powder,1000 gm,Pillow,255.00,255.00,5%
+Garam Masala,7 gm,Pillow,5.00,5.00,5%
+Garam Masala,50 gm,Zipper,42.00,42.00,5%
+Garam Masala,100 gm,Zipper,78.00,78.00,5%
+Garam Masala,500 gm,Zipper,370.00,370.00,5%
+Garam Masala,1000 gm,Zipper,745.00,745.00,5%
+Sabji Masala,7 gm,Pillow,5.00,5.00,5%
+Sabji Masala,50 gm,Zipper,28.00,28.00,5%
+Sabji Masala,100 gm,Zipper,54.00,54.00,5%
+Sabji Masala,500 gm,Zipper,260.00,260.00,5%
+Sabji Masala,1000 gm,Zipper,510.00,510.00,5%
+Chaat Masala,100 gm,Zipper,60.00,60.00,5%
+Chaat Masala,100gm ,Jar ,70.00,70.00,5%
+Chaat Masala,500 gm,Zipper,350.00,350.00,5%
+Chaat Masala,1000 gm,Zipper,590.00,590.00,5%
+Magic Masala,7 gm,Pillow,5.00,5.00,5%
+Magic Masala,100gm ,Jar ,50.00,50.00,5%
+Paneer Masala,50  gm,Zipper,40.00,40.00,5%
+Paneer Masala,100  gm,Zipper,78.00,78.00,5%
+Paneer Masala,500 gm,Zipper,385.00,385.00,5%
+Paneer Masala,1000 gm,Zipper,765.00,765.00,5%
+Pav Bhaji Masala,50 gm,Zipper,34.00,34.00,5%
+Pav Bhaji Masala,100 gm,Zipper,62.00,62.00,5%
+Pav Bhaji Masala,500 gm,Zipper,295.00,295.00,5%
+Pav Bhaji Masala,1000 gm,Zipper,585.00,585.00,5%
+Sambar Masala,50 gm,Zipper,34.00,34.00,5%
+Sambar Masala,100 gm,Zipper,62.00,62.00,5%
+Sambar Masala,500 gm,Zipper,295.00,295.00,5%
+Sambar Masala,1000 gm,Zipper,585.00,585.00,5%
+Jeera Powder,50 gm,Zipper,27.00,27.00,5%
+Jeera Powder,100 gm,Zipper,52.00,52.00,5%
+Jeera Powder,500 gm,Zipper,245.00,245.00,5%
+Jeera Powder,1000 gm,Zipper,480.00,480.00,5%
+Kasoori Methi,25 gm,Zipper,24.00,24.00,5%
+Kasoori Methi,50 gm,Zipper,46.00,46.00,5%
+Kasoori Methi,100 gm,Zipper,90.00,90.00,5%
+Kasoori Methi,500 gm,Zipper,445.00,445.00,5%
+Kasoori Methi,1000gm,Zipper,880.00,880.00,5%
+Chicken Masala,7 gm,Pillow,5.00,5.00,5%
+Chicken Masala,50 gm,Zipper,38.00,38.00,5%
+Chicken Masala,100 gm,Zipper,72.00,72.00,5%
+Chicken Masala,500 gm,Zipper,350.00,350.00,5%
+Chicken Masala,1000 gm,Zipper,690.00,690.00,5%
+Meat Masala,7 gm,Pillow,5.00,5.00,5%
+Meat Masala,50 gm,Zipper,38.00,38.00,5%
+Meat Masala,100 gm,Zipper,72.00,72.00,5%
+Meat Masala,500 gm,Zipper,350.00,350.00,5%
+Meat Masala,1000 gm,Zipper,690.00,690.00,5%
+Kitchen Masala,50 gm,Zipper,35.00,35.00,5%
+Kitchen Masala,100 gm,Zipper,68.00,68.00,5%
+Kitchen Masala,500 gm,Zipper,330.00,330.00,5%
+Rajma masala,50 gm,Zipper,32.00,32.00,5%
+Rajma masala,100 gm,Zipper,62.00,62.00,5%
+Rajma masala,500 gm,Zipper,300.00,300.00,5%
+Chole masala,50 gm,Zipper,35.00,35.00,5%
+Chole masala,100 gm,Zipper,68.00,68.00,5%
+Chole masala,500 gm,Zipper,330.00,330.00,5%
+Biryani masala,50 gm,Zipper,75.00,75.00,5%
+Biryani masala,100 gm,Zipper,148.00,148.00,5%
+Biryani masala,500 gm,Zipper,730.00,730.00,5%
+Curry masala,50 gm,Zipper,28.00,28.00,5%
+Curry masala,100 gm,Zipper,54.00,54.00,5%
+Curry masala,500 gm,Zipper,260.00,260.00,5%
+Panipuri masala,50 gm,Zipper,31.00,31.00,5%
+Panipuri masala,100 gm,Zipper,60.00,60.00,5%
+Panipuri masala,500 gm,Zipper,290.00,290.00,5%
+Pulao masala,50 gm,Zipper,75.00,75.00,5%
+Pulao masala,100 gm,Zipper,148.00,148.00,5%
+Pulao masala,500 gm,Zipper,730.00,730.00,5%
+Bihari kabab Masala,50 gm,Zipper,50.00,50.00,5%
+Bihari kabab Masala,100 gm,Zipper,98.00,98.00,5%
+Bihari kabab Masala,500 gm,Zipper,480.00,480.00,5%
+Hot madras curry ,50 gm,Zipper,30.00,30.00,5%
+Hot madras curry ,100 gm,Zipper,58.00,58.00,5%
+Hot madras curry ,500 gm,Zipper,280.00,280.00,5%
+Zatar Spice Seasoning,50 gm,Zipper,55.00,55.00,5%
+Zatar Spice Seasoning,100 gm,Zipper,108.00,108.00,5%
+Zatar Spice Seasoning,500 gm,Zipper,530.00,530.00,5%
+Nihari masala,50 gm,Zipper,75.00,75.00,5%
+Nihari masala,100 gm,Zipper,148.00,148.00,5%
+Nihari masala,500 gm,Zipper,730.00,730.00,5%
+Kajun Spice Seasoning,50 gm,Zipper,52.00,52.00,5%
+Kajun Spice Seasoning,100 gm,Zipper,102.00,102.00,5%
+Kajun Spice Seasoning,500 gm,Zipper,500.00,500.00,5%
+Jeeravan masala,50 gm,Zipper,28.00,28.00,5%
+Jeeravan masala,100 gm,Zipper,54.00,54.00,5%
+Jeeravan masala,500 gm,Zipper,260.00,260.00,5%
+Egg curry masala ,50 gm,Zipper,42.00,42.00,5%
+Egg curry masala ,100 gm,Zipper,82.00,82.00,5%
+Egg curry masala ,500 gm,Zipper,400.00,400.00,5%
+Fish curry masala,50 gm,Zipper,42.00,42.00,5%
+Fish curry masala,100 gm,Zipper,82.00,82.00,5%
+Fish curry masala,500 gm,Zipper,400.00,400.00,5%
+Kadhai masala,50 gm,Zipper,60.00,60.00,5%
+Kadhai masala,100 gm,Zipper,118.00,118.00,5%
+Kadhai masala,500 gm,Zipper,580.00,580.00,5%
+Chutney pudina masala,50 gm,Zipper,30.00,30.00,5%
+Chutney pudina masala,100 gm,Zipper,58.00,58.00,5%
+Chutney pudina masala,500 gm,Zipper,280.00,280.00,5%
+Achari ghosht,50 gm,Zipper,65.00,65.00,5%
+Achari ghosht,100 gm,Zipper,128.00,128.00,5%
+Achari ghosht,500 gm,Zipper,630.00,630.00,5%
+Achari chicken masala,50 gm,Zipper,60.00,60.00,5%
+Achari chicken masala,100 gm,Zipper,118.00,118.00,5%
+Achari chicken masala,500 gm,Zipper,580.00,580.00,5%
+Achari aloo masala,50 gm,Zipper,59.00,59.00,5%
+Achari aloo masala,100 gm,Zipper,116.00,116.00,5%
+Achari aloo masala,500 gm,Zipper,570.00,570.00,5%
+Elaichi Dana,50 gm,Zipper,210.00,210.00,5%
+Elaichi Dana,100 gm,Zipper,400.00,400.00,5%
+Pudik,50 gm,Pillow ,22.00,22.00,5%
