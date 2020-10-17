@@ -208,7 +208,7 @@ class OrdersController < ApplicationController
   end
 
   def order
-    seller = session[:admin] != true ? User.where("email='#{session[:email_id]}' and status =1") :  User.where("status =1")
+    seller = session[:admin] != true ? User.where("email='#{session[:email_id]}' and status =true") :  User.where("status =true")
     order_detail = Order.where("seller_id=#{seller[0].id}").order( 'id DESC' )
     @res = []
     order_detail.each do |val|
