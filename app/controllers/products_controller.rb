@@ -97,8 +97,8 @@ class ProductsController < ApplicationController
     get_discount = Discount.where("   from_range <= #{total_price.to_i} AND to_range >=  #{total_price.to_i}")
     discount = get_discount.present? ? get_discount[0].discount : 20
     product_price_detail['discount'] = discount
-    get_gst = Gst.where("status=1 and category=1")
-    product_price_detail['gst'] = get_gst.present? ? get_gst[0].gst_percentage : 5
+    # get_gst = Gst.where("status=1 and category=1")
+    product_price_detail['gst'] =  5
     calculate_gst = calculate_gst(product_price_detail)
     discount_id = get_discount.present? ? get_discount[0].id.to_i : 0
     create_order = Order.create(:cust_id=>create_customer.id,
