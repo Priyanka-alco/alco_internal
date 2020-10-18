@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="row mt-3">
-        <a href="/product_selling" class="create_purchase_order text-white btn btn-primary p-4 w-100 d-block"><span class="create_purchase_order_btn">Create Purchase Order</span><span class="create_new_customer_btn">Create New Customer</span></a>
+        <a href="/product_selling" class="create_purchase_order text-white btn btn-primary p-4 w-100 d-block"><span class="old_cust_button">Create Purchase Order</span><span class="new_cust_button">Create New Customer</span></a>
 
       </div>
 
@@ -167,6 +167,8 @@
 
 
 <script>
+  $('.new_cust_button').show();
+  $('.old_cust_button').hide();
     $('.new_cust_message ').hide();
     $('.old_cust_message ').hide();
     $('.check_phone_number ').hide();
@@ -230,14 +232,19 @@
                             "</tr>");
                     });
                     $('.customer_number').val(phone_number);
-
+                    $('.old_cust_button').show();
+                    $('.new_cust_button').hide();
                     console.log(data);
                 }else{
-                    window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+                    $('.old_cust_button').hide();
+                    $('.new_cust_button').show();
+                    // window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
                 }
             },
             error: function(data){
-                window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+                $('.old_cust_button').hide();
+                $('.new_cust_button').show();
+                // window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
             }
         });
     }
@@ -261,16 +268,9 @@
       $(".create_purchase_order").attr("href", "/product_selling?phone_number="+phone_number);
 
   });
-    $('.create_purchase_order_btn').show();
-    $('.create_new_customer_btn').hide();
-
     <% if params['phone_number'].present? %>
-    $('.create_purchase_order_btn').show();
-    $('.create_new_customer_btn').hide();
     $('.custdetails').show();
     <% else %>
-    $('.create_purchase_order_btn').hide();
-    $('.create_new_customer_btn').show();
     $('.custdetails').hide();
     <% end %>
 
@@ -289,6 +289,7 @@
             $('.check_phone_number').show();
             $('.new_cust_message ').hide();
             $('.old_cust_message ').hide();
+            return false;
         }else{
             $('.check_phone_number').hide();
             $('.new_cust_message ').hide();
@@ -298,14 +299,27 @@
 
         return isValid;
     });
-    $('.Check_cust').click(function(e){
 
+  $('.create_purchase_order').click(function(e){
+// alert();
+      var phone_number = $('.customer_number').val();
+      if(phone_number == '' || phone_number.length != 10 )
+      {
+          $('.check_phone_number').show();
+          $('.new_cust_message ').hide();
+          $('.old_cust_message ').hide();
+          e.preventDefault()
+
+      }
+
+  })
+    $('.Check_cust').click(function(e){
         var keyCode = e.keyCode || e.which;
         var phone_number = $('.customer_number').val();
         var regex = /^[0-9\s]*$/;
         var isValid = regex.test(String.fromCharCode(keyCode));
         var numbers = /^[0-9\s]*$/;
-        // debugger;
+
         console.log("****check"+phone_number.length == 10);
         if(phone_number.length == 10)
         {
@@ -341,8 +355,11 @@
                                 "<td><a href="+new_url+" target='_blank'>View Details</a></td>" +
                                 "</tr>");
                         });
-
+                        $('.old_cust_button').show();
+                        $('.new_cust_button').hide();
                     }else{
+                        $('.old_cust_button').hide();
+                        $('.new_cust_button').show();
                         console.log("***data not present");
                         $('.new_cust_message ').show();
                         $('.old_cust_message ').hide();
@@ -364,17 +381,22 @@
                     $('.check_phone_number').hide();
                     $('.custdetails').hide();
                     $('.order-table-1').hide();
+                    $('.old_cust_button').hide();
+                    $('.new_cust_button').show();
                 }
             });
         }
         else
         {
+            return false;
             console.log("***phone not checked");
             $('.check_phone_number').show();
             $('.new_cust_message ').hide();
             $('.old_cust_message ').hide();
             $('.custdetails ').hide();
             $('.order-table-1 ').hide();
+            $('.old_cust_button').hide();
+            $('.new_cust_button').show();
             $(this).val("");
             return false;
         }

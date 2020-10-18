@@ -151,10 +151,10 @@
   <div class="card border-0 popup-cardbody">
     <div class="card-body">
       <div class="row justify-content-end">
-        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_product_modal">&#10006;</a></span>
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_checkout_button">&#10006;</a></span>
       </div>
       <div class="row mt-2 text-white h6 justify-content-center">
-        <div>Minimum Order Total Should be more than 110/- </div>
+        <div>Minimum Order Total Should be more than &#x20B9;105 </div>
         <div>Please select more item to continue</div>
       </div>        
       </div>
@@ -200,6 +200,9 @@
 </div>
 
 <script>
+  $('#close_checkout_button').click(function(){
+      $('.checkout_order').hide();
+  });
     $('.checkout_order').hide();
   $('.checkout').click(function(event){
       var sum = 0;

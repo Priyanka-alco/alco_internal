@@ -58,7 +58,6 @@ class ProductsController < ApplicationController
     customer_id = order[0].cust_id
     customer_detail = Customer.where("id=#{customer_id}")
     @customer_detail = customer_detail
-    # debugger
     @total_price = order[0].total
     get_order_detail.each_with_index do |val,index|
       res = {}
@@ -95,11 +94,13 @@ class ProductsController < ApplicationController
     product_price_detail = {}
     product_price_detail['product_price'] = total_price
     get_discount = Discount.where("   from_range <= #{total_price.to_i} AND to_range >=  #{total_price.to_i}")
-    discount = get_discount.present? ? get_discount[0].discount : 20
+    discount = get_discount.present? ? get_discount[0].discount : (total_price.to_i < 100) ? 0 : 20
     product_price_detail['discount'] = discount
     # get_gst = Gst.where("status=1 and category=1")
     product_price_detail['gst'] =  5
+
     calculate_gst = calculate_gst(product_price_detail)
+    debugger
     discount_id = get_discount.present? ? get_discount[0].id.to_i : 0
     create_order = Order.create(:cust_id=>create_customer.id,
                                 :seller_id=>1,
@@ -127,6 +128,7 @@ class ProductsController < ApplicationController
   end
 
   def calculate_gst(product_price_detail={})
+
     product_price_detail['gst'] = ((product_price_detail['product_price'].to_f*product_price_detail['gst'])/100).round
     product_price_detail['total_price'] = (product_price_detail['product_price']+product_price_detail['gst']).round
     product_price_detail['discounted_product_price'] = (product_price_detail['total_price'].to_f - product_price_detail['discount'].to_f).round
@@ -170,7 +172,6 @@ class ProductsController < ApplicationController
     discount_id = get_discount.present? ? get_discount[0].id : 0
     get_discount = (order[0].total * discount)/100
     discounted_price = (order[0].total.to_i - get_discount.to_i)
-    order[0].discounted_price = discounted_price
     customer_id = order[0].cust_id
     customer_detail = Customer.where("id=#{customer_id}")
     @customer_detail = customer_detail
