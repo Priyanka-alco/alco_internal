@@ -34,10 +34,12 @@
               </thead>
               <tbody>
               <% @result.each_with_index do |val,index| %>
+                <% %>
+                <% get_product_sku = get_product_sku(val["order_detail"].sku_id) %>
                 <tr>
                   <td><%= index+1 %></td>
                   <td><%= val['product_name'] %></td>
-                  <td><%= val["sku_detail"].present? ? "#{val["sku_detail"]}g" : "" %></td>
+                  <td><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
                   <td><%= val["order_detail"].quantity %></td>
                   <td>&#x20B9;<%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
                   <td>&#x20B9;<%= val["order_detail"].selling_price.to_i%></td>
