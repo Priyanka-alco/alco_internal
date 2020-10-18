@@ -65,7 +65,7 @@ class CustomersController < ApplicationController
     if customer_detail
       result['status'] = 200
       result['customer_detail'] = customer_detail
-      result['order_detail'] = Order.where("cust_id=#{customer_detail[0].id}").order( 'id DESC' )
+      result['order_detail'] = Order.where("cust_id=#{customer_detail[0].id.to_i}").order( 'id DESC' )
       puts "order_detail*****************#{result['order_detail']}"
     else
       result['redirect_to'] = '/product_selling'
