@@ -9,7 +9,7 @@
               <div class="text-center">Customer Details</div>
               <hr>
               <div class="row">
-                <table class="table table-borderless mt-3">
+                <table class="table table-borderless mt-3 ">
                   <tbody>
                   <tr>
                     <td class="custdetails-info">First Name:</td>
@@ -40,12 +40,12 @@
           <div class="card bg-light w-100">
             <div class="card-header">
               <span>Buy Products&nbsp;&nbsp;</span>
-              <span><input type="text" class="form-control w-100"></span>
+              <span><input type="text" class="search_product form-control w-100"></span>
               <span class="float-right"><a class="btn text-warning" id="discounts">Discounts</a></span>
             </div>
             <div class="card-body">              
               <div class="table-responsive product-selling-order-table">
-                <table class="table table-borderless text-center">
+                <table class="table table-borderless text-center ">
                   <thead class="table-header thead-light">
                     <tr>
                         <th class="table-header" scope="col">Name</th>
@@ -55,7 +55,7 @@
                         <th class="table-header" scope="col">Price</th>
                         </tr>
                     </thead>
-                  <tbody>                 
+                  <tbody class="product_table">
                   <% if  @result['product'].present? %>
                     <% @result['product'].each_with_index  do |product,index| %>
                       <tr>
@@ -202,6 +202,14 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $(".search_product").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".product_table tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
   $('#close_checkout_button').click(function(){
       $('.checkout_order').hide();
   });
