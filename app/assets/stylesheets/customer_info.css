@@ -149,6 +149,12 @@
   width: 400px;
   height: 220px;
 }
+.min-order-popup-cardbody {
+  border: none;
+  background-color: #003460;
+  width: 500px;
+  height: 260px;
+}
 
 .discount-popup-cardbody {
   border: none;
