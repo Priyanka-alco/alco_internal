@@ -7,11 +7,11 @@
 }
 
 .detailConfirmBox .card {
-  height: 450px;
+  min-height: 450px;
 }
 
 .operation-order-table-card {
-  height: 450px;
+  height: 100%;
 }
 
 .single-product-order-table {
@@ -51,7 +51,7 @@
 }
 
 .opr-order-custdetails {
-  height: 430px;
+  min-height: 450px;
 }
 
 .order_complete_popup {
@@ -90,7 +90,7 @@
 }
 
 .bill-order-detail {
-  min-height: 450px;
+  height: 100%;
 }
 
 .bill-order-price-detail {
@@ -98,5 +98,5 @@
 }
 
 .bill-order-cust-detail {
-  height: 430px;
+  min-height: 450px;
 }
