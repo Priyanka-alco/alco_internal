@@ -98,9 +98,7 @@ class ProductsController < ApplicationController
     product_price_detail['discount'] = discount
     # get_gst = Gst.where("status=1 and category=1")
     product_price_detail['gst'] =  5
-
     calculate_gst = calculate_gst(product_price_detail)
-    debugger
     discount_id = get_discount.present? ? get_discount[0].id.to_i : 0
     create_order = Order.create(:cust_id=>create_customer.id,
                                 :seller_id=>1,

@@ -14,13 +14,15 @@ class OrdersController < ApplicationController
 
   def pending_order
      @res = {}
-    get_order_detail = Order.where("order_status=1").order("id DESC")
+     order_clause = "id ASC"
+
+    get_order_detail = Order.where("order_status=1").order(order_clause)
     @res['order_details'] = get_order_detail
   end
 
   def completed_order
     @res = {}
-    get_order_detail = Order.where("order_status=2").order("id DESC")
+    get_order_detail = Order.where("order_status=2").order("updated_at DESC")
     @res['order_details'] = get_order_detail
   end
 
@@ -144,8 +146,14 @@ class OrdersController < ApplicationController
   def next_order
     order_id = params['order_id']
     order_status = params['order_status']
-
-    orders = Order.where("order_status=#{order_status} and id NOT IN (?) and id < #{order_id.to_i}",[order_id] ).order("id DESC").first();
+    if order_status.to_i == 1
+      order_clause = "id ASC"
+      clause = "order_status=#{order_status} and id NOT IN (?) and id > #{order_id.to_i}"
+    else
+      order_clause = "updated_at DESC"
+      clause = "order_status=#{order_status} and id NOT IN (?) and id < #{order_id.to_i}"
+    end
+    orders = Order.where(clause,[order_id] ).order(order_clause).first();
     redirect_to "/operation_order_detail?order_id=#{orders.id}"
   end
 
@@ -171,11 +179,22 @@ class OrdersController < ApplicationController
 
   def operation_order_detail
     order_id = params['order_id']
-    get_order_detail = OrderDetail.where("order_id=#{order_id}")
+
     @result = []
     order = Order.where("id=#{order_id}")
     order_status = order[0].order_status
-    last_order =  Order.where("order_status=#{order_status} and id NOT IN (?) and id < #{order_id.to_i}",[order_id] ).order("id DESC").first();
+    if  (order_status.to_i == 1)
+        order_clause = "id ASC"
+        where_clause = "order_status=#{order_status} and id NOT IN (#{order_id}) and id > #{order_id.to_i}"
+    else
+      order_clause = "updated_at DESC"
+        where_clause = "order_status=#{order_status} and id NOT IN (#{order_id}) and id < #{order_id.to_i}"
+    end
+
+
+
+    get_order_detail = OrderDetail.where("order_id=#{order_id}").order(order_clause)
+    last_order =  Order.where(where_clause).order(order_clause).first();
     @next_order = false
     if last_order.present? && last_order.id.to_i != order_id.to_i
       @next_order = true

@@ -65,29 +65,26 @@
             <div class="col-md-8">
               <div class="row mt-1 mr-1">
                 <span>Total MRP:&nbsp;&nbsp;</span>
-                <span>&#x20B9; <%= '%.2f' %@order.total.to_f %></span>
+                <span>&#x20B9; <%= @order.total.to_f.round - @order.gst.to_f.round%></span>
               </div>
-              <% if @discount %>
-                <div class="row mt-1 mr-1">
-                  <span>Discount on MRP:&nbsp;&nbsp;</span>
-                  <span>&#x20B9; <%= @discount.present? ? " #{'%.2f' %@discount.to_f}%" : '' %></span>
-                </div>
-              <% end %>
-              <% if @order.discount %>
-                <div class="row mt-1 mr-1">
-                  <span>Discount Price on MRP:&nbsp;&nbsp;</span>
-                  <span>&#x20B9; <%= @order.present? ? " #{'%.2f' %@order.discount.to_f}" : '' %></span>
-                </div>
-                <% end %>
-              <div class="row mt-1 mr-1">
+              <div class="row mt-2 mr-2">
                 <span>GST:&nbsp;&nbsp;</span>
-                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.gst.to_f}" : '' %></span>
+                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.gst.to_f.round}" : '' %>   </span>
+                <input type="hidden" class="discount_id" value="<%= @discount_id %>">
               </div>
-              <div class="row mt-1 mr-1">
+              <div class="row mt-2 mr-2">
+                <span>Discount on MRP + GST:&nbsp;&nbsp;</span>
+                <span><%= @discount.present? ? " #{@discount.to_i}%" : '' %></span>
+              </div>
+              <div class="row mt-2 mr-2">
+                <span>Discount on MRP:&nbsp;&nbsp;</span>
+                <span>&#x20B9;<%= @order.present? ? (@order.discount.to_i > 0)? " #{'%.2f' %@order.discount.to_f.round}" : '' : '' %>  </span>
+              </div>
+              <div class="row mt-2 mr-2">
                 <span>Total Amount:&nbsp;&nbsp;</span>
-                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= @order.present? ? " #{'%.2f' %@order.discounted_price.to_f}" : '' %></span>
+                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= @order.present? ? " #{@order.total.to_f.round - @order.discount.to_f.round}" : '' %></span>
               </div>
-              </div>
+            </div>
               <div class="col-md-4">
               <div class="row ml-2">
                 <span>Ordered Date:&nbsp;&nbsp;</span>
@@ -192,10 +189,7 @@
             method: "POST",
             data: {"order_id":order_id},
             success: function(data){
-
                 $('#order_complete_popup').show(); //show modal
-
-
             },
             error: function(data){
                 window.location.replace("operation_order_detail?order_id="+parseInt(order_id)+1)
