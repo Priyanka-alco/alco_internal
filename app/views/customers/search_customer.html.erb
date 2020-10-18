@@ -19,7 +19,9 @@
             <span class="new_cust_message">This is a new Customer</span>
             <span class="old_cust_message">This is an existing Customer</span>
             <span class="check_phone_number">Enter Valid Phone Number</span>
-            <span class="Check_cust">Check</span>
+            </div>
+            <div>
+            <button class="btn btn-primary text-white w-100 Check_cust p-1">Check</span>
             </div>
           </div>
         </div>
@@ -59,7 +61,7 @@
         </div>
       </div>
       <div class="row mt-3">
-        <a href="/product_selling" class="create_purchase_order text-white btn btn-primary p-4 w-100 d-block">Create Purchase Order</a>
+        <a href="/product_selling" class="create_purchase_order text-white btn btn-primary p-4 w-100 d-block"><span class="create_purchase_order_btn">Create Purchase Order</span><span class="create_new_customer_btn">Create New Customer</span></a>
 
       </div>
 
@@ -259,10 +261,16 @@
       $(".create_purchase_order").attr("href", "/product_selling?phone_number="+phone_number);
 
   });
+    $('.create_purchase_order_btn').show();
+    $('.create_new_customer_btn').hide();
 
     <% if params['phone_number'].present? %>
+    $('.create_purchase_order_btn').show();
+    $('.create_new_customer_btn').hide();
     $('.custdetails').show();
     <% else %>
+    $('.create_purchase_order_btn').hide();
+    $('.create_new_customer_btn').show();
     $('.custdetails').hide();
     <% end %>
 
