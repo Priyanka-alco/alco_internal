@@ -271,7 +271,7 @@
                     $('.custdetails').show();
 
                     if (data['status'] == 200){
-
+                        console.log(data['order_detail']);
                         $('.cust_first_name').val(data['customer_detail'][0]['first_name']);
                         $('.cust_last_name').val(data['customer_detail'][0]['last_name']);
                         $('.cust_address').val(data['customer_detail'][0]['address']);
@@ -288,12 +288,11 @@
                                 "<td><a href="+new_url+" target='_blank'>View Details</a></td>" +
                                 "</tr>");
                         });
-                        console.log(data);
+
                     }else{
                         if (phone_number != ''){
                             window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
                         }
-
                     }
                 },
                 error: function(data){
@@ -307,10 +306,6 @@
             $(this).val("");
             return false;
         }
-
-
-
-
     })
     $('.save_cust_detail').hide();
     // readonly false for customer detail
