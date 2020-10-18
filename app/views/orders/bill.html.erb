@@ -6,6 +6,16 @@
 
 <body>
 <div class="container  mt-2">
+<div class="row" style="border: 1px solid;border-color: rgba(0,0,0,0.3);">
+                <div class="col-md-4">
+                    <span class="float-left"><%= image_tag("alco_logo.jpg",:class => "bill_logo") %></span>
+                </div>
+                <div class="col-md-8 h5" style="margin-top:100px">
+                        <div class="float-right">Alco Foods Pvt Ltd.</div><br>
+                        <div class="float-right">Hirapur Jarway, Tatibandh</div><br>
+                        <div class="float-right">Raipur, C.G.</div><br>
+                </div>
+  </div>
   <div class="row">
     <div class="card w-100 rounded border-0">
       <div class="card-body bg-light p-4 h5"><span>Order Id:  &nbsp;</span><span>#PO<%= @order.id  %></span><span class="float-right"></span><span class="float-right">&nbsp;</span></div>
@@ -131,7 +141,11 @@
         </div>
       </div>
     </div>
+    <div class="row">
+
+    </div>
   </div>
+
 </div>
 </div>
 <div class="order_complete_popup" id="order_complete_popup">

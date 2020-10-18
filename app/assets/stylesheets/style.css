@@ -161,6 +161,11 @@ nav a:hover {
   width: 15%;
 }
 
+.bill_logo {
+  width: 250px;
+  height: auto;
+}
+
 .spinner {
   margin: 100px auto 0;
   width: 70px;
