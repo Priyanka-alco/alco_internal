@@ -34,7 +34,6 @@
               </thead>
               <tbody>
               <% @result.each_with_index do |val,index| %>
-                <% %>
                 <% get_product_sku = get_product_sku(val["order_detail"].sku_id) %>
                 <% get_product_detail = get_product_detail(val["order_detail"].product_id) %>
                 <tr>
