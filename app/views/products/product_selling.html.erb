@@ -25,11 +25,12 @@
                   </tr>
                   <tr>
                     <td class="custdetails-info">Phone No:</td>
-                    <td><input type="tel" maxlength="10" name="phone_no" pattern="^[6-9][0-9]{9}$" required minlength="10" value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].phone : params['phone_number'].present? ? params['phone_number'] : '' %>" class="form-control customer_number"></td>
+                    <td><input type="tel" <%= params['phone_number'].present? ? "readonly" : '' %> maxlength="10" name="phone_no" pattern="^[6-9][0-9]{9}$" required minlength="10" value="<%= @result['customer_detail'].present? ? @result['customer_detail'][0].phone : params['phone_number'].present? ? params['phone_number'] : '' %>" class="form-control customer_number"></td>
                   </tr>
                   </tbody>
                 </table>
               </div>
+              <a href="product_selling">Creat New Customer</a>
             </div>
           </div>
         </div>
@@ -154,7 +155,7 @@
         <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_checkout_button">&#10006;</a></span>
       </div>
       <div class="row mt-2 text-white justify-content-center">
-        <div class="h5">Minimum Order Total Should be more than &#x20B9;105 </div><br>
+        <div class="h5">Minimum Order Total Should be more than &#x20B9;&nbsp;105 </div><br><br>
         <div class="h5">Please select more item to continue</div>
       </div>        
       </div>
@@ -204,17 +205,7 @@
       $('.checkout_order').hide();
   });
     $('.checkout_order').hide();
-  $('.checkout').click(function(event){
-      var sum = 0;
-      $('.show_price_sum').each(function() {
-          sum += Number($(this).val());
-      });
 
-     if (sum < 105){
-         $('.checkout_order').show();
-         event.preventDefault();
-     }
-  })
  $('#discounts').click(function(){
     $('#discounts_modal').show();
   });
@@ -227,11 +218,20 @@
     $('#product_modal').hide();
   });
     function checker(event){
-        if ($('.form_price').hasClass("add_price") && $('.form_price').hasClass("sku_present") && $('.form_price').hasClass("qty_present")) {
-        } else {
-            $('#product_modal').show(); 
+        var sum = 0;
+        $('.show_price_sum').each(function() {
+            sum += Number($(this).val());
+        });
+
+        if (sum < 105){
+            $('.checkout_order').show();
             event.preventDefault();
         }
+        // if ($('.form_price').hasClass("add_price") && $('.form_price').hasClass("sku_present") && $('.form_price').hasClass("qty_present")) {
+        // } else {
+        //     $('#product_modal').show();
+        //     event.preventDefault();
+        // }
     }
     // =========for reset============
     $(".reset_form").on("click", function() {
