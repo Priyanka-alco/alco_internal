@@ -10,13 +10,16 @@
         <div class="card bg-light w-100 card-1 p-2 pb-4">
           <div class="card-body phoneInput">
             <div>Search By Customer Phone Number</div>
-
+              <form autocomplete="off">
+                <div>
+                  <input type="tel" autocomplete="off" minlength="10" pattern="[0-9]{10}" maxlength="10"  value = "<%= params['phone_number'].present? ? params['phone_number'] : '' %>" class="form-control text-center customer_number">
+                </div>
+              </form>
             <div>
-              <input type="tel" minlength="10" pattern="[0-9]{10}" maxlength="10"  value = "<%= params['phone_number'].present? ? params['phone_number'] : '' %>" class="form-control text-center customer_number">
-            </div>
-            <div>
-            <span>This is a new Customer</span>
-            <span>This is an existing Customer</span>
+            <span class="new_cust_message">This is a new Customer</span>
+            <span class="old_cust_message">This is an existing Customer</span>
+            <span class="check_phone_number">Enter Valid Phone Number</span>
+            <span class="Check_cust">Check</span>
             </div>
           </div>
         </div>
@@ -162,6 +165,9 @@
 
 
 <script>
+    $('.new_cust_message ').hide();
+    $('.old_cust_message ').hide();
+    $('.check_phone_number ').hide();
 
     $('.edit_cust_detail ').click(function(){
       $('.save_cust_detail ').show();
@@ -259,10 +265,41 @@
     <% else %>
     $('.custdetails').hide();
     <% end %>
-    $('.customer_number').change(function(){
-        var phone_number = $(this).val();
-        var numbers = /^[0-9]+$/;
-        if(phone_number.match(numbers) && phone_number != '' && phone_number.length == 10 )
+
+    $(".customer_number").keypress(function (e) {
+        var keyCode = e.keyCode || e.which;
+
+        $("#lblError").html("");
+
+        //Regex for Valid Characters i.e. Alphabets.
+        var regex = /^[0-9]+$/;
+
+        //Validate TextBox value against the Regex.
+        var isValid = regex.test(String.fromCharCode(keyCode));
+        if (!isValid) {
+            console.log("***phone no check");
+            $('.check_phone_number').show();
+            $('.new_cust_message ').hide();
+            $('.old_cust_message ').hide();
+        }else{
+            $('.check_phone_number').hide();
+            $('.new_cust_message ').hide();
+            $('.old_cust_message ').hide();
+        }
+
+
+        return isValid;
+    });
+    $('.Check_cust').click(function(e){
+
+        var keyCode = e.keyCode || e.which;
+        var phone_number = $('.customer_number').val();
+        var regex = /^[0-9\s]*$/;
+        var isValid = regex.test(String.fromCharCode(keyCode));
+        var numbers = /^[0-9\s]*$/;
+        // debugger;
+        console.log("****check"+phone_number.length == 10);
+        if(phone_number.length == 10)
         {
             var data = {
                 phone_number: phone_number,
@@ -275,7 +312,11 @@
                     $('.custdetails').show();
 
                     if (data['status'] == 200){
-                        console.log(data['order_detail']);
+                        console.log("***data present");
+                        $('.new_cust_message ').hide();
+                        $('.old_cust_message ').show();
+                        $('.check_phone_number').hide();
+                        // console.log(data['order_detail']);
                         $('.cust_first_name').val(data['customer_detail'][0]['first_name']);
                         $('.cust_last_name').val(data['customer_detail'][0]['last_name']);
                         $('.cust_address').val(data['customer_detail'][0]['address']);
@@ -294,19 +335,38 @@
                         });
 
                     }else{
+                        console.log("***data not present");
+                        $('.new_cust_message ').show();
+                        $('.old_cust_message ').hide();
+                        $('.check_phone_number').hide();
+                        $('.custdetails').hide();
                         if (phone_number != ''){
-                            window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+                            $('.check_phone_number').show();
+                            $('.new_cust_message ').hide();
+                            $('.old_cust_message ').hide();
+                            $('.custdetails ').hide();
+                            $('.order-table-1 ').hide();
                         }
                     }
                 },
                 error: function(data){
-                    window.location.replace('/product_selling?status=3&&phone_number='+phone_number);
+                    console.log("***error");
+                    $('.new_cust_message ').show();
+                    $('.old_cust_message ').hide();
+                    $('.check_phone_number').hide();
+                    $('.custdetails').hide();
+                    $('.order-table-1').hide();
                 }
             });
         }
         else
         {
-            $('#valid_phone_modal').show();   
+            console.log("***phone not checked");
+            $('.check_phone_number').show();
+            $('.new_cust_message ').hide();
+            $('.old_cust_message ').hide();
+            $('.custdetails ').hide();
+            $('.order-table-1 ').hide();
             $(this).val("");
             return false;
         }

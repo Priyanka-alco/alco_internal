@@ -183,18 +183,7 @@
     </div>
   </div>
 
-  <div class="popup" id="new_customer_modal">
-  <div class="card border-0 popup-cardbody">
-    <div class="card-body">
-      <div class="row justify-content-end">
-        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_new_customer_modal">&#10006;</a></span>
-      </div>
-      <div class="row mt-2 text-white h6 justify-content-center">
-        <span>Please Create Purchase Order for New Customer</span>
-        </div>        
-      </div>
-    </div>
-  </div>
+
 </div>
 
 <script>
@@ -210,9 +199,6 @@
     $('#product_modal').hide();
   });
 
-   $('#close_new_customer_modal').click(function(){
-    $('#new_customer_modal').hide();
-  });
 
     function checker(event){
         if ($('.form_price').hasClass("add_price") && $('.form_price').hasClass("sku_present") && $('.form_price').hasClass("qty_present")) {
@@ -275,6 +261,6 @@
 
     });
     <% if params['status'] == "3" %>
-    $('#new_customer_modal').show();  
+
     <% end %>
 </script>
