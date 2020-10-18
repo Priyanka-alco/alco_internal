@@ -215,7 +215,7 @@
   });
 
     function checker(event){
-        if ($('.form_price').hasClass("add_price")) {
+        if ($('.form_price').hasClass("add_price") && $('.form_price').hasClass("sku_present") && $('.form_price').hasClass("qty_present")) {
         } else {
             $('#product_modal').show(); 
             event.preventDefault();
@@ -233,7 +233,7 @@
     $(".qty").change(function () {
         var id = $(this).attr("id");
         var unit_price = $(".sku_" + id + " option:selected").attr("data-value");
-        var sku = parseInt(parseInt($(".sku_" + id + " option:selected").attr("data-value").replace("g",""))
+        var sku = parseInt(parseInt($(".sku_" + id + " option:selected").attr("data-value"))
             ,
             10
         );
@@ -249,6 +249,8 @@
         (parseInt(price)||0) ? $(".view_price_" + id).text(price) : $(".view_price_" + id).text("0");
         $(".price_" + id).addClass("add_price");
         $(".view_price_" + id).addClass("add_price");
+        debugger
+        $(".view_price_" + id).addClass("qty_present");
 
     });
     $(".sku_detail").change(function () {
@@ -269,6 +271,7 @@
         (parseInt(price)||0) ? $(".view_price_" + id).text(price) : $(".view_price_" + id).text("0");
         $(".price_" + id).addClass("add_price");
         $(".view_price_" + id).addClass("add_price");
+        $(".view_price_" + id).addClass("sku_present");
 
     });
     <% if params['status'] == "3" %>
