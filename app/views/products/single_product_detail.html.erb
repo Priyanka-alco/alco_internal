@@ -107,7 +107,7 @@
             <div class="col-md-8">
             <div class="row  mr-2">
               <span>Total MRP:&nbsp;&nbsp;</span>
-              <span>&#x20B9;&nbsp;</span><span><%= '%.2f' %@order.total.to_f %></span>
+              <span>&#x20B9;&nbsp;</span><span><%= '%.2f' %@order.total.to_f.round %></span>
             </div>
               <div class="row mt-1 mr-2">
                 <span>Discount Percentage on MRP:&nbsp;&nbsp;</span>
@@ -115,15 +115,15 @@
               </div>
               <div class="row mt-1 mr-2">
                 <span>Discount Price on MRP:&nbsp;&nbsp;</span>
-                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.discount.to_f}" : '' %> </span>
+                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.discount.to_f.round}" : '' %> </span>
               </div>
               <div class="row mt-1 mr-2">
                 <span>GST:&nbsp;&nbsp;</span>
-                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.gst.to_f}" : '' %> </span>
+                <span>&#x20B9;<%= @order.present? ? " #{'%.2f' %@order.gst.to_f.round}" : '' %> </span>
               </div>
               <div class="row mt-1 mr-2">
                 <span>Total Amount:&nbsp;&nbsp;</span>
-                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= @order.present? ? " #{'%.2f' %@order.discounted_price.to_f}" : '' %></span>
+                <span>&#x20B9;&nbsp;</span><span class="discounted_price"> <%= @order.present? ? " #{'%.2f' %@order.discounted_price.to_f.round}" : '' %></span>
               </div>
             </div> 
 <!--            <div class="col-md-4">-->

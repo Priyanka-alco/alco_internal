@@ -8,6 +8,5 @@ module BillHelper
   def get_product_detail(product_id)
     product_detail = Product.where("id=#{product_id.to_i}")
     return product_detail[0]
-
   end
 end
