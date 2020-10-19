@@ -1,11 +1,20 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 
 header {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 3;
@@ -57,6 +66,7 @@ nav a:hover {
   background-color: #003460;
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 1px 1px black;
   box-shadow: 1px 1px black;
   padding-top: 3%;
 }
@@ -80,6 +90,8 @@ nav a:hover {
 }
 
 .sidebar-menu {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
 }
@@ -104,7 +116,7 @@ nav a:hover {
 }
 
 .main-content {
-  margin-left: 20%;
+  margin-left: 23%;
 }
 
 .order-info ul li {
@@ -126,7 +138,7 @@ nav a:hover {
   width: 70%;
   margin-left: 14%;
   position: relative;
-  top: 215px;
+  top: 210px;
 }
 
 .logout-btn-manager-portal button {
@@ -136,7 +148,7 @@ nav a:hover {
   width: 70%;
   margin-left: 14%;
   position: relative;
-  top: 280px;
+  top: 240px;
 }
 
 .sideBar hr {
@@ -146,6 +158,8 @@ nav a:hover {
 }
 
 .customer-card {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -174,7 +188,14 @@ nav a:hover {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  -webkit-transition: border-color 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+    -webkit-box-shadow 0.15s ease-in-out;
 }
 
 .has-search .form-control-feedback {

@@ -1,6 +1,14 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 * {
   padding: 0;
   margin: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
@@ -11,6 +19,7 @@ header {
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.4);
   background-color: #003460;
+  -webkit-box-shadow: 1px 1px black;
   box-shadow: 1px 1px black;
   font-size: 18px;
 }

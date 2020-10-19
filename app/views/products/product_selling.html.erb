@@ -49,25 +49,25 @@
             </div>
             <div class="card-body">              
               <div class="table-responsive product-selling-order-table">
-                <table class="table table-borderless text-center ">
+                <table class="table table-borderless text-center">
                   <thead class="table-header thead-light">
                     <tr>
-                        <th class="table-header" scope="col">Name</th>
-                        <th class="table-header" scope="col">Weight</th>
-                        <th class="table-header" scope="col">Per Unit Price</th>
-                        <th class="table-header" scope="col">Quantity</th>
-                        <th class="table-header" scope="col">Price</th>
+                        <th  style="padding:5px;" class="table-header" scope="col">Name</th>
+                        <th style="padding:5px;" class="table-header" scope="col">Weight</th>
+                        <th style="padding:5px;" class="table-header" scope="col">Per Unit Price</th>
+                        <th style="padding:5px;" class="table-header" scope="col">Quantity</th>
+                        <th style="padding:5px;" class="table-header" scope="col">Price</th>
                         </tr>
                     </thead>
                   <tbody class="product_table">
                   <% if  @result['product'].present? %>
                     <% @result['product'].each_with_index  do |product,index| %>
-                      <tr>
-                        <td>
+                      <tr style="padding:5px;">
+                        <td style="padding:5px;">
                           <input type="hidden" name="product_name[<%= index %>]" value="<%= product['product'].id %> " class="form_product_name form-control">
                           <span><%= product['product'].product_name %></span>
                         </td>
-                        <td>
+                        <td style="padding:5px;">
                           <select required class="ml-2 form-control form_sku sku_<%= index %> sku_detail" name="sku[<%= index %>]">
                             <option disabled selected>SKU</option>
                             <% product['product_detail'].each do |product_detail_val| %>
@@ -76,10 +76,10 @@
                           </select>
                           <input type="hidden" value="<%= index %>">
                         </td>
-                        <td>
+                        <td style="padding:5px;">
                           <span class="per_unit_price"></span>
                         </td>
-                        <td >
+                        <td  style="padding:5px;">
                           <select required class="ml-3 form-control qty form_qty qty_<%= index %>" name="qty[<%= index %>]" id="<%= index %>">
                             <option disabled selected>QTY</option>
                             <% (1..10).each do |val| %>
@@ -87,7 +87,7 @@
                             <% end %>
                           </select>
                         </td>
-                        <td>
+                        <td style="padding:5px;">
                           <span class="form_price view_price_<%= index %> price_<%= index %> "></span>
                           <input type="hidden" read_only="true" class="w-50 ml-auto mr-auto show_price_sum form-control form_price price_<%= index %>" name="price[<%= index %>]">
                         </td>
@@ -98,6 +98,9 @@
                   </tbody>
                 </table>
               </div>
+            </div>
+            <div class="card-footer">
+              <span>Sub-total:&nbsp;</span>100<span>
             </div>
           </div>
         </div>

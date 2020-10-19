@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 .bodyBackground {
   background-color: #003460;
   font-family: "Poppins", sans-serif;
@@ -17,6 +24,8 @@
 }
 
 .signUpLink {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   margin: 5px auto;
   text-decoration: none;
@@ -38,6 +47,8 @@
   top: 150px;
   left: 38%;
   z-index: 1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   z-index: 20;
 }
