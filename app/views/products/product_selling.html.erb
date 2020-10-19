@@ -94,13 +94,13 @@
                       </tr>
                     <% end %>
                   <% end %>
-
                   </tbody>
                 </table>
               </div>
             </div>
             <div class="card-footer">
-              <span>Sub-total:&nbsp;</span>100<span>
+              <span >Sub-total:&nbsp;</span>
+              <span class="sub_total_product"></span>
             </div>
           </div>
         </div>
@@ -256,6 +256,7 @@
         $(".form_price").val("0");
         $('input').removeClass('add_price');
     });
+    var total_product = 0;
     $(".qty").change(function () {
         var id = $(this).attr("id");
         var unit_price = $(".sku_" + id + " option:selected").attr("data-value");
@@ -270,6 +271,14 @@
         var price = sku * qty;
         $(".price_" + id).val(price);
         $(".view_price_" + id).val(price);
+
+// =========================subtotal on product=============
+        $('.show_price_sum').each(function() {
+            total_product += Number($(this).val());
+        });
+        $('.sub_total_product').text(total_product);
+// =========================subtotal on product=============
+
         (parseInt(price)||0) ? $(".price_" + id).val(price) : $(".price_" + id).val("0");
         (parseInt(price)||0) ? $(".view_price_" + id).text(price) : $(".view_price_" + id).text("0");
         $(".price_" + id).addClass("add_price");
@@ -278,6 +287,7 @@
         $(".view_price_" + id).addClass("qty_present");
 
     });
+    var total_product_qty = 0;
     $(".sku_detail").change(function () {
         var id = $(this).next().val();
         var unit_price = $(".sku_" + id + " option:selected").attr("data-value");
@@ -294,11 +304,19 @@
         // $(".price_" + id).val(price);
         (parseInt(price)||0) ? $(".price_" + id).val(price) : $(".price_" + id).val("0");
         (parseInt(price)||0) ? $(".view_price_" + id).text(price) : $(".view_price_" + id).text("0");
+
+// =========================subtotal on product=============
+        $('.show_price_sum').each(function() {
+            total_product_qty += Number($(this).val());
+        });
+        $('.sub_total_product').text(total_product_qty);
+// =========================subtotal on product=============
         $(".price_" + id).addClass("add_price");
         $(".view_price_" + id).addClass("add_price");
         $(".view_price_" + id).addClass("sku_present");
 
     });
+
     <% if params['status'] == "3" %>
 
     <% end %>
