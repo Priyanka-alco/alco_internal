@@ -11,10 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//=popper.js
+//=jquery.js
 //= require jquery_ujs
 //= require turbolinks
 //=bootstrap.min.js
-//=jquery.js
-//=popper.js
+
+
 //= require_tree .
 

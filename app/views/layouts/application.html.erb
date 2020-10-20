@@ -4,15 +4,15 @@
   <title>AlcoB2c</title>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.tutorialjinni.com/push.js/1.0.12/push.min.js"></script>
   <script src="https://cdn.tutorialjinni.com/push.js/1.0.12/serviceWorker.min.js"></script>
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
@@ -99,16 +99,8 @@
   <% if (params[:action] != "bill") && (params[:action] != "caller_login") %>
     <footer><div class="copyright">Copyright@Alco Foods PVT LTD.</div></footer>
   <% end %>
-  <script>
-  
-  </script>
-  </body>
-  </html>
 
-  </body>
-  </html>
-<% end %>
-<script>
+ <script>
     setInterval(function () { $.ajax({
         type: "get",
         url: "/new_order",
@@ -120,5 +112,9 @@
                 });
             });
         }
-    }); }, 1000);
-</script>
+    }); }, 3000);
+  </script>
+  </body>
+  </html>
+
+<% end %>
