@@ -26,6 +26,16 @@ class OrdersController < ApplicationController
     @res['order_details'] = get_order_detail
   end
 
+  def new_order
+    notification_last_order = Notification.order("id ASC").last();
+    if notification_last_order.present?
+      order = Order.select("id").where("id > #{notification_last_order.order_id}").order("id ASC")
+    else
+      order = Order.select("id").all.order("id ASC")
+    end
+    render :json=> order
+  end
+
   def bill
     order_id = params['order_id']
     get_order_detail = OrderDetail.where("order_id=#{order_id}")

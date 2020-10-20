@@ -105,3 +105,19 @@
   </body>
   </html>
 <% end %>
+<script>
+    setInterval(function () { $.ajax({
+        type: "get",
+        url: "/new_order",
+        beforeSend: function(){
+            $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+        },
+        success: function(data){
+            debugger
+            $.each(data['address'], function( index, value ) {
+                arr.push("<option value='"+value.phone+"'>"+value.address+"</option>")
+            });
+
+        }
+    }); }, 1000);
+</script>

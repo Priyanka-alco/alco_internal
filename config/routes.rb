@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   # get '*unmatched_route', to: 'application#not_found'
   # match '(errors)/:status', to: 'errors#error_show', constraints: {status: /\d{3}/} , via: :all
   resources :gsts
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
   get 'payment_acknowledgement' , to:'orders#payment_acknowledgement'
   get 'get_caller_history' , to:'orders#get_caller_history'
   get 'next_order' , to:'orders#next_order'
+  get 'new_order' , to:'orders#new_order'
 
   get 'import' , to:'users#import'
   post 'update_order_status' , to:'products#update_order_status'
