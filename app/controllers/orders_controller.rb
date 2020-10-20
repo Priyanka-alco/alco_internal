@@ -64,6 +64,18 @@ class OrdersController < ApplicationController
       res['sku_detail'] = product_detail[0].sku
       @result << res
     end
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "test", disposition: 'attachment'   # Excluding ".pdf" extension.
+      end
+    end
+
+
+
+
+    # render json: {}
   end
 
   def payment

@@ -1,0 +1,567 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="container bill_layout">
+  <div class="row float-right mr-1">
+    <a class="text-primary" href onclick="printPage()">Print</a>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <span class="float-left mt-1"><%= image_tag("alco_logo.jpg",:class => "bill_logo") %></span>
+    </div>
+    <div class="col-md-8 text-center" style="margin-top:10px">
+      <div class="h3">ALCO FOODS PRIVATE LIMITED</div>
+      <div class="h5">VILLAGE - HIRAPUR, JARWAY, POST-TENDUA, CHHATTISGARH-492099, INDIA</div>
+      <div class="h5">Email Id: hello@alcoeats.com</div>
+      <div class="h5">Contact Number : 1800-120-777</div>
+    </div>
+  </div>
+</div>
+
+<div class="container bill_layout">
+  <div class="row">
+    <div class="col-md-6 h6 mt-1">
+      <div class="float-left"><span>GSTIN:&nbsp;</span><span>22AARCA8045K1ZD</span></div><br>
+      <div class="float-left"><span>PAN:&nbsp;</span><span>AARCA8045K</span></div><br>
+      <div class="float-left"><span>CIN:&nbsp;</span><span>U15490CT2019PTC008997</span></div><br>
+      <div class="float-left"><span>STATE NAME:&nbsp;</span><span>CHHATTISGARH</span></div><br>
+      <div class="float-left"><span>STATE CODE:&nbsp;</span><span>22</span></div>
+    </div>
+    <div class="col-md-6 h6 mt-2">
+      <div class="float-right"><span>Bill No:&nbsp;</span><span>H</span><span>01</span></div><br>
+      <div class="float-right"><span>Order Id:&nbsp;</span><span>#PO01</span></div><br>
+      <div class="float-right"><span>Order Date:&nbsp;</span><span><%= @order.created_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></span></div><br>
+      <div class="float-right"><span>Created Date:&nbsp;</span><span><%= @order.updated_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></div>
+    </div>
+  </div>
+</div>
+<div class="container bill_layout">
+  <div class="row">
+    <div class="col-md-6 h6 mt-1">
+      <div class="float-left"><span>BUYER NAME:</span></div><br>
+      <div><span>NAME:&nbsp;</span><span><%= @customer_detail[0].first_name%>&nbsp;<%= @customer_detail[0].last_name %></span></div>
+      <div style="word-wrap: break-word;"><span>ADDRESS:&nbsp;</span></span><span><%= @customer_detail[0].address%><span></span></div>
+      <div><span>CONTACT:&nbsp;</span><span><%= @customer_detail[0].phone %></span></div>
+    </div>
+  </div>
+</div>
+<div class="container bill_layout" style="height:800px;">
+  <div class="row">
+    <table class="table table-borderless text-center">
+      <thead>
+      <th class="bill_layout">S.No</th>
+      <th class="bill_layout">Name</th>
+      <th class="bill_layout">Weight</th>
+      <th class="bill_layout">Category</th>
+      <th class="bill_layout">Qty</th>
+      <th class="bill_layout">Total Weight</th>
+      <th class="bill_layout">Price Per Unit</th>
+      <th class="bill_layout">Price</th>
+      </thead>
+      <tbody>
+      <% @result.each_with_index do |val,index| %>
+        <% get_product_sku = get_product_sku(val["order_detail"].sku_id) %>
+        <% get_product_detail = get_product_detail(val["order_detail"].product_id) %>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+
+      <%end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container bill_layout">
+  <div class="row">
+    <div class="col-md-8 h6">
+      <div class="mt-1"><span>IMPORTANT:</span></div>
+      <div><span>1. Goods Once sold will not be taken back nor exchange.</span></div>
+      <div><span>2. All disputes are subject to Raipur Jurisdiction only.</span></div>
+    </div>
+    <div class="col-md-4 h6">
+      <div class="mt-1"><span>TOTAL MRP <span style="font-style:oblique;font-size:15px">(includes 5% GST)</span> :&nbsp;</span><span><span class="fa fa-inr"></span> 800</span></div>
+      <div><span>DISCOUNT:&nbsp;</span></span>10%<span></span></div>
+      <div><span>TOTAL AMOUNT:&nbsp;</span><span><span class="fa fa-inr"></span> 720</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered bill_layout">
+      <tr>
+        <td class="bill_layout" style="border: 1px solid black;padding:5px">
+          <div class="h5">&nbsp;<span>Company's Bank Details:</span></div>
+          <div class="h6">&nbsp;<span>Bank Name:&nbsp;</span></div>
+          <div class="h6">&nbsp;<span>A/C Number:&nbsp;</span></div>
+          <div class="h6">&nbsp;<span>Branch:&nbsp;</span></div>
+        </td>
+        <td class="bill_layout" style="border: 1px solid black;padding:5px">
+          <div class="h6">&nbsp;<span>Receiver's Signature</span></div><br><br><br>
+          <div class="h6 text-center">&nbsp;<span>Authorised Signatory&nbsp;</span></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+
+</html>
+<script>
+
+    function printPage() {
+        window.print()
+    }
+
+    $('#close-order_complete_popup').click(function(){
+        $('#order_complete_popup').hide();
+    });
+
+    $('.complete_order').click(function(){
+        var order_id = $(this).prev().val();
+        // alert(order_id);
+        $.ajax({
+            url:"/complete_order",
+            method: "POST",
+            data: {"order_id":order_id},
+            success: function(data){
+                $('#order_complete_popup').show(); //show modal
+            },
+            error: function(data){
+                window.location.replace("operation_order_detail?order_id="+parseInt(order_id)+1)
+            }
+        });
+    });
+</script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="container bill_layout">
+  <div class="row float-right mr-1">
+    <a class="text-primary" href onclick="printPage()">Print</a>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <span class="float-left mt-1"><%= image_tag("alco_logo.jpg",:class => "bill_logo") %></span>
+    </div>
+    <div class="col-md-8 text-center" style="margin-top:10px">
+      <div class="h3">ALCO FOODS PRIVATE LIMITED</div>
+      <div class="h5">VILLAGE - HIRAPUR, JARWAY, POST-TENDUA, CHHATTISGARH-492099, INDIA</div>
+      <div class="h5">Email Id: hello@alcoeats.com</div>
+      <div class="h5">Contact Number : 1800-120-777</div>
+    </div>
+  </div>
+</div>
+
+<div class="container bill_layout">
+  <div class="row">
+    <div class="col-md-6 h6 mt-1">
+      <div class="float-left"><span>GSTIN:&nbsp;</span><span>22AARCA8045K1ZD</span></div><br>
+      <div class="float-left"><span>PAN:&nbsp;</span><span>AARCA8045K</span></div><br>
+      <div class="float-left"><span>CIN:&nbsp;</span><span>U15490CT2019PTC008997</span></div><br>
+      <div class="float-left"><span>STATE NAME:&nbsp;</span><span>CHHATTISGARH</span></div><br>
+      <div class="float-left"><span>STATE CODE:&nbsp;</span><span>22</span></div>
+    </div>
+    <div class="col-md-6 h6 mt-2">
+      <div class="float-right"><span>Bill No:&nbsp;</span><span>H</span><span>01</span></div><br>
+      <div class="float-right"><span>Order Id:&nbsp;</span><span>#PO01</span></div><br>
+      <div class="float-right"><span>Order Date:&nbsp;</span><span><%= @order.created_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></span></div><br>
+      <div class="float-right"><span>Created Date:&nbsp;</span><span><%= @order.updated_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></div>
+    </div>
+  </div>
+</div>
+<div class="container bill_layout">
+  <div class="row">
+    <div class="col-md-6 h6 mt-1">
+      <div class="float-left"><span>BUYER NAME:</span></div><br>
+      <div><span>NAME:&nbsp;</span><span><%= @customer_detail[0].first_name%>&nbsp;<%= @customer_detail[0].last_name %></span></div>
+      <div style="word-wrap: break-word;"><span>ADDRESS:&nbsp;</span></span><span><%= @customer_detail[0].address%><span></span></div>
+      <div><span>CONTACT:&nbsp;</span><span><%= @customer_detail[0].phone %></span></div>
+    </div>
+  </div>
+</div>
+<div class="container bill_layout" style="height:800px;">
+  <div class="row">
+    <table class="table table-borderless text-center">
+      <thead>
+      <th class="bill_layout">S.No</th>
+      <th class="bill_layout">Name</th>
+      <th class="bill_layout">Weight</th>
+      <th class="bill_layout">Category</th>
+      <th class="bill_layout">Qty</th>
+      <th class="bill_layout">Total Weight</th>
+      <th class="bill_layout">Price Per Unit</th>
+      <th class="bill_layout">Price</th>
+      </thead>
+      <tbody>
+      <% @result.each_with_index do |val,index| %>
+        <% get_product_sku = get_product_sku(val["order_detail"].sku_id) %>
+        <% get_product_detail = get_product_detail(val["order_detail"].product_id) %>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+        <tr>
+          <td class="p-1"><%= index+1 %></td>
+          <td class="p-1"><%= get_product_detail.product_name if get_product_detail.present? %></td>
+          <td class="p-1"><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
+          <td class="p-1">Jar</td>
+          <td class="p-1"><%= val["order_detail"].quantity %></td>
+          <td class="p-1">800g</td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+          <td class="p-1"><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
+        </tr>
+
+      <%end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="container bill_layout">
+  <div class="row">
+    <div class="col-md-8 h6">
+      <div class="mt-1"><span>IMPORTANT:</span></div>
+      <div><span>1. Goods Once sold will not be taken back nor exchange.</span></div>
+      <div><span>2. All disputes are subject to Raipur Jurisdiction only.</span></div>
+    </div>
+    <div class="col-md-4 h6">
+      <div class="mt-1"><span>TOTAL MRP <span style="font-style:oblique;font-size:15px">(includes 5% GST)</span> :&nbsp;</span><span><span class="fa fa-inr"></span> 800</span></div>
+      <div><span>DISCOUNT:&nbsp;</span></span>10%<span></span></div>
+      <div><span>TOTAL AMOUNT:&nbsp;</span><span><span class="fa fa-inr"></span> 720</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table table-bordered bill_layout">
+      <tr>
+        <td class="bill_layout" style="border: 1px solid black;padding:5px">
+          <div class="h5">&nbsp;<span>Company's Bank Details:</span></div>
+          <div class="h6">&nbsp;<span>Bank Name:&nbsp;</span></div>
+          <div class="h6">&nbsp;<span>A/C Number:&nbsp;</span></div>
+          <div class="h6">&nbsp;<span>Branch:&nbsp;</span></div>
+        </td>
+        <td class="bill_layout" style="border: 1px solid black;padding:5px">
+          <div class="h6">&nbsp;<span>Receiver's Signature</span></div><br><br><br>
+          <div class="h6 text-center">&nbsp;<span>Authorised Signatory&nbsp;</span></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+
+</html>
+<script>
+
+    function printPage() {
+        window.print()
+    }
+
+    $('#close-order_complete_popup').click(function(){
+        $('#order_complete_popup').hide();
+    });
+
+    $('.complete_order').click(function(){
+        var order_id = $(this).prev().val();
+        // alert(order_id);
+        $.ajax({
+            url:"/complete_order",
+            method: "POST",
+            data: {"order_id":order_id},
+            success: function(data){
+                $('#order_complete_popup').show(); //show modal
+            },
+            error: function(data){
+                window.location.replace("operation_order_detail?order_id="+parseInt(order_id)+1)
+            }
+        });
+    });
+</script>
