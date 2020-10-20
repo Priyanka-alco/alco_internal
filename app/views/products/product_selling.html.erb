@@ -68,7 +68,7 @@
                           <span><%= product['product'].product_name %></span>
                         </td>
                         <td style="padding:5px;">
-                          <select required class="ml-2 form-control form_sku sku_<%= index %> sku_detail" name="sku[<%= index %>]">
+                          <select style="width:100px" required class="ml-auto mr-auto form-control form_sku sku_<%= index %> sku_detail" name="sku[<%= index %>]">
                             <option disabled selected>SKU</option>
                             <% product['product_detail'].each do |product_detail_val| %>
                               <option value="<%=product_detail_val.id %>" data-value="<%=product_detail_val.selling_rice %>"><%=product_detail_val.sku %>g</option>
@@ -80,7 +80,7 @@
                           <span class="per_unit_price"></span>
                         </td>
                         <td  style="padding:5px;">
-                          <select required class="ml-3 form-control qty form_qty qty_<%= index %>" name="qty[<%= index %>]" id="<%= index %>">
+                          <select style="width:80px" required class="ml-auto mr-auto form-control qty form_qty qty_<%= index %>" name="qty[<%= index %>]" id="<%= index %>">
                             <option disabled selected>QTY</option>
                             <% (1..10).each do |val| %>
                               <option value="<%=val %>"><%=val %></option>
@@ -180,23 +180,23 @@
       <div class="row mt-2 text-white h6 justify-content-center">
         <table class="table text-center text-white">
         <tr>
-        <td>&#x20B9; 100 - &#x20B9; 299</td>
+        <td>&#x20B9; 100 - &#x20B9; 300</td>
         <td>*Free Delivery</td>
         </tr>
         <tr>
-        <td>&#x20B9; 300 - &#x20B9; 499</td>
+        <td>&#x20B9; 301 - &#x20B9; 500</td>
         <td>5%</td>
         </tr>
         <tr>
-        <td>&#x20B9; 500 - &#x20B9; 999</td>
+        <td>&#x20B9; 501 - &#x20B9; 1000</td>
         <td>10%</td>
         </tr>
         <tr>
-        <td>&#x20B9; 1000 - &#x20B9; 1099</td>
+        <td>&#x20B9; 1001 - &#x20B9; 2000</td>
         <td>15%</td>
         </tr>
         <tr>
-        <td>&#x20B9; 2000+</td>
+        <td>&#x20B9; 2001+</td>
         <td>20%</td>
         </tr>
         </table>
