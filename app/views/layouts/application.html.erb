@@ -5,7 +5,7 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.tutorialjinni.com/push.js/1.0.12/push.min.js"></script>
@@ -112,16 +112,13 @@
     setInterval(function () { $.ajax({
         type: "get",
         url: "/new_order",
-        beforeSend: function(){
-            $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
-        },
         success: function(data){
+            console.log("*****"+data);
             $.each(data, function( index, value ) {
                 Push.create("Alco Foods Notification", {
                     body: "New Order Arrived: PO" + value.id ,
                 });
             });
-
         }
-    }); }, 50000);
+    }); }, 1000);
 </script>

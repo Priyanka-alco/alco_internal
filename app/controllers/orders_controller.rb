@@ -28,10 +28,16 @@ class OrdersController < ApplicationController
 
   def new_order
     notification_last_order = Notification.order("id ASC").last();
+
     if notification_last_order.present?
-      order = Order.select("id").where("id > #{notification_last_order.order_id}").order("id ASC")
-    else
-      order = Order.select("id").all.order("id ASC")
+      last_order = Order.order("id ASC").last()
+      last_order_id = last_order.present? ? last_order.id : 0
+      if last_order_id > notification_last_order.order_id
+        order = Order.select("id").where("id > #{notification_last_order.order_id} and status=1").order("id ASC")
+        order.each do |data|
+          Notification.create(:order_id=>data.id)
+        end
+      end
     end
     render :json=> order
   end
