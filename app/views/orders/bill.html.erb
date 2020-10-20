@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-  <div class="container bill_layout" style="border: 1px solid black">
+  <div class="container bill_layout">
           <div class="row float-right mr-1">
             <a class="text-primary" href onclick="printPage()">Print</a>
           </div>
@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="container bill_layout" style="border: 1px solid black">
+        <div class="container bill_layout">
             <div class="row">
                 <div class="col-md-6 h6 mt-1">
                     <div class="float-left"><span>GSTIN:&nbsp;</span><span>22AARCA8045K1ZD</span></div><br>
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="container bill_layout" style="border: 1px solid black;">
+        <div class="container bill_layout">
             <div class="row">
                 <div class="col-md-6 h6 mt-1">
                     <div class="float-left"><span>BUYER NAME:</span></div><br>
@@ -46,18 +46,18 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="height:800px;border:1px solid black">
+        <div class="container bill_layout" style="height:800px;">
             <div class="row">
                 <table class="table table-borderless text-center">
                     <thead>
-                        <th class="bill_layout" style="border: 1px solid black">S.No</th>
-                        <th style="border: 1px solid black">Name</th>
-                        <th style="border: 1px solid black">Weight</th>
-                        <th style="border: 1px solid black">Category</th>
-                        <th style="border: 1px solid black">Qty</th>
-                        <th style="border: 1px solid black">Total Weight</th>
-                        <th style="border: 1px solid black">Price Per Unit</th>
-                        <th style="border: 1px solid black">Price</th>
+                        <th class="bill_layout">S.No</th>
+                        <th class="bill_layout">Name</th>
+                        <th class="bill_layout">Weight</th>
+                        <th class="bill_layout">Category</th>
+                        <th class="bill_layout">Qty</th>
+                        <th class="bill_layout">Total Weight</th>
+                        <th class="bill_layout">Price Per Unit</th>
+                        <th class="bill_layout">Price</th>
                     </thead>
                     <tbody>
                         <% @result.each_with_index do |val,index| %>
@@ -219,7 +219,7 @@
                 </table>         
                 </div>
         </div>
-        <div class="container bill_layout" style="border: 1px solid black">
+        <div class="container bill_layout">
             <div class="row">
                 <div class="col-md-8 h6">
                     <div class="mt-1"><span>IMPORTANT:</span></div>
@@ -237,7 +237,7 @@
         
         <div class="container">
             <div class="row">
-                <table class="table table-bordered bill_layout" style="border: 1px solid black">
+                <table class="table table-bordered bill_layout">
                     <tr>
                         <td class="bill_layout" style="border: 1px solid black;padding:5px">
                         <div class="h5">&nbsp;<span>Company's Bank Details:</span></div>
