@@ -7,6 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.tutorialjinni.com/push.js/1.0.12/push.min.js"></script>
+  <script src="https://cdn.tutorialjinni.com/push.js/1.0.12/serviceWorker.min.js"></script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -113,11 +116,12 @@
             $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
         },
         success: function(data){
-            debugger
-            $.each(data['address'], function( index, value ) {
-                arr.push("<option value='"+value.phone+"'>"+value.address+"</option>")
+            $.each(data, function( index, value ) {
+                Push.create("Alco Foods Notification", {
+                    body: "New Order Arrived: PO" + value.id ,
+                });
             });
 
         }
-    }); }, 1000);
+    }); }, 50000);
 </script>
