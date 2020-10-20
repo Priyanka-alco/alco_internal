@@ -79,8 +79,8 @@
                   <td><%= val['product_name'] %></td>
                   <td><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
                   <td><%= val["order_detail"].quantity %></td>
-                  <td>&#x20B9; <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
-                  <td>&#x20B9; <%= val["order_detail"].selling_price.to_i%></td>
+                  <td><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+                  <td><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
                   <td><%= val["order_detail"].created_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M")%></td>
                 </tr>
               <%end %>
@@ -92,7 +92,7 @@
         </div>
       </div>
 
-      <div class="card mt-2 mb-1" style="height:220px">
+      <div class="card mt-2 mb-1" style="height:200px">
         <div class="card-body h5">
           <div class="row">
             <!--            <div class="col-md-7">-->

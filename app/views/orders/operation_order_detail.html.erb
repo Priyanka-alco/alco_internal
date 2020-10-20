@@ -41,8 +41,8 @@
                   <td><%= get_product_detail.product_name if get_product_detail.present? %></td>
                   <td><%=  get_product_sku.sku if get_product_sku.present?%>g</td>
                   <td><%= val["order_detail"].quantity %></td>
-                  <td>&#x20B9;<%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
-                  <td>&#x20B9;<%= val["order_detail"].selling_price.to_i%></td>
+                  <td><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i/val["order_detail"].quantity.to_i %></td>
+                  <td><span class="fa fa-inr"></span> <%= val["order_detail"].selling_price.to_i%></td>
                 </tr>
               <%end %>              
               </tbody>

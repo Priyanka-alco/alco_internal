@@ -33,7 +33,7 @@
         <% if @res.present? %>
           <% @res['order_details'].each_with_index do |data,index| %>
             <% get_caller_detail = get_caller_detail(data.id) %>
-            <tr   class="table-row" data-href="<%=  (session[:category] == 3) ? "/operation_order_detail?order_id= #{data.id}" : ""  %>">
+            <tr class="table-row" data-href="<%=  (session[:category] == 3) ? "/operation_order_detail?order_id= #{data.id}" : ""  %>">
               <td><span><%= index+1 %></span></td>
               <td><span>#PO<%= data.id %></span></td>
               <td><span><a href="/get_caller_history?caller_id=<%= get_caller_detail[0].id %>"><%= get_caller_detail[0].first_name %></a></span></td>
@@ -52,8 +52,41 @@
   </div>
 </div>
 
+<div class="popup" id="delivery_modal">
+  <div class="card border-0 delivery-popup-cardbody">
+    <div class="card-body">
+      <div class="row justify-content-end">
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_delivery_modal">&#10006;</a></span>
+      </div>
+      <div class="row mt-2 text-white h6 justify-content-center">
+        <table class="table text-center text-white">
+        <tr>
+        <td>Name:</td>
+        <td><select class="form-control">
+        <option>Ram</option>
+        <option>Sagar</option>
+        <option>Naman</option>
+        </select></td>
+        </tr>
+        </table>
+        </div>        
+      </div>
+    </div>
+  </div>
 
 <script>
+
+$('#delivery_modal').hide();
+
+$('.delivery_check').click(function(){
+    $('#delivery_modal').show();
+});
+
+$('#close_delivery_modal').click(function(){
+    $('#delivery_modal').hide();
+});
+
+
     $(document).ready(function ($) {
         $(".table-row").click(function () {
             window.document.location = $(this).data("href");

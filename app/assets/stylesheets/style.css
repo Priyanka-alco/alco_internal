@@ -215,6 +215,9 @@ nav a:hover {
   height: auto;
 }
 
+.bill_layout {
+  border: 1px solid black;
+}
 .spinner {
   margin: 100px auto 0;
   width: 70px;

@@ -38,7 +38,7 @@
               <td><span>#PO<%= data.id %></span></td>
               <td><span><a href="/get_caller_history?caller_id=<%= get_caller_detail[0].id %>"><%= get_caller_detail[0].first_name %></a></span></td>
 
-              <td><span>&#x20B9; <%= data.total %></span></td>
+              <td><span><span class="fa fa-inr"></span> <%= data.total %></span></td>
               <td><span>Completed</span></td>
               <td><%= data.updated_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></td>
               <% if (session[:category] != 3) %>
