@@ -58,14 +58,12 @@
               <div class="col-md-8">
                 <div class="row  mr-2">
                 <span>Total MRP:&nbsp;&nbsp;</span>
-                <span>&#x20B9;&nbsp;</span><span><%= @order.total.to_f.round%></span>
+                <span><i class="fa fa-inr">&nbsp;</i></span><span><%= @order.total.to_f.round%></span>
                 </div>
                 <div class="row mt-1 mr-2">
                   <span style="font-style:oblique;font-size:15px">(Includes 5% GST)&nbsp;&nbsp;</span>
                   <!--              <span class="fa fa-inr"></span>;<%#= @order.present? ? " #{'%.2f' %@order.gst.to_f.round}" : '' %> </span>-->
                 </div>
-
-
                   <% if (@order.discount.to_i > 0) %>
                     <div class="row mt-1 mr-2">
                       <span>Discount&nbsp; </span>
