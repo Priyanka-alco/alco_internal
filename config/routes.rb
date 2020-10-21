@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   get 'next_order' , to:'orders#next_order'
   get 'shipping_order' , to:'orders#shipping_order'
   get 'dispatched_order' , to:'orders#dispatched_order'
+  get 'order_returned' , to:'orders#order_returned'
+  get 'address_not_found' , to:'orders#address_not_found'
   # get 'new_order' , to:'orders#new_order'
 
   get 'import' , to:'users#import'
