@@ -93,22 +93,26 @@ class ProductsController < ApplicationController
     end
     product_price_detail = {}
     product_price_detail['product_price'] = total_price
-    get_discount = Discount.where("   from_range <= #{total_price.to_i} AND to_range >=  #{total_price.to_i}")
-    discount = get_discount.present? ? get_discount[0].discount : (total_price.to_i < 100) ? 0 : 20
-    product_price_detail['discount'] = discount
-    # get_gst = Gst.where("status=1 and category=1")
+
     product_price_detail['gst'] =  5
-    calculate_gst = calculate_gst(product_price_detail)
+    product_price_detail['gst'] = ((total_price.to_f*0.05)).round
+    product_price_detail['total_price'] = (product_price_detail['product_price']+product_price_detail['gst']).round
+    # get_gst = Gst.where("status=1 and category=1")
+    get_discount = Discount.where("from_range <= #{product_price_detail['total_price'].to_i} AND to_range >=  #{product_price_detail['total_price'].to_i}")
+    discount = get_discount.present? ? get_discount[0].discount : (product_price_detail['total_price'].to_i < 100) ? 0 : 20
+    product_price_detail['discount'] = discount
+    product_price_detail['discounted_product_price'] = (product_price_detail['total_price'].to_f - product_price_detail['discount'].to_f).round
+    product_price_detail['discount'] =((product_price_detail['total_price'].to_f*product_price_detail['discount'].to_f)/100).round
     discount_id = get_discount.present? ? get_discount[0].id.to_i : 0
     create_order = Order.create(:cust_id=>create_customer.id,
                                 :seller_id=>1,
-                                :total=>calculate_gst["total_price"].to_f,
+                                :total=>product_price_detail['total_price'].to_f,
                                 :order_status => 0,
                                 :payment_type=>payment_type,
                                 :status=>payment_type,
-                                :discounted_price=>calculate_gst['discounted_product_price'],
-                                :gst=>calculate_gst['gst'],
-                                :discount=>calculate_gst['discount'],
+                                :discounted_price=>product_price_detail['discounted_product_price'],
+                                :gst=>product_price_detail['gst'],
+                                :discount=>product_price_detail['discount'],
                                 :discount_id=>discount_id)
     # puts "********#{create_customer.id}*********#{create_order.id}"
     product_name.each_with_index do |val,index|
@@ -130,6 +134,7 @@ class ProductsController < ApplicationController
     product_price_detail['gst'] = ((product_price_detail['product_price'].to_f*product_price_detail['gst'])/100).round
     product_price_detail['total_price'] = (product_price_detail['product_price']+product_price_detail['gst']).round
     product_price_detail['discounted_product_price'] = (product_price_detail['total_price'].to_f - product_price_detail['discount'].to_f).round
+    debugger
     product_price_detail['discount'] =((product_price_detail['total_price'].to_f*product_price_detail['discount'].to_f)/100).round
     return product_price_detail
 
