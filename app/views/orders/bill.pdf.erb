@@ -5,7 +5,9 @@
 <div style="width: 90%;margin-right: auto;margin-left: auto;border: 1px solid black;">
   <div style="display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;">
     <div style="position: relative;width: 8%;padding-left:30px">
-      <span><%= image_tag("alco_logo.jpg",:style => "width: 90px;height: auto;margin-top:15px;padding-top:20x;padding-bottom:10px") %></span>
+      <span>
+        <%#= wicked_pdf_image_tag 'alco_logo.jpg' %>
+<!--        <%#= image_tag("alco_logo.jpg",:style => "width: 90px;height: auto;margin-top:15px;padding-top:20x;padding-bottom:10px") %></span>-->
     </div>
     <div style="position: relative;width: 92%;margin-top:10px;text-align: center">
       <div style="font-size:30px">ALCO FOODS PRIVATE LIMITED</div>
@@ -26,8 +28,8 @@
       <div><span>STATE CODE:&nbsp;</span><span>22</span></div>
     </div>
     <div style="position: relative;width: 50%;padding-right: 25px;text-align:right;font-size:16px;margin-top:10px">
-      <div><span>Bill No:&nbsp;</span><span>H</span><span>01</span></div>
-      <div><span>Order Id:&nbsp;</span><span>#PO01</span></div>
+      <div><span>Bill No:&nbsp;</span><span>H</span><span><%= @order.id %></span></div>
+      <div><span>Order Id:&nbsp;</span><span>#PO<%= @order.id %></span></div>
       <div><span>Order Date:&nbsp;</span><span><%= @order.created_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></span></div>
       <div><span>Created Date:&nbsp;</span><span><%= @order.updated_at.in_time_zone('Asia/Kolkata').strftime("%d-%m-%Y %H:%M") %></div>
     </div>
@@ -82,11 +84,14 @@
       <div><span>1. Goods Once sold will not be taken back nor exchange.</span></div>
       <div><span>2. All disputes are subject to Raipur Jurisdiction only.</span></div>
     </div>
-    <div style="position: relative;width: 30%;font-size:15px;text-align:left">
-      <div style="margin-top:5px"><span>TOTAL MRP <span style="font-style:oblique;font-size:13px">(includes 5% GST)</span> :&nbsp;</span><span><span class="fa fa-inr"></span> 800</span></div>
-      <div><span>DISCOUNT:&nbsp;</span></span>10%<span></span></div>
-      <div><span>TOTAL AMOUNT:&nbsp;</span><span><span class="fa fa-inr"></span> 720</span></div>
-    </div>
+
+      <div style="position: relative;width: 30%;font-size:15px;text-align:left">
+        <div style="margin-top:5px"><span>TOTAL MRP <span style="font-style:oblique;font-size:13px">(includes 5% GST)</span> :&nbsp;</span><span><span class="fa fa-inr"></span> <%= @order.total.to_f.round %></span></div>
+        <% if (@order.discount.to_i > 0) %>
+         <div><span>DISCOUNT:&nbsp;</span></span><%= @discount.present? ? "#{@discount.to_i}%" : '' %>: (-<i class="fa fa-inr">&nbsp;</i><%= @order.present? ? (@order.discount.to_i > 0)? " #{'%.2f' %@order.discount.to_f.round}" : '' : '' %>)<span></span></div>
+        <% end %>
+        <div><span>TOTAL AMOUNT:&nbsp;</span><span><span class="fa fa-inr"></span>  <%= @order.present? ? " #{@order.total.to_f.round - @order.discount.to_f.round}" : '' %></span></div>
+      </div>
 
   </div>
 </div>
