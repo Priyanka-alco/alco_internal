@@ -255,8 +255,8 @@ class OrdersController < ApplicationController
   end
 
   def order
-    seller = session[:admin] != true ? User.where("email='#{session[:email_id]}' and status =true") :  User.where("status =true")
-    order_detail = Order.where("seller_id=#{seller[0].id}").order( 'id DESC' )
+    # seller = session[:admin] != true ? User.where("email='#{session[:email_id]}' and status =true") :  User.where("status =true")
+    order_detail = Order.order( 'id DESC' )
     @res = []
     order_detail.each do |val|
       result = {}
@@ -265,6 +265,7 @@ class OrdersController < ApplicationController
       result['customer_detail'] = customer_detail
       @res << result
     end
+    render :json=>@res
 
   end
   # POST /orders
