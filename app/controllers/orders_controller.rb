@@ -15,6 +15,9 @@ class OrdersController < ApplicationController
   def shipping_order
   end
 
+  def dispatched_order
+  end
+
   def pending_order
      @res = {}
      order_clause = "id ASC"
