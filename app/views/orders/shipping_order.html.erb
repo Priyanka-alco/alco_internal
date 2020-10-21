@@ -132,11 +132,11 @@
   </div>
 </div>
 
-<div class="popup" id="delivery_modal">
-  <div class="card border-0 delivery-popup-cardbody">
+<div class="popup" id="delivery_select_modal">
+  <div class="card border-0 delivery-select-popup-cardbody">
     <div class="card-body">
       <div class="row justify-content-end">
-        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_delivery_modal">&#10006;</a></span>
+        <span class="mr-2"><a href="#"  class="h5 close text-white" id="close_delivery_select_modal">&#10006;</a></span>
       </div>
       <div class="row mt-2 text-white h6 justify-content-center">
         <table class="table text-center text-white">
@@ -148,6 +148,10 @@
               <option>Naman</option>
             </select></td>
           </tr>
+          <tr>
+            <td>Location:</td>
+            <td>Address</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -157,13 +161,13 @@
 <script>
 
   $('.delivery_select_btn').click(function (){
-      $('#delivery_modal').show();
+      $('#delivery_select_modal').show();
   });
 
-    $('#delivery_modal').hide();
+    $('#delivery_select_modal').hide();
 
-    $('#close_delivery_modal').click(function(){
-        $('#delivery_modal').hide();
+    $('#close_delivery_select_modal').click(function(){
+        $('#delivery_select_modal').hide();
     });
 
 
