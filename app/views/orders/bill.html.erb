@@ -83,9 +83,11 @@
                     <div><span>2. All disputes are subject to Raipur Jurisdiction only.</span></div>
                 </div>
                 <div style="position: relative;width: 30%;font-size:15px;text-align:left">
-                    <div style="margin-top:5px"><span>TOTAL MRP <span style="font-style:oblique;font-size:13px">(includes 5% GST)</span> :&nbsp;</span><span><span class="fa fa-inr"></span> 800</span></div>
-                    <div><span>DISCOUNT:&nbsp;</span></span>10%<span></span></div>
-                    <div><span>TOTAL AMOUNT:&nbsp;</span><span><span class="fa fa-inr"></span> 720</span></div>
+                    <div style="margin-top:5px"><span>TOTAL MRP <span style="font-style:oblique;font-size:13px">(includes 5% GST)</span> :&nbsp;</span><span><span class="fa fa-inr"></span> <%= @order.total.to_f.round%></span></div>
+                  <% if (@order.discount.to_i > 0) %>
+                  <div><span>DISCOUNT:&nbsp;</span></span><%= @discount.present? ? "#{@discount.to_i}%" : '' %>: (-<i class="fa fa-inr">&nbsp;</i><%= @order.present? ? (@order.discount.to_i > 0)? " #{'%.2f' %@order.discount.to_f.round}" : '' : '' %>)<span></span></div>
+                  <% end %>
+                    <div><span>TOTAL AMOUNT:&nbsp;</span><span><span class="fa fa-inr"></span>  <%= @order.present? ? " #{@order.total.to_f.round - @order.discount.to_f.round}" : '' %></span></div>
                 </div>               
                 
             </div>
