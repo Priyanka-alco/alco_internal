@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get 'payment_acknowledgement' , to:'orders#payment_acknowledgement'
   get 'get_caller_history' , to:'orders#get_caller_history'
   get 'next_order' , to:'orders#next_order'
+  get 'shipping_order' , to:'orders#shipping_order'
   # get 'new_order' , to:'orders#new_order'
 
   get 'import' , to:'users#import'
