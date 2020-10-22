@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
 
   def pending_order
      @res = {}
+     
      order_clause = "id ASC"
     get_order_detail = Order.where("order_status=1").order(order_clause)
     @res['order_details'] = get_order_detail
