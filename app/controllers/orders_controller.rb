@@ -15,15 +15,16 @@ class OrdersController < ApplicationController
   def pending_order
      @res = {}
      order_clause = "id ASC"
-
     get_order_detail = Order.where("order_status=1").order(order_clause)
     @res['order_details'] = get_order_detail
+    render :json=> @res
   end
 
   def completed_order
     @res = {}
     get_order_detail = Order.where("order_status=2").order("updated_at DESC")
     @res['order_details'] = get_order_detail
+    render :json=> @res
   end
 
   def new_order
