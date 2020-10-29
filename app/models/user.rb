@@ -4,7 +4,7 @@ class User < ApplicationRecord
   def self.import
     # file=File.open("#{Rails.root}/public/product_list.xlsx", "r:ISO-8859-1")
 
-    csv_text = File.open("#{Rails.root}/public/product.csv", "r:ISO-8859-1")
+    csv_text = File.open("#{Rails.root}/public/priyanka.csv", "r:ISO-8859-1")
     # sheet1 = csv_text.worksheet('Sheet1')
     csv = CSV.read(csv_text)
     csv.each_with_index do |row,index|
