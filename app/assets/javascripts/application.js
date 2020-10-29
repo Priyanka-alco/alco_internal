@@ -14,7 +14,7 @@
 //=popper.js
 //=jquery.js
 //= require jquery_ujs
-//= require turbolinks
+ require turbolinks
 //=bootstrap.min.js
 
 
