@@ -105,7 +105,7 @@ class ProductsController < ApplicationController
     product_price_detail['discount'] =((product_price_detail['total_price'].to_f*product_price_detail['discount'].to_f)/100).round
     discount_id = get_discount.present? ? get_discount[0].id.to_i : 0
     create_order = Order.create(:cust_id=>create_customer.id,
-                                :seller_id=>1,
+                                :seller_id=>session[:current_user_id].to_i,
                                 :total=>product_price_detail['total_price'].to_f,
                                 :order_status => 0,
                                 :payment_type=>payment_type,
